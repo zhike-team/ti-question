@@ -36,14 +36,20 @@ npm install --save @zhike/ti-ui
 
 ```javascript
 import React from 'react'
-import { Button } form '@zhike/ti-ui'
+import { Modal } form '@zhike/ti-component'
 
 class MyComponent extends React.Component {
-  render(
-    return (
-      <Button text="按钮"></Button>
-    )
-  )
+  componentDidMount() {
+    Modal.show('ModalAlert', {
+      title: 'Alert',
+      buttons: [{ title: 'OK' }],
+      width: 400,
+      isUnhide: true,
+      component: (
+        <div>Hello World!</div>
+      ),
+    });
+  }
 }
 
 export default MyComponent
@@ -60,61 +66,6 @@ npm publish
 ```
 
 ## API
-
-### Button
-
-|propName     |required|type  |default  |option            |
-|:-----------:|:------:|:----:|:-------:|------------------|
-|text         |true    |string|         |                  |
-|className    |        |      |undefined|                  |
-|textClassName|        |      |undefined|                  |
-|leftIcon     |        |      |undefined|                  |
-|rightIcon    |        |      |undefined|                  |
-|theme        |        |string|''       |'darken', 'hollow'|
-|onClick      |        |func  |undefined|                  |
-|isAvailable  |        |bool  |true     |                  |
-
-### Icon
-
-|propName   |required|type  |default  |option|
-|:---------:|:------:|:----:|:-------:|------|
-|width      |        |string|14       |      |
-|height     |        |string|14       |      |
-|marginLeft |        |string|0        |      |
-|marginRight|        |string|0        |      |
-|source     |        |string|''       |      |
-
-### Image
-
-|propName   |required|type  |default  |option|
-|:---------:|:------:|:----:|:-------:|------|
-|className  |        |      |undefined|      |
-
-注：支持 img 标签原生属性
-
-### Input
-
-|propName   |required|type  |default  |option|
-|:---------:|:------:|:----:|:-------:|------|
-|className  |        |      |undefined|      |
-
-注：支持 input 标签原生属性
-
-### Textarea
-
-|propName   |required|type  |default  |option|
-|:---------:|:------:|:----:|:-------:|------|
-|className  |        |      |undefined|      |
-
-注：支持 textarea 标签原生属性
-
-### View
-
-|propName   |required|type  |default  |option|
-|:---------:|:------:|:----:|:-------:|------|
-|className  |        |      |undefined|      |
-
-注：支持 div 标签原生属性
 
 [1]: https://github.com/facebook/react
 [2]: https://github.com/Khan/aphrodite
