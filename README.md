@@ -1,5 +1,5 @@
 # ti-component
-题库的通用组件，提取为依赖库并统一发布在npm\
+题库的通用组件，提取为依赖库并统一发布在npm
 
 ## demo
 
@@ -66,6 +66,12 @@ npm publish
 ```
 
 ## API
+
+### Modal组件改造：
+* type, props, [{ Header, AudioPlayer}]
+* type为字符串，可选值Alert/Correct。根据传入的字符串匹配Modal内的实例对象，不需要在组件中引入实例并传入Modal
+props不变
+* Header和AudioPlayer非必选，由组件自行引入，并在必要时传入Modal，以降低耦合度
 
 [1]: https://github.com/facebook/react
 [2]: https://github.com/Khan/aphrodite

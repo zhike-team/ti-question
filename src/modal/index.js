@@ -2,32 +2,36 @@ import React, { Component } from 'react';
 import { concat, filter, find } from 'lodash';
 import uuid from 'uuid';
 import { View, Image } from '@zhike/ti-ui';
-import Header from 'components/header';
-import AudioPlayer from 'components/audio_player';
+import Alert from './alert';
+import Correct from './correct';
 import styles from './styles';
 
 export default class ModalComponent extends Component {
   static instance;
 
-  static show(modalInstance, props = {}) {
+  static show(type = '', props = {}, { Header = null, AudioPlayer = null }) {
     if (!this.instance || !this.instance.setState) {
       return;
     }
 
-    const { modals } = this.instance.state;
+    const { modals, modalInstance } = this.instance.state;
     const id = uuid.v1();
 
     this.instance.setState({
       modals: concat(modals, {
         id,
-        instance: modalInstance,
+        instance: modalInstance[type],
         props: Object.assign({}, { modalId: id }, props),
       }),
+      modalExtense: {
+        Header,
+        AudioPlayer,
+      },
     });
 
     if (!props.isReport) {
-      AudioPlayer.pause();
-      Header.pauseTimerForModal();
+      AudioPlayer && AudioPlayer.pause();
+      Header && Header.pauseTimerForModal();
     }
 
     return id;
@@ -41,11 +45,16 @@ export default class ModalComponent extends Component {
     super(props);
     this.state = {
       modals: [],
+      modalInstance: {
+        Alert,
+        Correct,
+      },
+      modalExtense: {},
     };
   }
 
   hide(id) {
-    const { modals } = this.state;
+    const { modals, modalExtense } = this.state;
     const modal = find(modals, item => item.id === id);
     const newModals = filter(modals, item => item.id !== id);
 
@@ -56,8 +65,9 @@ export default class ModalComponent extends Component {
       !modal.props.isReport &&
       newModals.length === 0
     ) {
-      Header.startTimerForModal();
-      AudioPlayer.resume();
+      const { Header, AudioPlayer } = modalExtense;
+      Header && Header.startTimerForModal();
+      AudioPlayer && AudioPlayer.resume();
     }
   }
 
