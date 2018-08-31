@@ -37,6 +37,8 @@ npm install --save @zhike/ti-ui
 ```javascript
 import React from 'react'
 import { Modal } form '@zhike/ti-component'
+import Header from 'xxx'
+import AudioPlayer from 'xxx'
 
 class MyComponent extends React.Component {
   componentDidMount() {
@@ -45,9 +47,18 @@ class MyComponent extends React.Component {
       buttons: [{ title: 'OK' }],
       width: 400,
       isUnhide: true,
+      isReport: false,
       component: (
         <div>Hello World!</div>
       ),
+    },
+    onShow: () => {
+      AudioPlayer.pause();
+      Header.pauseTimerForModal();
+    },
+    onShow: () => {
+      Header.startTimerForModal();
+      AudioPlayer.resume();
     });
   }
 }
@@ -69,7 +80,7 @@ npm publish
 
 ### Modal组件改造：
 * type, props, onShow, onHide
-* type为字符串，可选值Alert/Correct。根据传入的字符串匹配Modal内的实例对象，不需要在组件中引入实例并传入Modal
+* type为字符串，可选值ModalAlert/ModalCorrect。根据传入的字符串匹配Modal内的实例对象，不需要在组件中引入实例并传入Modal
 * 若type为Correct， 则props需要再传入一个option对象，用于上传纠错信息时添加自定义属性
 * 新增加的onShow/onHide是为了降低耦合度，在抽离的组件中减少不合理的引用
 * onShow(可选)，在isReport为false的时候执行，一般情况下，传入以下方法：

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { concat, filter, find } from 'lodash';
 import uuid from 'uuid';
 import { View, Image } from '@zhike/ti-ui';
-import Alert from './alert';
-import Correct from './correct';
+import ModalAlert from './alert';
+import ModalCorrect from './correct';
 import styles from './styles';
 
 export default class ModalComponent extends Component {
@@ -43,8 +43,8 @@ export default class ModalComponent extends Component {
     this.state = {
       modals: [],
       modalInstance: {
-        Alert,
-        Correct,
+        ModalAlert,
+        ModalCorrect,
       },
       onShow: null,
       onHide: null,
