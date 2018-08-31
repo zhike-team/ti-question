@@ -85,7 +85,7 @@ export default class ModalComponent extends Component {
   // 提交表单
   async submit() {
     const {
-      modalId, getUploadSignature,
+      modalId, getUploadSignature, option,
       postCorrection, step, isReport,
     } = this.props;
     const { choices, detail, files } = this.state;
@@ -160,6 +160,7 @@ export default class ModalComponent extends Component {
       remark: '',
       source: 'ti-base',
       version,
+      ...option,
     };
 
     postCorrection(form);
@@ -180,7 +181,7 @@ export default class ModalComponent extends Component {
               src={require('./assets/ok.png')}
             />
             <View className={styles.modalAlertText}>
-              你的反馈我们会认真查看，并尽快修复及完善感谢你对智课一如既往的支持~
+              你的反馈我们会认真查看并完善，感谢你对智课一如既往的支持呦~
             </View>
           </View>
           /* eslint-enable */

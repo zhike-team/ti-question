@@ -68,10 +68,24 @@ npm publish
 ## API
 
 ### Modal组件改造：
-* type, props, [{ Header, AudioPlayer}]
+* type, props, onShow, onHide
 * type为字符串，可选值Alert/Correct。根据传入的字符串匹配Modal内的实例对象，不需要在组件中引入实例并传入Modal
-props不变
-* Header和AudioPlayer非必选，由组件自行引入，并在必要时传入Modal，以降低耦合度
+* 若type为Correct， 则props需要再传入一个option对象，用于上传纠错信息时添加自定义属性
+* 新增加的onShow/onHide是为了降低耦合度，在抽离的组件中减少不合理的引用
+* onShow(可选)，在isReport为false的时候执行，一般情况下，传入以下方法：
+```javascript
+() => {
+  AudioPlayer.pause();
+  Header.pauseTimerForModal();
+}
+```
+* onHide(可选)，在isReport为false，且Modal全部关闭后执行，一般情况下，传入以下方法：
+```javascript
+() => {
+  Header.startTimerForModal();
+  AudioPlayer.resume();
+}
+```
 
 [1]: https://github.com/facebook/react
 [2]: https://github.com/Khan/aphrodite

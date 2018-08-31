@@ -22,13 +22,12 @@ export default class RecorderComponent extends Component {
   }
 
   // 开始录音
-  static start({ callback = () => {} }) {
+  static start({ mode, skip, callback = () => {} }) {
     this.init();
     this.destroy();
 
     if (!navigator.getUserMedia) { // eslint-disable-line
-      this.onError();
-      return;
+      return this.onError({ mode, skip });
     }
 
     navigator.getUserMedia( // eslint-disable-line
@@ -37,9 +36,9 @@ export default class RecorderComponent extends Component {
         this.recorder = new RecordRTCPromisesHandler(stream, { type: 'audio' });
         this.recorder.startRecording()
           .then(() => callback())
-          .catch(() => this.onError());
+          .catch(() => this.onError({ mode, skip }));
       },
-      () => this.onError(),
+      () => this.onError({ mode, skip }),
     );
   }
 
@@ -80,13 +79,25 @@ export default class RecorderComponent extends Component {
   }
 
   // 错误监听
-  static onError() {
-    Modal.show(ModalAlert, {
-      title: '录音错误提示',
-      buttons: [{
+  static onError({ mode, skip }) {
+    const buttons = [
+      {
         title: '刷新页面',
         onClick: () => global.location.reload(), // eslint-disable-line
-      }],
+      },
+    ];
+
+    if (mode && mode === 'mock') {
+      buttons.push({
+        title: '跳过口语',
+        class: 'gray',
+        onClick: () => skip(),
+      });
+    }
+
+    Modal.show(ModalAlert, {
+      title: '录音错误提示',
+      buttons,
       width: 400,
       component: (
         <View style={{ aligenItems: 'center' }}>

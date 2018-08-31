@@ -7,25 +7,35 @@ export default class AudioPlayer extends Component {
   static instance = { state: { volume: null } };
   static player;
 
-  // 播放音频
+  // 播放音频 修改为支持循环播放 多段音频
   static play(options = {}) {
-    const { volume } = this.instance.state;
-
     this.unload();
 
+    // 多个音频存放在数组中  播放完每条音频，更新数组
+    const audioArr = options.src;
+    // 调用循环播放音频的函数
+    this.playAudios(audioArr, options);
+  }
+
+  // 循环播放音频
+  static playAudios(audioArr, options) {
+    const { volume } = this.instance.state;
     this.player = new Howl({
-      src: [options.src],
+      src: audioArr,
       format: options.format ? [options.format] : null,
-      // html5: !options.noHtml5,
       volume,
     });
     this.player.play();
     this.player.once('end', () => {
-      this.unload();
-
-      if (options.onEnd) {
-        options.onEnd();
+      audioArr.shift();
+      if (audioArr.length === 1) {
+        this.unload();
+        if (options.onEnd) {
+          options.onEnd();
+        }
+        return false;
       }
+      this.playAudios(audioArr, options);
     });
   }
 

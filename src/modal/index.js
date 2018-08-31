@@ -9,7 +9,7 @@ import styles from './styles';
 export default class ModalComponent extends Component {
   static instance;
 
-  static show(type = '', props = {}, { Header = null, AudioPlayer = null }) {
+  static show(type = '', props = {}, onShow, onHide) {
     if (!this.instance || !this.instance.setState) {
       return;
     }
@@ -23,15 +23,12 @@ export default class ModalComponent extends Component {
         instance: modalInstance[type],
         props: Object.assign({}, { modalId: id }, props),
       }),
-      modalExtense: {
-        Header,
-        AudioPlayer,
-      },
+      onShow,
+      onHide,
     });
 
     if (!props.isReport) {
-      AudioPlayer && AudioPlayer.pause();
-      Header && Header.pauseTimerForModal();
+      onShow && onShow();
     }
 
     return id;
@@ -49,25 +46,21 @@ export default class ModalComponent extends Component {
         Alert,
         Correct,
       },
-      modalExtense: {},
+      onShow: null,
+      onHide: null,
     };
   }
 
   hide(id) {
-    const { modals, modalExtense } = this.state;
+    const { modals } = this.state;
     const modal = find(modals, item => item.id === id);
     const newModals = filter(modals, item => item.id !== id);
 
     this.setState({
       modals: newModals,
     });
-    if (
-      !modal.props.isReport &&
-      newModals.length === 0
-    ) {
-      const { Header, AudioPlayer } = modalExtense;
-      Header && Header.startTimerForModal();
-      AudioPlayer && AudioPlayer.resume();
+    if (!modal.props.isReport && newModals.length === 0) {
+      onHide && onHide();
     }
   }
 
