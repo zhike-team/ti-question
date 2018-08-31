@@ -7,14 +7,28 @@
     "lib"
   ],
   "scripts": {
-    "babel": "babel src --out-dir lib",
     "build": "webpack --config webpack.config.js",
     "storybook": "start-storybook -p 3002 -c stories"
   },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "@zhike/ti-ui": ">=1.0.0",
+    "aphrodite": ">=1.0.0",
+    "axios": ">=0.1.0",
+    "lodash": ">=4.0.0",
+    "form-data": ">=2.0.0"
+  },
+  "dependencies": {
+    "howler": "^2.0.8",
+    "recordrtc": "^5.4.5",
+    "uuid": "^3.2.1"
+  },
   "devDependencies": {
     "@storybook/react": "^3.4.10",
+    "@zhike/ti-ui": "^1.0.2",
     "aphrodite": "^1.2.5",
-    "babel-cli": "^6.0.0",
+    "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "8.2.3",
     "babel-loader": "^7.1.2",
@@ -33,8 +47,11 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "7.8.2",
+    "form-data": "^2.3.1",
+    "lodash": "^4.17.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "url-loader": "^1.1.1",
     "webpack": "^3.8.1"
   },
   "repository": {
