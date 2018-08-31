@@ -6,7 +6,7 @@ import ModalAlert from './alert';
 import ModalCorrect from './correct';
 import styles from './styles';
 
-export default class ModalComponent extends Component {
+export default class Modal extends Component {
   static instance;
 
   static show(type = '', props = {}, onShow, onHide) {

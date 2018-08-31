@@ -4,10 +4,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Button } from '@zhike/ti-ui';
-import Modal from 'components/modal';
+import Modal from '../index';
 import styles from './styles';
 
-export default class ModalComponent extends Component {
+export default class ModalAlert extends Component {
   // 参数
   static propTypes = {
     modalId: PropTypes.string.isRequired,

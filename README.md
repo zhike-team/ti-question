@@ -97,3 +97,9 @@ npm publish
   AudioPlayer.resume();
 }
 ```
+
+### `Recorder`组件改造：
+* `start`方法接收一个对象参数`{callback, mode, skip}`
+* `callback`方法为启动成功后的回调函数，默认空函数
+* `mode/skip`非必填，会在启动失败时用到，`mode`为字符串，`skip`为函数。如果启动失败，判断`mode === 'mock'`，如果为`true`，则会添加一个“跳过口语”的按钮，点击触发`skip`方法
+

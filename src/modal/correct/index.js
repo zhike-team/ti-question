@@ -4,11 +4,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { concat, filter } from 'lodash';
 import { View, Image, Textarea, Button } from '@zhike/ti-ui';
-import Modal from 'components/modal';
-import ModalAlert from 'components/modal/alert';
+import Modal from '../index';
 import styles from './styles';
 
-export default class ModalComponent extends Component {
+export default class ModalCorrect extends Component {
   // 参数
   static propTypes = {
     modalId: PropTypes.string.isRequired,
@@ -133,7 +132,8 @@ export default class ModalComponent extends Component {
             src: imgData.data.code === 0 ? imgData.data.data.url : `${signature.data.uploadAddress}/${signature.data.key}`,
           });
         } catch (e) {
-          Modal.show(ModalAlert, {
+          const { onShow, onHide } = Modal.instance.state;
+          Modal.show('ModalAlert', {
             title: '错误',
             buttons: [{ title: 'OK' }],
             width: 400,
@@ -143,7 +143,7 @@ export default class ModalComponent extends Component {
                 上传图片出现错误，请刷新重试
               </View>
             ),
-          });
+          }, onShow, onHide);
           // console.log(e);
           this.setState({
             submitting: false,
@@ -173,7 +173,8 @@ export default class ModalComponent extends Component {
 
     // 弹出成功提示
     setTimeout(() => {
-      Modal.show(ModalAlert, {
+      const { onShow, onHide } = Modal.instance.state;
+      Modal.show('ModalAlert', {
         title: '提交成功',
         buttons: [{ title: 'OK' }],
         width: 400,
@@ -191,7 +192,7 @@ export default class ModalComponent extends Component {
           </View>
           /* eslint-enable */
         ),
-      });
+      }, onShow, onHide);
     }, 50);
   }
 

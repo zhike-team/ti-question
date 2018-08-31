@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { RecordRTCPromisesHandler } from 'recordrtc';
 import { View } from '@zhike/ti-ui';
-import Modal from 'components/modal';
-import ModalAlert from 'components/modal/alert';
+import Modal from '../modal';
 
 // 录音
-export default class RecorderComponent extends Component {
+export default class Recorder extends Component {
   static instance;
   static isInit;
   static recorder;
@@ -95,7 +94,8 @@ export default class RecorderComponent extends Component {
       });
     }
 
-    Modal.show(ModalAlert, {
+    const { onShow, onHide } = Modal.instance.state;
+    Modal.show('ModalAlert', {
       title: '录音错误提示',
       buttons,
       width: 400,
@@ -105,7 +105,7 @@ export default class RecorderComponent extends Component {
           2.请在修改该权限后刷新页面。
         </View>
       ),
-    });
+    }, onShow, onHide);
   }
 
   // 渲染
