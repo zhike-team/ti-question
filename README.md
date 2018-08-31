@@ -17,19 +17,10 @@ open http://localhost:3002/
 npm install --save @zhike/ti-component
 ```
 
-### 安装项目依赖，如已安装可跳过
+### 安装项目同级依赖，缺少依赖会触发`npm`警告，如已安装可跳过
 
-*  基础框架 [React][1] :
 ```bash
-npm install --save react
-```
-*  CSS-in-JS 框架 [aphrodite][2] :
-```bash
-npm install --save aphrodite
-```
-*  题库UI组件库 [ti-UI][3] :
-```bash
-npm install --save @zhike/ti-ui
+npm install --save react aphrodite axios lodash form-data @zhike/ti-ui
 ```
 
 ### 在页面使用需要的组件
@@ -79,25 +70,21 @@ npm publish
 ## API
 
 ### Modal组件改造：
-* type, props, onShow, onHide
-* type为字符串，可选值ModalAlert/ModalCorrect。根据传入的字符串匹配Modal内的实例对象，不需要在组件中引入实例并传入Modal
-* 若type为Correct， 则props需要再传入一个option对象，用于上传纠错信息时添加自定义属性
-* 新增加的onShow/onHide是为了降低耦合度，在抽离的组件中减少不合理的引用
-* onShow(可选)，在isReport为false的时候执行，一般情况下，传入以下方法：
+* `type, props, onShow, onHide`
+* `type`为字符串，可选值`'ModalAlert'`或`'ModalCorrect`。根据传入的字符串匹配`Modal`内的实例对象，以后不需要在组件中引入实例
+* 若`type`为`Correct`， 则`props`需要再传入一个`option`对象，用于上传纠错信息时添加自定义属性
+* 新增加的`onShow/onHide`是为了降低耦合度，在抽离的组件中减少不合理的引用
+* `onShow`(可选)，在`isReport`为`false`的时候执行，一般情况下，传入以下方法：
 ```javascript
 () => {
   AudioPlayer.pause();
   Header.pauseTimerForModal();
 }
 ```
-* onHide(可选)，在isReport为false，且Modal全部关闭后执行，一般情况下，传入以下方法：
+* `onHide`(可选)，在`isReport`为`false`，且`Modal`全部关闭后执行，一般情况下，传入以下方法：
 ```javascript
 () => {
   Header.startTimerForModal();
   AudioPlayer.resume();
 }
 ```
-
-[1]: https://github.com/facebook/react
-[2]: https://github.com/Khan/aphrodite
-[3]: https://github.com/zhike-team/ti-UI
