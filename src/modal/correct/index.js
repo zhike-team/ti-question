@@ -98,17 +98,16 @@ export default class ModalCorrect extends Component {
         const file = files[i];
 
         try {
-          const signature = await new Promise(resolve, reject) => {
-            getUploadSignature({
-              {
-                business: 'tiku/correction',
-                fileName: file.name,
-              },
-              resolve,
-              reject,
-            });
-          };
+          const createPromise = (action, payload) => (
+            new Promise((resolve, reject) => {
+              action({ payload, resolve, reject });
+            })
+          );
 
+          const signature = await createPromise(getUploadSignature, {
+            business: 'tiku/correction',
+            fileName: file.name,
+          });
 
           const formData = new FormData();
           formData.append('key', signature.data.key);
