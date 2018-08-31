@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { concat, filter } from 'lodash';
 import { View, Image, Textarea, Button } from '@zhike/ti-ui';
-import { version } from 'common/config';
-import { createPromise } from 'utils/action';
 import Modal from 'components/modal';
 import ModalAlert from 'components/modal/alert';
 import styles from './styles';
@@ -101,10 +99,17 @@ export default class ModalComponent extends Component {
         const file = files[i];
 
         try {
-          const signature = await createPromise(getUploadSignature, {
-            business: 'tiku/correction',
-            fileName: file.name,
-          });
+          const signature = await new Promise(resolve, reject) => {
+            getUploadSignature({
+              {
+                business: 'tiku/correction',
+                fileName: file.name,
+              },
+              resolve,
+              reject,
+            });
+          };
+
 
           const formData = new FormData();
           formData.append('key', signature.data.key);
@@ -158,8 +163,8 @@ export default class ModalComponent extends Component {
       detail,
       status: 'Pending',
       remark: '',
-      source: 'ti-base',
-      version,
+      source: '',
+      version: '',
       ...option,
     };
 

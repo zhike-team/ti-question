@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from '@zhike/ti-ui';
-import { cdnUrl } from 'common/config';
 import { remove } from 'lodash';
 import styles from './styles';
 
@@ -112,7 +111,7 @@ export default class Audio extends Component {
 
   // 创建音频
   setAudio = src => {
-    const newSrc = src.indexOf('//') === -1 ? `${cdnUrl}/${src}` : src;
+    const newSrc = src.indexOf('//') === -1 ? `${this.props.cdnUrl}/${src}` : src;
     // const newSrc = 'https://zk-user-upload.oss-cn-hangzhou.aliyuncs.com/exercise/speaking/20180614-1704-58230Rcfc0.webm.mp3';
     // const newSrc = 'http://ti-toefl.dev.smartstudy.com/1458c937918622f444125ccd933e3e9d.mp3';
     this.audio = new global.window.Audio(newSrc);
