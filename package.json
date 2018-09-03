@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "howler": "^2.0.8",
+    "lodash": "^4.17.10",
     "recordrtc": "^5.4.5",
     "uuid": "^3.2.1"
   },

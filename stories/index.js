@@ -1,18 +1,42 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { Button, Input, Textarea } from '../src';
+// import { action } from '@storybook/addon-actions';
+import { Article } from '../src';
 
-storiesOf('Button', module)
-  .add('theme', () => (
+/* eslint-disable */
+let material = {
+  "paragraphs": [
+      {
+          "id": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
+          "text": "By the year 2050, nearly 80% of the Earth's population will live in urban centres. Applying the most conservative estimates to current demographic trends, the human population will increase by about three billion people by then. An estimated 109 hectares of new land (about 20% larger than Brazil) will be needed to grow enough food to feed them, if traditional farming methods continue as they are practised today. At present, throughout the world, over 80% of the land that is suitable for raising crops is in use. Historically, some 15% of that has been laid waste by poor management practices. What can be done to ensure enough food for the world's population to live on?",
+          "type": "Text"
+      }
+  ],
+  "inlineMarkup": [
+      {
+          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
+          "type": "InsertBlank",
+          "index": 43,
+          "length": 1
+      },
+      {
+          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
+          "type": "InsertBlank",
+          "index": 175,
+          "length": 1
+      },
+      {
+          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
+          "type": "InsertBlank",
+          "index": 377,
+          "length": 1
+      }
+  ]
+};
+storiesOf('Article', module)
+  .add('material', () => (
     <React.Fragment>
-      <Button text="default"></Button>
+      <Article  material={material}></Article>
       <br />
-      <Button text="darken" theme="darken"></Button>
-      <br />
-      <Button text="hollow" theme="hollow"></Button>
     </React.Fragment>
-  ))
-  .add('onClick', () => (
-    <Button text="click" onClick={action('clicked')}></Button>
   ));
