@@ -187,4 +187,9 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: 'rgba(246,248,249,1)',
   },
+  ieltsBlank: {
+    height: '40px',
+    lineHeight: '40px',
+    verticalAlign: 'baseline',
+  },
 });

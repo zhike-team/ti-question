@@ -1,7 +1,20 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
-import { Article } from '../src';
+
+import { Article, Audio, AudioPlayer } from '../src';
+
+const styles = {
+  marginTop: '50px',
+  marginLeft: '50px',
+};
+const styles1 = {
+  width: '600px',
+  height: '200px',
+  overflowY: 'auto',
+  border: '1px solid gray',
+  padding: '10px',
+};
 
 /* eslint-disable */
 let material = {
@@ -33,10 +46,40 @@ let material = {
       }
   ]
 };
+// 故事书装饰者
+const CenterDecorator = (storyFn) => (
+  <div style={styles}>
+    { storyFn() }
+  </div>
+);
+
 storiesOf('Article', module)
+  .addDecorator(CenterDecorator)
   .add('material', () => (
     <React.Fragment>
+      <div style={styles1}>
       <Article  material={material}></Article>
       <br />
+      </div>
+    </React.Fragment>
+  ));
+
+  storiesOf('Audio', module)
+  .add('src', () => (
+    <React.Fragment>
+      <div style={{ width: '500px', height: '100px'}} >
+      <Audio src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}></Audio>
+      </div>
+    </React.Fragment>
+  ));
+
+  storiesOf('AudioPlayer', module)
+  .add('playAudios', () => (
+    <React.Fragment>
+      <div style={{ width: '500px', height: '100px'}} >
+        {
+          AudioPlayer.playAudios(['https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'], {})
+        }
+      </div>
     </React.Fragment>
   ));

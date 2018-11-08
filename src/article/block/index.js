@@ -84,7 +84,8 @@ export default class Block extends Component {
               />
             </span>,
           );
-        } else if (markup.type === 'InsertBlank' || markup.type === 'BlankTable') {
+        } else if (markup.type === 'InsertBlank' ||
+        markup.type === 'BlankTable' || markup.type === 'DragBlank') {
           spans.push(
             <span
               key={start}

@@ -91,7 +91,7 @@ npm publish
 }
 ```
 * `onHide`(可选)，在`isReport`为`false`，且`Modal`全部关闭后执行，一般情况下，传入以下方法：
-```javascript
+```javascript 
 () => {
   Header.startTimerForModal();
   AudioPlayer.resume();
