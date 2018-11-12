@@ -2,53 +2,77 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
-import { sortBy, capitalize } from 'lodash';
+import { get, sortBy, capitalize, find } from 'lodash';
 import Audio from '../../audio';
 import { firstUpperCase } from '../utils';
 import styles from './styles';
-
+import imgArrow from './assets/arrow.png';
 
 export default class Block extends Component {
   // 参数
   static defaultProps = {
     initAnswer: 0,
-    // insertSentence: '',
-    // hasAction: true,
+    location: {},
+    insertSentence: '',
+    hasAction: true,
     handleAnswer: () => {},
     answer: [],
     isReport: false,
     progressWidth: undefined,
+    isPositionTip: false,
+    paragraphClassName: undefined,
   };
   static propTypes = {
     p: PropTypes.object.isRequired,
+    location: PropTypes.object,
     initAnswer: PropTypes.number,
     progressWidth: PropTypes.number,
     handleAnswer: PropTypes.func,
-    // insertSentence: PropTypes.string,
-    // hasAction: PropTypes.bool,
+    insertSentence: PropTypes.string,
+    hasAction: PropTypes.bool,
     answer: PropTypes.any,
     isReport: PropTypes.bool,
+    isPositionTip: PropTypes.bool,
+    paragraphClassName: PropTypes.object,
   };
 
   // 加载
   componentDidMount() {
+    if (this.anchor) {
+      setTimeout(() => {
+        this.anchor.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth',
+        });
+      }, 100);
+    }
   }
 
   // 更新
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (this.props.location && this.props.location.pathname !== prevProps.location.pathname) {
+      if (this.anchor) {
+        setTimeout(() => {
+          this.anchor.scrollIntoView({
+            block: 'start',
+            behavior: 'smooth',
+          });
+        }, 100);
+      }
+    }
   }
 
   // 渲染行内元素
   renderInline = () => {
-    const { p, initAnswer, isReport, answer } = this.props;
+    const { p, insertSentence, hasAction, handleAnswer, initAnswer, answer, isReport } = this.props;
     // 处理内部标记
     if (Array.isArray(p.inlineMarkups) && p.inlineMarkups.length) {
       const spans = [];
       let insertLineIndex = 0;
       const inlineMarkups = sortBy(p.inlineMarkups, 'index').map(
         (markup, index) => {
-          const answerIndex = markup.type === 'InsertLine' ? insertLineIndex + initAnswer : index;
-          if (markup.type === 'InsertLine') insertLineIndex += 1;
+          const answerIndex = (markup.type === 'Insert' || markup.type === 'InsertLine' || markup.type === 'InsertBlank' || markup.type === 'DragBlank' || markup.type === 'BlankTable') ? insertLineIndex + initAnswer : index;
+          if (markup.type === 'InsertLine' || markup.type === 'InsertBlank' || markup.type === 'DragBlank' || markup.type === 'BlankTable') insertLineIndex += 1;
           return Object.assign({}, markup, { answerIndex });
         });
 
@@ -67,7 +91,62 @@ export default class Block extends Component {
         // 处理当前标记部分的文字
         const markupText = p.text.substr(start, markup.length);
         // 判断标记是否为插入标记
-        if (markup.type === 'InsertLine') {
+        if (markup.type === 'Insert') {
+          const onClick = markup => {
+            if (isReport) {
+              return;
+            }
+            if (hasAction) {
+              handleAnswer([markup.answer]);
+            }
+          };
+
+          if (markup.value === 'right') {
+            spans.push(
+              <span
+                key={`${start}-insert`}
+              >
+                {markupText}
+                &nbsp;
+              </span>,
+            );
+          }
+
+          /* eslint-disable */
+          if (get(answer, '0') === insertLineIndex) {
+            spans.push(<span key={`${start}-head`}>&nbsp;</span>);
+            spans.push(
+              <span
+                key={start}
+                className={css(styles.inlineHighlight)}
+                onClick={() => onClick(markup)}
+              >
+                {insertSentence}
+              </span>,
+            );
+            spans.push(<span key={`${start}-tail`}>&nbsp;</span>);
+          } else {
+            spans.push(
+              <span
+                key={start}
+                className={css(styles[`inline${markup.type}`])}
+                onClick={() => onClick(markup)}
+              />,
+            );
+          }
+          /* eslint-enable */
+
+          if (markup.value === 'left') {
+            spans.push(
+              <span
+                key={`${start}-insert`}
+              >
+                &nbsp;
+                {markupText}
+              </span>,
+            );
+          }
+        } else if (markup.type === 'InsertLine') {
           let defaultAnswer = '';
           if (answer && !isReport) {
             defaultAnswer = answer[markup.answerIndex] || '';
@@ -78,7 +157,7 @@ export default class Block extends Component {
               <Input
                 readOnly={isReport}
                 className={styles[`${markup.value}Line`]}
-                onChange={e => this.props.handleAnswer(e, markup.answerIndex)}
+                onChange={e => handleAnswer(e, markup.answerIndex)}
                 value={defaultAnswer}
                 placeholder={defaultAnswer}
               />
@@ -158,13 +237,45 @@ export default class Block extends Component {
 
   // 渲染
   render() {
-    const { p } = this.props;
+    const { p, paragraphClassName, isPositionTip } = this.props;
+
+    const props = {
+      className: css([
+        styles.block,
+        ...p.markups.map(markup => {
+          if (markup.type === 'Align') {
+            return styles[`block${markup.type}${capitalize(markup.value)}`];
+          }
+          return styles[`block${markup.type}`];
+        }),
+      ]),
+    };
+
+    if (p.anchor) {
+      props.ref = node => {
+        this.anchor = node;
+      };
+    }
     return (
-      <View className={styles.paragraph}>
-        {this.renderInline()}
-        { p.markups && p.markups.length > 0 &&
-          this.renderOrigin()
-        }
+      <View className={[styles.paragraph, paragraphClassName]}>
+        <p {...props}>
+          {
+            find(p.markups, markup => markup.type === 'Arrow') &&
+            <span className={css(styles.blockArrowBlank)} />
+          }
+
+          {this.renderInline()}
+
+          { p.markups && p.markups.length > 0 &&
+            this.renderOrigin()
+          }
+
+          {
+            isPositionTip &&
+            !!this.renderInline() &&
+            <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
+          }
+        </p>
       </View>
     );
   }

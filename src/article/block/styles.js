@@ -4,9 +4,6 @@ import imgBlock from './assets/block.png';
 import imgHeadset from './assets/headset.png';
 
 export default StyleSheet.create({
-  blockContainer: {
-    position: 'relative',
-  },
 
   arrow: {
     marginLeft: 10,
@@ -16,6 +13,7 @@ export default StyleSheet.create({
   },
 
   paragraph: {
+    position: 'relative',
     marginTop: 20,
     ':first-child': {
       marginTop: 0,

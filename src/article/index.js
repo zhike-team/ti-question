@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
 import PropTypes from 'prop-types';
-import { get, isEmpty, filter } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { normalizeArticle } from './utils';
 import Block from './block';
 import styles from './styles';
@@ -13,9 +13,11 @@ export default class Article extends Component {
     handleAnswer: () => {},
     location: {},
     question: {},
-    answer: [],
+    answer: '',
     isReport: false,
     progressWidth: undefined,
+    isPositionTip: false,
+    paragraphClassName: undefined,
   };
 
   static propTypes = {
@@ -23,10 +25,12 @@ export default class Article extends Component {
     question: PropTypes.object,
     isTextOnly: PropTypes.bool,
     handleAnswer: PropTypes.func,
-    location: PropTypes.object,
+    location: PropTypes.number,
     answer: PropTypes.any,
     isReport: PropTypes.bool,
     progressWidth: PropTypes.number,
+    isPositionTip: PropTypes.bool,
+    paragraphClassName: PropTypes.object,
   };
 
   componentDidMount() {
@@ -41,7 +45,7 @@ export default class Article extends Component {
 
   componentDidUpdate(prevProps) {
     if (!this.props.isReport) {
-      if (this.props.location.pathname !== prevProps.location.pathname) {
+      if (this.props.location && this.props.location.pathname !== prevProps.location.pathname) {
         if (this.anchor) {
           setTimeout(() => {
             this.anchor.scrollIntoView({ behavior: 'smooth' });
@@ -53,12 +57,20 @@ export default class Article extends Component {
 
   render() {
     const { material, question, isTextOnly, handleAnswer,
-      answer, isReport, progressWidth } = this.props;
+      answer, isReport, progressWidth,
+    } = this.props;
     const article = normalizeArticle(
       material,
       get(question, 'materials.0.reference'),
       !isEmpty(question) ? isTextOnly : 'true',
     );
+    const props = {};
+    if (question.type === 'Insert') {
+      props.handleAnswer = this.props.handleAnswer;
+      // 暂时不支持富文本
+      props.insertSentence = get(question, 'materials.0.insertSentence.paragraphs.0.text');
+    }
+
     let initAnswer = 0;
     if (!Array.isArray(article.paragraphs) ||
       article.paragraphs.length === 0 || // 段落为空数组返回false
@@ -78,7 +90,8 @@ export default class Article extends Component {
         {
           Array.isArray(article.paragraphs) &&
           article.paragraphs.map(p => {
-            const count = filter(p.inlineMarkups, { type: 'InsertLine' }).length;
+            const count = p.inlineMarkups.filter(item => item.type === 'InsertBlank' || item.type === 'Insert' ||
+              item.type === 'InsertLine' || item.type === 'DragBlank' || item.type === 'BlankTable').length;
             initAnswer += count;
             if (p.text === '') {
               return false;
@@ -87,9 +100,10 @@ export default class Article extends Component {
               <Block
                 key={p.id}
                 p={p}
+                {...props}
                 handleAnswer={handleAnswer}
                 progressWidth={progressWidth}
-                answer={answer}
+                answer={Array.isArray(answer) ? answer : isReport ? get(question, 'materials.0.answer') : answer}
                 isReport={isReport}
                 initAnswer={initAnswer - count}
               />
