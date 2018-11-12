@@ -180,7 +180,52 @@ npm publish
 
 
 ```
-#### 用于富文本的解析及渲染，
+#### 用于富文本的解析及渲染
+
+##### 富文本样式
+
+* 文章样式：
+
+| 所在字段 |名称 | type | value |
+| ------  | ------ | ------ | ------ |
+| articleMarkup |定位段 | anchorPid |  |
+| articleMarkup | 起始段 | headPid |  |
+| articleMarkup | 结尾段 | tailPid |  |
+
+* 段落样式：
+
+| 所在字段 |名称 | type | value |
+| ------  | ------ | ------ | ------ |
+| paragraphMarkup | 左对齐 | Align | left |
+| paragraphMarkup | 右对齐 | Align | right |
+| paragraphMarkup | 居中 | Align | center |
+| paragraphMarkup | 添加图片 | Image | right |
+| paragraphMarkup | 添加音频 | Audio | center |
+
+* 行内样式：
+
+| 所在字段 |名称 | type | value |
+| ------  | ------ | ------ | ------ |
+| inlineMarkup|  | 短文本 | 中等文本 |
+| inlineMarkup | 高亮 | Highlight |  |
+| inlineMarkup | 加粗 | Bold |  |
+| inlineMarkup | 斜体 | Italic |  |
+| inlineMarkup | 下划线 | Underline |  |
+| inlineMarkup | 填空 | InsertBlank |  |
+| inlineMarkup | 表格填空 | BlankTable |  |
+| inlineMarkup | 拖拽 | DragBlank |  |
+| inlineMarkup | 大标题 | FontSize | h1 |
+| inlineMarkup | 小标题 | FontSize | h2 |
+| inlineMarkup | 普通 | FontSize | normal |
+| inlineMarkup | 上标 | FontSize | sup |
+| inlineMarkup | 下标 | FontSize | sub |
+| inlineMarkup | 插入耳机 | Earphone | left right |
+| inlineMarkup | 插入黑块️ | Insert | left right |
+| inlineMarkup | 插入箭头 | insertArrow | left right |
+| inlineMarkup | 插入短横线 | insertLine | left right |
+| inlineMarkup | 插入中横线 | insertLine | left right |
+| inlineMarkup | 插入长横线 | insertLine | left right |
+
 * `Article` 首先处理富文本段落，将段落进行分段处理，每段有对应的行内样式(表格题,填空题, 拖拽题),还有对应的段落样式（缩进，加粗，斜体，下划线， 字体大小）,在段落中插入的（图片Image && 音频 Audio资源）
 * 内部的`Block`组件，实现每个段落的样式渲染；
 * `isTextOnly` 是否只有文本，则不具有行内样式和段落样式

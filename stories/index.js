@@ -49,7 +49,68 @@ storiesOf('Article', module)
   .add('material', () => (
     <React.Fragment>
       <div style={styles.container}>
-      <Article  material={material}></Article>
+      <Article material={material}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('answer', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} answer={["答案一", "答案二", "答案一"]}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('isTextOnly', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} answer={["答案一", "答案二", "答案一"]} isTextOnly={true}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('handleAnswer', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}>
+      </Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('progressWidth', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}>
+      </Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('question', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}>
+      </Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('isReport', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}>
+      </Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('isPositionTip', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}>
+      </Article>
       <br />
       </div>
     </React.Fragment>

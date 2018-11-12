@@ -50,7 +50,7 @@ export default class Block extends Component {
 
   // 更新
   componentDidUpdate(prevProps) {
-    if (this.props.location && this.props.location.pathname !== prevProps.location.pathname) {
+    if (JSON.stringify(this.props.location) === '{}' && this.props.location.pathname !== prevProps.location.pathname) {
       if (this.anchor) {
         setTimeout(() => {
           this.anchor.scrollIntoView({
@@ -72,7 +72,7 @@ export default class Block extends Component {
       const inlineMarkups = sortBy(p.inlineMarkups, 'index').map(
         (markup, index) => {
           const answerIndex = (markup.type === 'Insert' || markup.type === 'InsertLine' || markup.type === 'InsertBlank' || markup.type === 'DragBlank' || markup.type === 'BlankTable') ? insertLineIndex + initAnswer : index;
-          if (markup.type === 'InsertLine' || markup.type === 'InsertBlank' || markup.type === 'DragBlank' || markup.type === 'BlankTable') insertLineIndex += 1;
+          if (markup.type === 'Insert' || markup.type === 'InsertLine' || markup.type === 'InsertBlank' || markup.type === 'DragBlank' || markup.type === 'BlankTable') insertLineIndex += 1;
           return Object.assign({}, markup, { answerIndex });
         });
 
@@ -165,6 +165,10 @@ export default class Block extends Component {
           );
         } else if (markup.type === 'InsertBlank' ||
         markup.type === 'BlankTable' || markup.type === 'DragBlank') {
+          let defaultAnswer = '';
+          if (answer && !isReport) {
+            defaultAnswer = answer[markup.answerIndex] || '';
+          }
           spans.push(
             <span
               key={start}
@@ -173,6 +177,10 @@ export default class Block extends Component {
               {markupText}
               <input
                 readOnly={isReport}
+                className={styles[`${markup.value}Line`]}
+                onBlur={e => handleAnswer(e, markup.answerIndex)}
+                value={defaultAnswer}
+                placeholder={defaultAnswer}
               />
             </span>,
           );
@@ -258,24 +266,22 @@ export default class Block extends Component {
     }
     return (
       <View className={[styles.paragraph, paragraphClassName]}>
-        <p {...props}>
-          {
-            find(p.markups, markup => markup.type === 'Arrow') &&
-            <span className={css(styles.blockArrowBlank)} />
-          }
+        {
+          find(p.markups, markup => markup.type === 'Arrow') &&
+          <span className={css(styles.blockArrowBlank)} />
+        }
 
-          {this.renderInline()}
+        {this.renderInline()}
 
-          { p.markups && p.markups.length > 0 &&
-            this.renderOrigin()
-          }
+        { p.markups && p.markups.length > 0 &&
+          this.renderOrigin()
+        }
 
-          {
-            isPositionTip &&
-            !!this.renderInline() &&
-            <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
-          }
-        </p>
+        {
+          isPositionTip &&
+          !!this.renderInline() &&
+          <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
+        }
       </View>
     );
   }

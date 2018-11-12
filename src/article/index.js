@@ -25,7 +25,7 @@ export default class Article extends Component {
     question: PropTypes.object,
     isTextOnly: PropTypes.bool,
     handleAnswer: PropTypes.func,
-    location: PropTypes.number,
+    location: PropTypes.object,
     answer: PropTypes.any,
     isReport: PropTypes.bool,
     progressWidth: PropTypes.number,
