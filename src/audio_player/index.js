@@ -27,8 +27,9 @@ export default class AudioPlayer extends Component {
     });
     this.player.play();
     this.player.once('end', () => {
-      audioArr.shift();
-      if (audioArr.length === 1) {
+      if (audioArr.length > 1) {
+        audioArr.shift();
+      } else if (audioArr.length === 1) {
         this.unload();
         if (options.onEnd) {
           options.onEnd();

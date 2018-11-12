@@ -2,7 +2,7 @@ import { StyleSheet } from 'aphrodite';
 
 export default StyleSheet.create({
   container: {
-    width: '1100px',
+    width: '600px',
     margin: '0px auto',
     paddingBottom: '40px',
   },
@@ -15,9 +15,9 @@ export default StyleSheet.create({
     marginBottom: '8px',
   },
   article: {
-    fontSize: '16px',
+    fontSize: '15px',
     fontFamily: 'PingFangSC-Regular',
-    color: 'rgba(50,54,58,1)',
+    color: 'rgba(50,54,58, 0.7)',
     lineHeight: '24px',
     marginTop: '8px',
   },

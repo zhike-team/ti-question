@@ -66,7 +66,6 @@ export default class Modal extends Component {
 
   render() {
     const { modals } = this.state;
-
     return (
       <View>
         {modals.map(modal => (

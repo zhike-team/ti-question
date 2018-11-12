@@ -1,23 +1,15 @@
+import axios from 'axios';
+import FormData from 'form-data';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { get } from 'lodash';
-import { formatDuration } from 'utils';
-import { View, Image, Button } from '@zhike/ti-ui';
-import Recorder from 'src/recorder';
-import Article from 'components/article';
-import { Player } from 'components/audio';
+import { View, Button, Image } from '@zhike/ti-ui';
+import { formatDuration } from '../utils';
+
+import Recorder from '../../../src/recorder';
+import Player from './audio';
 import styles from './styles';
 
 // 口语题目
-export default class Recorder extends Component {
-  // 参数
-  static propTypes = {
-    step: PropTypes.object.isRequired,
-    newSetStepRecord: PropTypes.func.isRequired,
-    newSetRecord: PropTypes.object.isRequired,
-    getUploadSignature: PropTypes.func.isRequired,
-  };
-
+export default class RecorderDemo extends Component {
   // 构造函数
   constructor(props) {
     super(props);
@@ -34,26 +26,6 @@ export default class Recorder extends Component {
     this.player = null;
   }
 
-  // 模块即将加载
-  componentDidMount() {
-    const { step, newSetRecord } = this.props;
-    const question = get(step, 'practice.questions.0');
-    const questionMaterialId = get(question, 'materials.0.id');
-    this.initAnswer(newSetRecord[questionMaterialId]
-      && newSetRecord[questionMaterialId].answer || undefined);
-  }
-
-  // 更新
-  componentWillReceiveProps(nextProps) {
-    if (this.props.step.id !== nextProps.step.id) {
-      const { step, newSetRecord } = nextProps;
-      const question = get(step, 'practice.questions.0');
-      const questionMaterialId = get(question, 'materials.0.id');
-      this.initAnswer(newSetRecord[questionMaterialId]
-        && newSetRecord[questionMaterialId].answer || undefined);
-    }
-  }
-
   // 模块卸载
   componentWillUnmount() {
     if (this.timeInterval) {
@@ -65,24 +37,6 @@ export default class Recorder extends Component {
       this.player = null;
     }
     Recorder.destroy();
-  }
-
-  // 初始化答案
-  initAnswer(answer) {
-    this.setState({
-      recordUrl: answer ? answer.src : undefined,
-      recordStatus: answer ? 'stop' : 'default',
-      uploadStatus: 'default',
-      time: answer ? answer.duration * 1000 : 0,
-    });
-    if (this.player) {
-      this.player.stop();
-      this.player = null;
-    }
-    this.formData = undefined;
-    this.signature = undefined;
-    this.isSilenceUpload = false;
-    this.timeInterval = undefined;
   }
 
   // 监听页面离开
@@ -109,39 +63,6 @@ export default class Recorder extends Component {
         global.document.addEventListener('visibilitychange', this.monitorPageLeave, false);
         this.timeInterval = setInterval(() => {
           const { time } = this.state;
-          if (time >= 120 * 1000) {
-            this.setState({ recordStatus: 'stop' });
-            Recorder.stop().then(data => {
-              this.upload({
-                duration: parseInt(time / 1000, 10),
-                file: data.blob,
-              });
-            }).catch(error => {
-              this.upload({ error });
-            });
-            Modal.show(ModalAlert, {
-              title: '提示',
-              buttons: [{ title: '好的' }],
-              width: 400,
-              component: (
-                <View className={styles.modalAlert}>
-                  <Image
-                    className={styles.modalAlertImage}
-                    src={require('components/assets/default.png')}
-                  />
-                  <View className={styles.modalAlertText}>
-                    录音时间已达上限咯~
-                  </View>
-                </View>
-              ),
-            });
-
-            global.document.removeEventListener('visibilitychange', this.monitorPageLeave);
-            if (this.timeInterval) {
-              clearInterval(this.timeInterval);
-              this.timeInterval = undefined;
-            }
-          }
           this.setState({
             time: time + 10,
           });
@@ -162,6 +83,12 @@ export default class Recorder extends Component {
     Recorder.stop().then(data => {
       this.setState({
         recordUrl: data.url,
+      });
+      this.upload({
+        duration: parseInt(time / 1000, 10),
+        file: data.blob,
+      }).catch(error => {
+        this.upload({ error });
       });
 
       global.document.removeEventListener('visibilitychange', this.monitorPageLeave);
@@ -192,6 +119,83 @@ export default class Recorder extends Component {
     this.player = null;
   }
 
+  // 上传录音
+  async upload(data) {
+    this.setState({
+      uploadStatus: 'uploading',
+    });
+
+    let audio;
+    if (data.file || data.error) {
+      try {
+        if (data.error) {
+          this.setState({
+            recordStatus: 'stop',
+          });
+          this.isSilenceUpload = true;
+          throw data.error;
+        } else if (this.formData) {
+          const audioData = await axios({
+            url: this.signature.data.uploadAddress,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            data: this.formData,
+            timeout: 30000,
+          });
+          audio = { src: audioData.data.data.transcodeUrl, duration: data.duration };
+        } else {
+          this.signature = await axios({
+            url: 'https://api.smartstudy.com/file/upload/signature',
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            params: {
+              business: 'exercise/speaking',
+              fileName: `${data.duration}.webm`,
+            },
+            timeout: 30000,
+          });
+          this.formData = new FormData();
+          this.formData.append('key', this.signature.data.key);
+          this.formData.append('policy', this.signature.data.policy);
+          this.formData.append('OSSAccessKeyId', this.signature.data.accessKeyId);
+          this.formData.append('signature', this.signature.data.signature);
+          this.formData.append('callback', this.signature.data.callback);
+          this.formData.append('file', data.file);
+          const audioData = await axios({
+            url: this.signature.data.uploadAddress,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            data: this.formData,
+            timeout: 30000,
+          });
+          console.log('audioData:', audioData);
+
+          audio = { src: audioData.data.data.transcodeUrl, duration: data.duration };
+        }
+      } catch (e) {
+        console.log('error:', e);
+        if (this.isSilenceUpload) {
+          this.setState({ uploadStatus: 'fail' });
+        } else {
+          this.isSilenceUpload = true;
+          setTimeout(() => {
+            this.upload(data);
+          }, 2000);
+        }
+        return;
+      }
+    }
+    this.formData = undefined;
+    this.signature = undefined;
+    this.setState({ uploadStatus: 'success', recordUrl: audio.src, time: audio.duration * 1000 });
+  }
+
 
   // 提示信息
   generateTip() {
@@ -211,40 +215,16 @@ export default class Recorder extends Component {
     return false;
   }
 
-  // 保存答案
-  async handleAnswer(audio) {
-    const { step } = this.props;
-    const question = get(step, 'practice.questions.0');
-    const { id, type, materials } = question;
-    const questionMaterialId = get(materials, '0.id');
-    const { newSetStepRecord } = this.props;
-    await newSetStepRecord('answer', audio, questionMaterialId, id, type, step);
-  }
-
   // 渲染
   render() {
-    const { step } = this.props;
-    const question = get(step, 'practice.questions.0');
-    const direction = get(question, 'materials.0.direction'); // 指导语
-    const stem = get(question, 'stem'); // 题目
     const { recordStatus, time, recordUrl, uploadStatus } = this.state;
     return (
       <View className={styles.container}>
         <View className={styles.article}>
           <View className={styles.text}>Direction:</View>
-          {
-            direction &&
-            <Article
-              material={direction}
-            />
-          }
+          <View>请根据题干，回答问题：（口语答案的长度不得少于45秒）</View>
           <View className={styles.text}>Questions:</View>
-          {
-            stem &&
-            <Article
-              material={stem}
-            />
-          }
+          <View>Can you tell me something about your family please?</View>
         </View>
         <View className={styles.recorderBox}>
           {

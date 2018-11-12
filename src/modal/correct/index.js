@@ -13,6 +13,8 @@ export default class ModalCorrect extends Component {
     modalId: PropTypes.string.isRequired,
     getUploadSignature: PropTypes.func.isRequired,
     postCorrection: PropTypes.func.isRequired,
+    step: PropTypes.object.isRequired,
+    isReport: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -162,8 +164,8 @@ export default class ModalCorrect extends Component {
       detail,
       status: 'Pending',
       remark: '',
-      source: '',
-      version: '',
+      version: option.version ? option.version : '1.0.0',
+      source: option.source ? option.source : 'ti-base',
       ...option,
     };
 

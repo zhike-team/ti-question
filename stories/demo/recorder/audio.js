@@ -3,7 +3,7 @@ import { remove } from 'lodash';
 const audioContainer = [];
 
 // 没有播放组件的
-export class Player {
+export default class Player {
   // 构造
   constructor() {
     this.player = null;

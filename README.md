@@ -47,7 +47,7 @@ class MyComponent extends React.Component {
       AudioPlayer.pause();
       Header.pauseTimerForModal();
     },
-    onShow: () => {
+    onHide: () => {
       Header.startTimerForModal();
       AudioPlayer.resume();
     });
@@ -73,7 +73,7 @@ npm publish
 * 调用该组件需要在`props`中传入`cdnUrl`字段，请从common/config引用
 
 ### `Modal`组件改造：
-* `type, props, onShow, onHide`
+* `type, option, onShow, onHide`
 * `type`为字符串，可选值`'ModalAlert'`或`'ModalCorrect'`。根据传入的字符串匹配`Modal`内的实例对象，以后不需要在组件中引入实例
 * 若`type`为`Correct`， 则`props`需要再传入一个`option`对象，用于上传纠错信息时添加自定义属性。必传值：
 ```javascript

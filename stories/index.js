@@ -1,82 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-// import { action } from '@storybook/addon-actions';
-
-import { Article, Audio, AudioPlayer } from '../src';
-
-const styles = {
-  marginTop: '50px',
-  marginLeft: '50px',
-};
-const styles1 = {
-  width: '600px',
-  height: '200px',
-  overflowY: 'auto',
-  border: '1px solid gray',
-  padding: '10px',
-};
-const styles2 = {
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100px',
-  background: 'lightyellow',
-  justifyContent: 'space-between',
-  alignItems: 'space-around',
-  borderRadius: '20px',
-};
-const styles3 = {
-  display: 'flex',
-  marginTop: '20px',
-  width: '80px',
-  height: '40px',
-  background: 'lightgray',
-  marginRight: '20px',
-  borderRadius: '10px',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-const styles4 = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-const styles5 = {
-  display: 'inline-block',
-  width: '80px',
-  height: '40px',
-  marginRight: '20px',
-};
-
-//
-let isPlay = false;
-const playAudios = () => {
-  if (isPlay) return false;
-  AudioPlayer.playAudios([
-    'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3',
-  ], {});
-  isPlay = true;
-};
-
-const pause = () => {
-  AudioPlayer.pause();
-};
-
-const resume = () => {
-  AudioPlayer.resume();
-};
-const unload = () => {
-  AudioPlayer.unload();
-  isPlay = false;
-};
-
-const setVolume = () => {
-  const volume = window.document.getElementById('volume').value * 0.1;
-  AudioPlayer.setVolume(volume);
-};
-const getStatus = () => {
-  if (!isPlay) return false;
-  alert(JSON.stringify(AudioPlayer.getStatus()));
-};
+import { Button, View } from '@zhike/ti-ui';
+import { css } from 'aphrodite';
+import { Article, Audio, Modal } from '../src';
+import RecorderDemo from './demo/recorder';
+import AudioPlayerDemo from './demo/audio_player';
+import styles from './styles';
 
 /* eslint-disable */
 let material = {
@@ -110,7 +39,7 @@ let material = {
 };
 // 故事书装饰者
 const CenterDecorator = (storyFn) => (
-  <div style={styles}>
+  <div style={styles.container}>
     { storyFn() }
   </div>
 );
@@ -119,7 +48,7 @@ storiesOf('Article', module)
   .addDecorator(CenterDecorator)
   .add('material', () => (
     <React.Fragment>
-      <div style={styles1}>
+      <div style={styles.container}>
       <Article  material={material}></Article>
       <br />
       </div>
@@ -136,70 +65,71 @@ storiesOf('Article', module)
   ));
 
   storiesOf('AudioPlayer', module)
-  .add('playAudios', () => (
+  .add('AudioPlayer', () => (
     <React.Fragment>
-      <div
-        style={styles2}
-      >
-        <div
-        style={styles4}
-        >
-          <div
-            style={styles3}
-            onClick={playAudios.bind(this)}
-          >
-          playAudios</div>
-          <div
-            style={styles3}
-            onClick={pause.bind(this)}
-          >
-          pause</div>
-          <div
-            style={styles3}
-            onClick={resume.bind(this)}
-          >
-          resume</div>
-          <div
-            style={styles3}
-            onClick={unload.bind(this)}
-          >
-          unload</div>
-          <input 
-            style={{ marginTop: '10px', marginRight: "20px", width: '80px' }}
-            placeholder="请输入1- 10"
-            id="volume"
-          />
-          <div
-            style={styles3}
-            onClick={setVolume.bind(this)}
-          >
-          setVolume</div>
-          <div
-            style={styles3}
-            onClick={getStatus.bind(this)}
-          >
-          getStatus</div>
-          
-        </div>
-        <div style={styles4}> 
-          <span style={styles5}>点击播放</span>
-          <span style={styles5}>暂停播放</span>
-          <span style={styles5}>继续播放</span>
-          <span style={styles5}>卸载音频</span>
-          <span style={styles5}>点击按钮 </span>
-          <span style={styles5}>设置音量</span>
-          <span style={styles5}>获取状态</span>
-        </div>
-        
-        <AudioPlayer ref={audioPlayer => { AudioPlayer.instance = audioPlayer; }} />
-      </div>
+      <AudioPlayerDemo />
+    </React.Fragment>
+  ));
+  storiesOf('Recorder', module)
+  .add('Recorder', () => (
+    <React.Fragment>
+      <RecorderDemo></RecorderDemo>
     </React.Fragment>
   ));
 
-  storiesOf('Recorder', module)
-  .add('src', () => (
+  storiesOf('Modal', module)
+  .add('type ModalCorrect', () => (
     <React.Fragment>
-      <div style={{ width: '500px', height: '100px'}} >
-      </div>
+      <Button
+        className={styles.button}
+        text="我要纠错"
+        onClick={() => Modal.show('ModalCorrect', {
+          title: '我要纠错',
+          width: 700,
+          version: '1.0.0', // 请从common/config引用version字段
+          source: 'ti-base', // 纠错来源
+          getUploadSignature: ()=> {},
+          postCorrection: ()=> {}
+        })}
+      />
+      <Modal
+        ref={modal => { Modal.instance = modal; }}
+      />
+    </React.Fragment>
+  ))
+  .add('type ModalAlert', () => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="提示弹框"
+        onClick={() => Modal.show('ModalAlert', {
+          title: '温馨提示',
+          buttons: [{
+            title: '开始测评',
+            onClick: () => {
+              alert('开始测评～～');
+            },
+            class: 'alertTip',
+          }],
+          width: 400,
+          isReport: true,
+          component: (
+            <View className={styles.modalAlertText}>
+              <View className={styles.alertText}>
+              1.请尽可能完成所有题目，确保测试的准确性；
+              </View>
+              <View className={styles.alertText}>2.测试过程中不支持跳题或返回上一题；</View>
+              <View className={styles.alertText}>3.本测试不支持
+                <span className={css(styles.tipText)}>Safari</span>
+                、<span className={css(styles.tipText)}>IE</span>和
+                <span className={css(styles.tipText)}>Edge</span>浏览器，推荐使用
+                <span className={css(styles.tipText1)}>chrome</span>；
+              </View>
+              <View className={styles.alertText}>4.可提前准备好耳机和纸笔。</View>
+            </View>
+          ),
+        })}
+      />
+      <Modal ref={modal => { Modal.instance = modal; }}  />
     </React.Fragment>
   ));

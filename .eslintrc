@@ -42,6 +42,7 @@
     "consistent-return": "off",
     "function-paren-newline": "off",
     "object-curly-newline": "off",
-    "arrow-parens": [1, "as-needed"]
+    "arrow-parens": [1, "as-needed"],
+    "react/jsx-indent-props": "off"
   }
 }
