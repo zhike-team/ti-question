@@ -25,6 +25,10 @@ export default StyleSheet.create({
     ':first-child': {
       marginTop: 0,
     },
+    wordBreak: 'break-word',
+    wordWrap: 'break-word',
+    fontSize: 16,
+    lineHeight: '24px',
   },
 
   blockIndent: {
@@ -117,8 +121,25 @@ export default StyleSheet.create({
     backgroundPosition: 'center bottom',
   },
 
-  inlineEarphone: {
+  inlineEarphoneRight: {
     '::after': {
+      position: 'absolute',
+      width: 24,
+      height: 24,
+      top: 0,
+      right: -30,
+      content: '""',
+      backgroundImage: `url(${imgHeadset})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '24px 24px',
+      backgroundPosition: 'center center',
+    },
+    position: 'relative',
+    display: 'inline-block',
+  },
+
+  inlineEarphoneLeft: {
+    '::before': {
       position: 'absolute',
       width: 24,
       height: 24,

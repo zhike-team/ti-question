@@ -2,41 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button, View } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
-import { Article, Audio, Modal } from '../src';
+import { Article, Audio, Modal, Block } from '../src';
+import { material, material1, material2, material3, material5, material6, material7, question1, p } from './article_data';
 import RecorderDemo from './demo/recorder';
 import AudioPlayerDemo from './demo/audio_player';
 import styles from './styles';
 
 /* eslint-disable */
-let material = {
-  "paragraphs": [
-      {
-          "id": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
-          "text": "By the year 2050, nearly 80% of the Earth's population will live in urban centres. Applying the most conservative estimates to current demographic trends, the human population will increase by about three billion people by then. An estimated 109 hectares of new land (about 20% larger than Brazil) will be needed to grow enough food to feed them, if traditional farming methods continue as they are practised today. At present, throughout the world, over 80% of the land that is suitable for raising crops is in use. Historically, some 15% of that has been laid waste by poor management practices. What can be done to ensure enough food for the world's population to live on?",
-          "type": "Text"
-      }
-  ],
-  "inlineMarkup": [
-      {
-          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
-          "type": "InsertBlank",
-          "index": 43,
-          "length": 1
-      },
-      {
-          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
-          "type": "InsertBlank",
-          "index": 175,
-          "length": 1
-      },
-      {
-          "pid": "d727b95f-0663-53ae-79f0-5e2dbc5ce8c4",
-          "type": "InsertBlank",
-          "index": 377,
-          "length": 1
-      }
-  ]
-};
+
 // 故事书装饰者
 const CenterDecorator = (storyFn) => (
   <div style={styles.container}>
@@ -46,10 +19,59 @@ const CenterDecorator = (storyFn) => (
 
 storiesOf('Article', module)
   .addDecorator(CenterDecorator)
-  .add('material', () => (
+  .add('文章样式 段落定位', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material1} question={question1}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('行内样式 高亮/加粗/斜体/下划线', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material2}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('雅思 填空题', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material3}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('雅思 表格填空题', () => (
     <React.Fragment>
       <div style={styles.container}>
       <Article material={material}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('大/小标题 普通 上/下标', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material5}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('插入耳机， 插入黑块️， 插入箭头', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material6}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  // 
+  .add('插入短横线， 插入中横线， 插入长横线', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Article material={material7}></Article>
       <br />
       </div>
     </React.Fragment>
@@ -116,7 +138,19 @@ storiesOf('Article', module)
     </React.Fragment>
   ));
 
-  storiesOf('Audio', module)
+storiesOf('Block', module)
+  .addDecorator(CenterDecorator)
+  .add('p', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <Block p={p} hasAction={p.anchor}></Block>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+ //  location, handleAnswer, insertSentence, hasAction, isPositionTip, paragraphClassName
+
+storiesOf('Audio', module)
   .add('src', () => (
     <React.Fragment>
       <div style={{ width: '500px', height: '100px'}} >
@@ -125,20 +159,21 @@ storiesOf('Article', module)
     </React.Fragment>
   ));
 
-  storiesOf('AudioPlayer', module)
+storiesOf('AudioPlayer', module)
   .add('AudioPlayer', () => (
     <React.Fragment>
       <AudioPlayerDemo />
     </React.Fragment>
   ));
-  storiesOf('Recorder', module)
+
+storiesOf('Recorder', module)
   .add('Recorder', () => (
     <React.Fragment>
       <RecorderDemo></RecorderDemo>
     </React.Fragment>
   ));
 
-  storiesOf('Modal', module)
+storiesOf('Modal', module)
   .add('type ModalCorrect', () => (
     <React.Fragment>
       <Button

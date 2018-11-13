@@ -3,7 +3,7 @@ import { css } from 'aphrodite';
 import PropTypes from 'prop-types';
 import { get, isEmpty } from 'lodash';
 import { normalizeArticle } from './utils';
-import Block from './block';
+import Block from '../block';
 import styles from './styles';
 
 // TODO: 数据预处理在哪里做
@@ -59,6 +59,7 @@ export default class Article extends Component {
     const { material, question, isTextOnly, handleAnswer,
       answer, isReport, progressWidth,
     } = this.props;
+    console.log('question1:', question);
     const article = normalizeArticle(
       material,
       get(question, 'materials.0.reference'),

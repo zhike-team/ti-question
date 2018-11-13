@@ -186,11 +186,11 @@ npm publish
 
 * 文章样式：
 
-| 所在字段 |名称 | type | value |
+| 所在字段 |名称 | 字段 | value |
 | ------  | ------ | ------ | ------ |
-| articleMarkup |定位段 | anchorPid |  |
-| articleMarkup | 起始段 | headPid |  |
-| articleMarkup | 结尾段 | tailPid |  |
+| articleMarkup |定位段 | anchorPid | pid |
+| articleMarkup | 起始段 | headPid | pid |
+| articleMarkup | 结尾段 | tailPid | pid |
 
 * 段落样式：
 
@@ -206,7 +206,6 @@ npm publish
 
 | 所在字段 |名称 | type | value |
 | ------  | ------ | ------ | ------ |
-| inlineMarkup|  | 短文本 | 中等文本 |
 | inlineMarkup | 高亮 | Highlight |  |
 | inlineMarkup | 加粗 | Bold |  |
 | inlineMarkup | 斜体 | Italic |  |

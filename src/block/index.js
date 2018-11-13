@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { get, sortBy, capitalize, find } from 'lodash';
-import Audio from '../../audio';
-import { firstUpperCase } from '../utils';
+import Audio from '../audio';
+import { firstUpperCase } from './utils';
 import styles from './styles';
 import imgArrow from './assets/arrow.png';
 
@@ -185,13 +185,15 @@ export default class Block extends Component {
             </span>,
           );
         } else {
+          // console.log('markup.type:', markup.type);
+          // console.log('1111:', `inline${markup.type}${markup.value ? capitalize(markup.value) : ''}`);
           spans.push(
             <span
               key={start}
               className={css(
                 markup.type === 'FontSize'
                   ? styles[`inline${markup.type}${capitalize(markup.value)}`]
-                  : styles[`inline${markup.type}`],
+                  : styles[`inline${markup.type}${markup.value ? capitalize(markup.value) : ''}`],
               )}
             >
               {markupText}
@@ -207,7 +209,7 @@ export default class Block extends Component {
           spans.push(p.text.substr(start));
         }
       }
-      return <div className={css(styles.block)}>{spans} </div>;
+      return <p className={css(styles.block)}>{spans} </p>;
     }
     // 行内样式中如果插入空格，回车的处理情况
     const regex = /^(\s)*$/g;
@@ -215,7 +217,7 @@ export default class Block extends Component {
       // return <div className={css([styles.block])}>{p.text}</div>;
       return false;
     }
-    return <div className={css(styles.block)}>{p.text}</div>;
+    return <p className={css(styles.block)}>{p.text}</p>;
   }
 
   // 处理段落样式（图片Image && 音频 Audio）
@@ -264,24 +266,27 @@ export default class Block extends Component {
         this.anchor = node;
       };
     }
+    console.log('props:', props);
     return (
       <View className={[styles.paragraph, paragraphClassName]}>
-        {
-          find(p.markups, markup => markup.type === 'Arrow') &&
-          <span className={css(styles.blockArrowBlank)} />
-        }
+        <p {...props}>
+          {
+            find(p.markups, markup => markup.type === 'Arrow') &&
+            <span className={css(styles.blockArrowBlank)} />
+          }
 
-        {this.renderInline()}
+          {this.renderInline()}
 
-        { p.markups && p.markups.length > 0 &&
-          this.renderOrigin()
-        }
+          { p.markups && p.markups.length > 0 &&
+            this.renderOrigin()
+          }
 
-        {
-          isPositionTip &&
-          !!this.renderInline() &&
-          <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
-        }
+          {
+            isPositionTip &&
+            !!this.renderInline() &&
+            <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
+          }
+        </p>
       </View>
     );
   }
