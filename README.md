@@ -235,3 +235,12 @@ npm publish
 * `answer` 数组，填空题，表格题，拖拽题用户的答案，用于报告页的渲染
 * `progressWidth` 需要显示的 音频播放器Audio的宽度
 
+#### 雅思的富文本 新增添了一些功能
+* `isIelts` 来区分是否是雅思题库
+* `qNum` 雅思填空题 && 拖拽题  用来显示题号
+* `materialIds`雅思填空题 && 拖拽题  与footer组件配合使用，用来定位
+* `answerRsult` 雅思报告页答案集合
+* `handleQuestionSelect` 处理答案选中的回调函数
+* `paragraphClassName` 段落样式，用来从外部设置富文本的段落样式
+##### 表格填空题使用到的：
+* `externalInitAnswer` 外部累计InsertBlank数量

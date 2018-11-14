@@ -3,13 +3,13 @@ import { storiesOf } from '@storybook/react';
 import { Button, View } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { Article, Audio, Modal, Block } from '../src';
-import { material, material1, material2, material3, material5, material6, material7, question1, p } from './article_data';
+import { material, material1, material2, material3, tableBlank, material5, material6, material7, question1, p } from './article_data';
 import RecorderDemo from './demo/recorder';
 import AudioPlayerDemo from './demo/audio_player';
 import styles from './styles';
 
 /* eslint-disable */
-
+let initAnswer = 0;
 // 故事书装饰者
 const CenterDecorator = (storyFn) => (
   <div style={styles.container}>
@@ -46,7 +46,48 @@ storiesOf('Article', module)
   .add('雅思 表格填空题', () => (
     <React.Fragment>
       <div style={styles.container}>
-      <Article material={material}></Article>
+      <table className={css(styles.table)}>
+          {
+            Array.isArray(tableBlank) &&
+            <tbody className={css(styles.tbody)}>
+              {
+                Array.isArray(tableBlank) && tableBlank.map((line, index) => (
+                  <tr
+                    key={index}
+                    className={css(styles.tr)}
+                  >
+                    {
+                      Array.isArray(line) && line.map((row, index1) => {
+                        let count = 0;
+                        if (row.content.inlineMarkup && Array.isArray(row.content.inlineMarkup)) {
+                          count = row.content.inlineMarkup.filter(item =>
+                            item.type === 'BlankTable').length;
+                        }
+                        initAnswer += count;
+                        return (
+                          <th className={css(styles.tableCell)} key={index1}>
+                            <Article
+                              material={row.content}
+                              isIelts={true}
+                              // handleAnswer={() => { alert('～处理答案的回调函数～')}}
+                              // handleQuestionSelect={() => { alert('～处理子题选中的回调函数～')}}
+                              answer={['答案一', '答案二', '答案三', '答案四']}
+                              qNum={['10', '11', '12', '13', '14']}
+                              externalInitAnswer={initAnswer - count}
+                              materialIds={[26142, 26143, 26144, 26145, 26146]}
+                              isReport={false}
+                              paragraphClassName={styles.paragraphClass}
+                            />
+                          </th>
+                        );
+                      })
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          }
+        </table>
       <br />
       </div>
     </React.Fragment>
@@ -67,11 +108,64 @@ storiesOf('Article', module)
       </div>
     </React.Fragment>
   ))
-  // 
   .add('插入短横线， 插入中横线， 插入长横线', () => (
     <React.Fragment>
       <div style={styles.container}>
       <Article material={material7}></Article>
+      <br />
+      </div>
+    </React.Fragment>
+  ))
+  .add('雅思报告页', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      <table className={css(styles.table)}>
+          {
+            Array.isArray(tableBlank) &&
+            <tbody className={css(styles.tbody)}>
+              {
+                Array.isArray(tableBlank) && tableBlank.map((line, index) => (
+                  <tr
+                    key={index}
+                    className={css(styles.tr)}
+                  >
+                    {
+                      Array.isArray(line) && line.map((row, index1) => {
+                        let count = 0;
+                        if (row.content.inlineMarkup && Array.isArray(row.content.inlineMarkup)) {
+                          count = row.content.inlineMarkup.filter(item =>
+                            item.type === 'BlankTable').length;
+                        }
+                        initAnswer += count;
+                        return (
+                          <th className={css(styles.tableCell)} key={index1}>
+                            <Article
+                              material={row.content}
+                              isIelts={true}
+                              answerRsult={[
+                                {answer: "answer1|answer2|answer3", userAnswer: "answer and", isCorrect: false},
+                                {answer: "answer1|answer2|answer3", userAnswer: "answer2", isCorrect: true},
+                                {answer: "answer1|answer2|answer3", userAnswer: "answer1", isCorrect: true},
+                                {answer: "answer1|answer2|answer3", userAnswer: "smart", isCorrect: false},
+                                {answer: "answer1|answer2|answer3", userAnswer: "study", isCorrect: false},
+                              ]}
+                              answer={['答案一', '答案二', '答案三', '答案四']}
+                              // qNum={['10', '11', '12', '13', '14']}
+                              externalInitAnswer={initAnswer - count}
+                              materialIds={[26142, 26143, 26144, 26145, 26146]}
+                              isReport={true}
+                              paragraphClassName={styles.paragraphClass}
+                            />
+                          </th>
+                        );
+                      })
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          }
+        </table>
       <br />
       </div>
     </React.Fragment>
@@ -157,17 +251,34 @@ storiesOf('Audio', module)
       <Audio src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}></Audio>
       </div>
     </React.Fragment>
+  ))
+  .add('progressWidth', () => (
+    <React.Fragment>
+      <Audio
+        src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}
+        progressWidth={520}
+      ></Audio>
+    </React.Fragment>
+  ))
+  .add('showPlayer', () => (
+    <React.Fragment>
+      <div style={{ width: '500px', height: '100px'}} >
+      <Audio
+        src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}
+        showPlayer={false}
+      ></Audio>
+      </div>
+    </React.Fragment>
   ));
-
 storiesOf('AudioPlayer', module)
-  .add('AudioPlayer', () => (
+  .add('内置了play, pause, unload, getStatus, setVolume的API', () => (
     <React.Fragment>
       <AudioPlayerDemo />
     </React.Fragment>
   ));
 
 storiesOf('Recorder', module)
-  .add('Recorder', () => (
+  .add('内置了init, start, pause, resume, stop, destroy的API', () => (
     <React.Fragment>
       <RecorderDemo></RecorderDemo>
     </React.Fragment>

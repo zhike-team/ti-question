@@ -141,35 +141,133 @@ export const material3 = {
   ]
 };
 // 表格填空 
-export const material4 = {
-  paragraphs: [
+export const tableBlank = [
+  [
     {
-      id: 'd727b95f-0663-53ae-79f0-5e2dbc5ce8c4',
-      text: "By the year 2050, nearly 80% of the Earth's population will live in urban centres. Applying the most conservative estimates to current demographic trends, the human population will increase by about three billion people by then. An estimated 109 hectares of new land (about 20% larger than Brazil) will be needed to grow enough food to feed them, if traditional farming methods continue as they are practised today. At present, throughout the world, over 80% of the land that is suitable for raising crops is in use. Historically, some 15% of that has been laid waste by poor management practices. What can be done to ensure enough food for the world's population to live on?",
-      type: 'Text',
+      content: {
+        paragraphs: [
+          {
+            id: "773cebbc-9028-e272-7f20-d0dc94fc6c85",
+            text: "Area",
+            type: "Text"
+          }
+        ],
+      }
     },
+    {
+      content: {
+        paragraphs: [
+          {
+            id: "ef6ffc3c-de3f-8849-a864-6a0737b3a53b",
+            text: "Work to be done",
+            type: "Text"
+          }
+        ],
+      }
+    },
+    {
+      content: {
+        paragraphs: [
+          {
+            id: "8e4e5e6d-0129-8607-0d84-0d20fb3463f6",
+            text: "Note",
+            type: "Text"
+          }
+        ],
+      }
+    }, 
   ],
-  inlineMarkup: [
+  [
     {
-      pid: 'd727b95f-0663-53ae-79f0-5e2dbc5ce8c4',
-      type: 'InsertBlank',
-      index: 43,
-      length: 1,
+      content: {
+        paragraphs: [
+          {
+            id: "773cebbc-9028-e272-7f20-d0dc94fc6c85",
+            text: "Area",
+            type: "Text"
+          }
+        ],
+      }
     },
     {
-      pid:'d727b95f-0663-53ae-79f0-5e2dbc5ce8c4',
-      'type':'InsertBlank',
-      'index': 175,
-      'length': 1
+      content: {
+        inlineMarkup:[{
+          index: 11,
+          length: 2,
+          pid: "b3cab814-ed47-9ec5-392d-cbbdfb9bda8f",
+          type: "BlankTable",
+        }],
+        paragraphs: [
+          {
+            id: "b3cab814-ed47-9ec5-392d-cbbdfb9bda8f",
+            text: "Replace the  In the door",
+            type: "Text"
+          }
+        ],
+      }
     },
     {
-        'pid':'d727b95f-0663-53ae-79f0-5e2dbc5ce8c4',
-        'type':'InsertBlank',
-        'index': 377,
-        'length': 1
-    }
-  ]
-};
+      content: {
+        inlineMarkup: [
+        {
+          index: 22,
+          length: 1,
+          pid: "f9b11b22-79c1-1187-baf6-9a844852476d",
+          type: "BlankTable"
+        }
+      ],
+        paragraphs: [
+          {
+            id: "f9b11b22-79c1-1187-baf6-9a844852476d",
+            text: "Replace the  and go to ",
+            type: "Text"
+          }
+        ],
+      }
+    }, 
+  ],
+  [
+    {
+      content: {
+        paragraphs: [
+          {
+            id: "773cebbc-9028-e272-7f20-d0dc94fc6c85",
+            text: "Area",
+            type: "Text"
+          }
+        ],
+      }
+    },
+    {
+      content: {
+        inlineMarkup: [
+          {pid: "f9b11b22-79c1-1187-baf6-9a844852476d", type: "BlankTable", index: 12, length: 1},
+          {pid: "f9b11b22-79c1-1187-baf6-9a844852476d", type: "BlankTable", index: 22, length: 1}
+        ],  
+        paragraphs: [
+          {
+            id: "f9b11b22-79c1-1187-baf6-9a844852476d",
+            text: "Replace the  and go to ",
+            type: "Text",
+          }
+        ],
+      }
+    },
+    {
+      content: {
+        inlineMarkup: [
+          {pid: "c84bbe90-474a-55fd-0c40-da69b0a8e3cd", type: "BlankTable", index: 11, length: 2}],
+        paragraphs: [
+          {
+            id: "c84bbe90-474a-55fd-0c40-da69b0a8e3cd",
+            text: "Replace the  In the door",
+            type: "Text"
+          }
+        ],
+      }
+    }, 
+  ],
+]
 // 拖拽
 // 大标题， 小标题， 普通，上标，下标，
 export const material5 = {
@@ -198,20 +296,14 @@ export const material6 = {
   ],
   paragraphs: [
     {id: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", text: "在选取左侧插入耳机", type: "Text"},
-    {id: "0aff2e35-521c-f648-9d3d-9216229edc64", text: "↵在选取右侧插入耳机", type: "Text"},
-    {id: "30c9f88d-948f-525a-43b5-6e75582c7320", text: "↵在选取左侧插入黑块️", type: "Text"},
-    {id: "697c88a9-7094-e401-e504-4268297fa769", text: "↵在选取右侧插入黑块️", type: "Text"},
-    {id: "5f96b33f-8653-8df4-ad8e-c002f1759b6d", text: "↵在选取左侧插入箭头", type: "Text"},
-    {id: "703e9882-c872-988b-1edd-128424209945", text: "", type: "Text"},
-    {id: "24115fda-53de-f00e-90f8-6d309554fdba", text: "在选取右侧插入箭头", type: "Text"},
-    {id: "60ad5de2-2dd4-b32f-6f51-d8e4dd81c461", text: "", type: "Text"},
+    {id: "0aff2e35-521c-f648-9d3d-9216229edc64", text: "在选取右侧插入耳机", type: "Text"},
+    {id: "30c9f88d-948f-525a-43b5-6e75582c7320", text: "在选取左侧插入黑块️", type: "Text"},
+    {id: "697c88a9-7094-e401-e504-4268297fa769", text: "在选取右侧插入黑块️", type: "Text"},
   ],
   inlineMarkup: [
     {pid: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", type: "Earphone", index: 0, value: "left", length: 9},
-    {pid: "0aff2e35-521c-f648-9d3d-9216229edc64", type: "Earphone", index: 0, value: "right", length: 9},
-    {pid: "30c9f88d-948f-525a-43b5-6e75582c7320", type: "Insert", index: 1, value: "left", length: 10},
-    {pid: "5f96b33f-8653-8df4-ad8e-c002f1759b6d", type: "Arrow", index: 1, value: "left", length: 9},
-    {pid: "24115fda-53de-f00e-90f8-6d309554fdba", type: "Arrow", index: 0, value: "right", length: 9},
+    {pid: "0aff2e35-521c-f648-9d3d-9216229edc64", type: "Earphone", index: 9, value: "right", length: 1},
+    {pid: "30c9f88d-948f-525a-43b5-6e75582c7320", type: "Insert", index: 0, value: "left", length: 10},
     {pid: "697c88a9-7094-e401-e504-4268297fa769", type: "Insert", index: 1, value: "right", length: 10},
   ]
 };
@@ -219,21 +311,14 @@ export const material6 = {
 // 插入短横线， 插入中横线， 插入长横线
 export const material7 = {
   paragraphs: [
-    {id: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", text: "这里是大标题", type: "Text"},
-    {id: "0aff2e35-521c-f648-9d3d-9216229edc64", text: "这里是小标题", type: "Text"},
-    {id: "30c9f88d-948f-525a-43b5-6e75582c7320", text: "这里是普通文本", type: "Text"},
-    {id: "87fdfb55-4799-7460-b3dc-535b5ac63116", text: "添加上标", type: "Text"},
-    {id: "dc557385-7c57-137a-6182-fd5135d88c83", text: "添加下标", type: "Text"},
-    {id: "33040513-0c16-81ee-8255-18726d365cf6", text: "", type: "Text"},
+    {id: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", text: "插入短横线 ", type: "Text"},
+    {id: "339dc4b9-00f3-ead8-9fc2-258c572ae308", text: "插入中横线 ", type: "Text"},
+    {id: "ff2cb808-ed26-4acc-251f-58a75573d103", text: "插入长横线 ", type: "Text"}
   ],
-  paragraphMarkup: [
-    {pid: "97d9f76d-1452-d155-ee4d-e6778cfd631c", type: "Bold", index: 3, length: 2},
-    {pid: "9142359c-c0f3-852d-3c84-30292f077222", type: "Italic", index: 3, length: 2},
-    {pid: "30c9f88d-948f-525a-43b5-6e75582c7320", type: "FontSize", index: 0, value: "normal", length: 7},
-    {pid: "dc557385-7c57-137a-6182-fd5135d88c83", type: "FontSize", index: 2, value: "sub", length: 2},
-    {pid: "87fdfb55-4799-7460-b3dc-535b5ac63116", type: "FontSize", index: 2, value: "sup", length: 2},
-    {pid: "0aff2e35-521c-f648-9d3d-9216229edc64", type: "FontSize", index: 3, value: "h2", length: 3},
-    {pid: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", type: "FontSize", index: 3, value: "h1", length: 3},
+  inlineMarkup: [
+    {pid: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", type: "InsertLine", index: 5, value: "small", length: 1},
+    {pid: "339dc4b9-00f3-ead8-9fc2-258c572ae308", type: "InsertLine", index: 5, value: "middle", length: 1},
+    {pid: "ff2cb808-ed26-4acc-251f-58a75573d103", type: "InsertLine", index: 5, value: "large", length: 1}
   ]
 };
 export const question = {

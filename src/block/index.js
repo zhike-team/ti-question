@@ -17,10 +17,16 @@ export default class Block extends Component {
     hasAction: true,
     handleAnswer: () => {},
     answer: [],
+    qNum: ['10'], // 雅思填空题 && 拖拽题  用来显示题号
+    externalInitAnswer: -1, // 外部累计InsertBlank数量
+    handleQuestionSelect: () => {}, // 处理答案选中
+    materialIds: [], // 雅思填空题 && 拖拽题  用来定位
+    answerRsult: [], // 答案集合
     isReport: false,
     progressWidth: undefined,
     isPositionTip: false,
     paragraphClassName: undefined,
+    isIelts: false,
   };
   static propTypes = {
     p: PropTypes.object.isRequired,
@@ -31,9 +37,15 @@ export default class Block extends Component {
     insertSentence: PropTypes.string,
     hasAction: PropTypes.bool,
     answer: PropTypes.any,
+    qNum: PropTypes.array,
+    externalInitAnswer: PropTypes.number,
+    handleQuestionSelect: PropTypes.func,
+    answerRsult: PropTypes.array,
+    materialIds: PropTypes.array,
     isReport: PropTypes.bool,
     isPositionTip: PropTypes.bool,
     paragraphClassName: PropTypes.object,
+    isIelts: PropTypes.bool,
   };
 
   // 加载
@@ -64,7 +76,7 @@ export default class Block extends Component {
 
   // 渲染行内元素
   renderInline = () => {
-    const { p, insertSentence, hasAction, handleAnswer, initAnswer, answer, isReport } = this.props;
+    const { p, insertSentence, hasAction, handleAnswer, initAnswer, answer, isReport, qNum, materialIds, answerRsult, isIelts } = this.props;
     // 处理内部标记
     if (Array.isArray(p.inlineMarkups) && p.inlineMarkups.length) {
       const spans = [];
@@ -166,8 +178,15 @@ export default class Block extends Component {
         } else if (markup.type === 'InsertBlank' ||
         markup.type === 'BlankTable' || markup.type === 'DragBlank') {
           let defaultAnswer = '';
+          let className;
           if (answer && !isReport) {
             defaultAnswer = answer[markup.answerIndex] || '';
+          }
+          if (isReport && isIelts) {
+            defaultAnswer = get(answerRsult, `${markup.answerIndex}.userAnswer`) || '';
+            className = get(answerRsult, `${markup.answerIndex}.isCorrect`) ? styles.correct : styles.error;
+          } else {
+            className = styles.insertBlank;
           }
           spans.push(
             <span
@@ -176,17 +195,47 @@ export default class Block extends Component {
             >
               {markupText}
               <input
+                ref={get(materialIds, `${markup.answerIndex}`) && get(materialIds, `${markup.answerIndex}`).toString()}
                 readOnly={isReport}
-                className={styles[`${markup.value}Line`]}
-                onBlur={e => handleAnswer(e, markup.answerIndex)}
+                className={css(className)}
+                onChange={e => {
+                  if (isReport) return false;
+                  if (isIelts) {
+                    handleAnswer(e.target.value, markup.answerIndex,
+                      materialIds[markup.answerIndex], false);
+                  } else {
+                    handleAnswer(e, markup.answerIndex);
+                  }
+                }}
+                onBlur={e => {
+                  if (isReport) return false;
+                  if (isIelts) {
+                    const regex = /^(\s)*$/g;
+                    if (regex.test(defaultAnswer) || defaultAnswer === null) {
+                      e.target.placeholder = qNum[markup.answerIndex] &&
+                      qNum[markup.answerIndex].toString();
+                    }
+                      handleAnswer(e.target.value, markup.answerIndex,
+                        materialIds[markup.answerIndex]);
+                  } else {
+                    handleAnswer(e, markup.answerIndex);
+                  }
+                }
+              }
                 value={defaultAnswer}
-                placeholder={defaultAnswer}
+                placeholder={isIelts ? qNum[markup.answerIndex] && qNum[markup.answerIndex].toString() : defaultAnswer}
+                id={isIelts ? get(materialIds, `${markup.answerIndex}`) && get(materialIds, `${markup.answerIndex}`).toString() : ''}
+                onFocus={e => {
+                  if (isReport) return false;
+                  if (isIelts) {
+                    e.target.placeholder = '';
+                    this.props.handleQuestionSelect(materialIds[markup.answerIndex]);
+                  }
+                }}
               />
             </span>,
           );
         } else {
-          // console.log('markup.type:', markup.type);
-          // console.log('1111:', `inline${markup.type}${markup.value ? capitalize(markup.value) : ''}`);
           spans.push(
             <span
               key={start}
@@ -266,7 +315,6 @@ export default class Block extends Component {
         this.anchor = node;
       };
     }
-    console.log('props:', props);
     return (
       <View className={[styles.paragraph, paragraphClassName]}>
         <p {...props}>

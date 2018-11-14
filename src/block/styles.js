@@ -135,7 +135,6 @@ export default StyleSheet.create({
       backgroundPosition: 'center center',
     },
     position: 'relative',
-    display: 'inline-block',
   },
 
   inlineEarphoneLeft: {
@@ -144,7 +143,7 @@ export default StyleSheet.create({
       width: 24,
       height: 24,
       top: 0,
-      right: -30,
+      left: 0,
       content: '""',
       backgroundImage: `url(${imgHeadset})`,
       backgroundRepeat: 'no-repeat',
@@ -153,6 +152,7 @@ export default StyleSheet.create({
     },
     position: 'relative',
     display: 'inline-block',
+    textIndent: '30px',
   },
 
   input: {
@@ -205,6 +205,37 @@ export default StyleSheet.create({
     width: 700,
     padding: 20,
     backgroundColor: 'rgba(246,248,249,1)',
+  },
+  insertBlank: {
+    width: '200px',
+    height: '40px',
+    border: '1px solid rgba(135,143,152,1)',
+    textAlign: 'center',
+    fontSize: '16px',
+    fontFamily: 'PingFangSC-Regular',
+    color: 'rgba(50,54,58,1)',
+    lineHeight: '22px',
+    margin: '8px 8px 0px 8px',
+  },
+  correct: {
+    width: '200px',
+    height: '40px',
+    border: '1px solid rgba(135,143,152,1)',
+    textAlign: 'center',
+    fontSize: '16px',
+    lineHeight: '22px',
+    margin: '8px 8px 0px 8px',
+    color: 'rgba(73,207,81,1)',
+  },
+  error: {
+    width: '200px',
+    height: '40px',
+    border: '1px solid rgba(135,143,152,1)',
+    textAlign: 'center',
+    fontSize: '16px',
+    lineHeight: '22px',
+    margin: '8px 8px 0px 8px',
+    color: 'rgba(253,84,84,1)',
   },
   ieltsBlank: {
     height: '40px',

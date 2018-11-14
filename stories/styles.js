@@ -27,4 +27,32 @@ export default StyleSheet.create({
   tipText1: {
     color: '#3399FF',
   },
+  table: {
+    boxSizing: 'border-box',
+    width: '1100px',
+    height: '40px',
+    textAlign: 'left',
+    fontSize: '16px',
+    fontFamily: 'PingFangSC-Regular',
+    color: 'rgba(50,54,58,1)',
+    lineHeight: '24px',
+    borderSpacing: '0px',
+    borderPadding: '0px',
+    borderCollapse: 'collapse',
+  },
+
+  tbody: {
+    boxSizing: 'border-box',
+    maxWidth: '1100px',
+  },
+
+  tableCell: {
+    border: '1px solid rgba(195,204,209,1)',
+    padding: '32px 20px',
+    fontWeight: 'normal',
+  },
+
+  paragraphClass: {
+    lineHeight: '48px',
+  },
 });

@@ -40,7 +40,7 @@ export default class Recorder extends Component {
       () => this.onError({ mode, skip }),
     );
   }
-
+  
   // 暂停录音
   static pause() {
     try {

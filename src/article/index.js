@@ -16,8 +16,14 @@ export default class Article extends Component {
     answer: '',
     isReport: false,
     progressWidth: undefined,
+    qNum: ['10'], // 雅思填空题 && 拖拽题  用来显示题号
+    externalInitAnswer: -1, // 外部累计InsertBlank数量
+    handleQuestionSelect: () => {}, // 处理答案选中
+    materialIds: [], // 雅思填空题 && 拖拽题  用来定位
+    answerRsult: [], // 答案集合
     isPositionTip: false,
     paragraphClassName: undefined,
+    isIelts: false,
   };
 
   static propTypes = {
@@ -29,8 +35,14 @@ export default class Article extends Component {
     answer: PropTypes.any,
     isReport: PropTypes.bool,
     progressWidth: PropTypes.number,
+    qNum: PropTypes.array,
+    externalInitAnswer: PropTypes.number,
+    handleQuestionSelect: PropTypes.func,
+    materialIds: PropTypes.array,
+    answerRsult: PropTypes.array,
     isPositionTip: PropTypes.bool,
     paragraphClassName: PropTypes.object,
+    isIelts: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -57,9 +69,8 @@ export default class Article extends Component {
 
   render() {
     const { material, question, isTextOnly, handleAnswer,
-      answer, isReport, progressWidth,
+      answer, isReport, progressWidth, externalInitAnswer, qNum, materialIds, answerRsult, isIelts,
     } = this.props;
-    console.log('question1:', question);
     const article = normalizeArticle(
       material,
       get(question, 'materials.0.reference'),
@@ -106,7 +117,12 @@ export default class Article extends Component {
                 progressWidth={progressWidth}
                 answer={Array.isArray(answer) ? answer : isReport ? get(question, 'materials.0.answer') : answer}
                 isReport={isReport}
-                initAnswer={initAnswer - count}
+                initAnswer={externalInitAnswer === -1 ? (initAnswer - count) :
+                  (externalInitAnswer + initAnswer - count)}
+                qNum={qNum}
+                materialIds={materialIds}
+                answerRsult={answerRsult}
+                isIelts={isIelts}
               />
             );
           })
