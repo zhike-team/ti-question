@@ -15,7 +15,12 @@ export default class ModalCorrect extends Component {
     postCorrection: PropTypes.func.isRequired,
     step: PropTypes.object.isRequired,
     isReport: PropTypes.bool.isRequired,
+    option: PropTypes.object,
   };
+
+  static defaultProps = {
+    option: {},
+  }
 
   constructor(props) {
     super(props);

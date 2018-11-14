@@ -49,7 +49,7 @@ export const question1 = {
         },
         {
           id:'9d1deedb-4747-8941-1ea3-260f17ce7ccf',
-          text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.↵',
+          text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.',
           type:'Text',
         },
       ],
@@ -89,7 +89,7 @@ export const material1 = {
     },
     {
       id:'9d1deedb-4747-8941-1ea3-260f17ce7ccf',
-      text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.↵',
+      text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.',
       type:'Text'
     },
   ]
@@ -359,7 +359,7 @@ export const question = {
           },
           {
             id:'9d1deedb-4747-8941-1ea3-260f17ce7ccf',
-            text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.↵',
+            text:'Studies of meteorites and comets suggest that organic molecules are widespread among both asteroids and comets. Because each body in the solar system was repeatedly struck by asteroids and comets during the period known as the heavy bombardment (about 4 billion years ago), each body should have received at least some organic molecules. However, these molecules tend to be destroyed by solar radiation on surfaces unprotected by atmospheres. Moreover, while these molecules might stay intact beneath the surface (as they evidently do on asteroids and comets), they probably cannot react with each other unless some kind of liquid or gas is available to move them about. Thus, if we limit our search to worlds on which organic molecules are likely to be involved in chemical reactions, we can probably rule out any world that lacks both an atmosphere and a surface or subsurface liquid medium, such as water.',
             type:'Text',
           },
         ],
@@ -383,4 +383,30 @@ export const p = {
     markups: [],
     text:'The creation of life requires a set of chemical elements for making the components of cells.  Life on Earth uses about 25 of the 92 naturally occurring chemical elements, although just 4 of these elements—oxygen, carbon, hydrogen, and nitrogen—make up about 96 percent of the mass of living organisms.  Thus, a first requirement for life might be the presence of most or all of the elements used by life.',
     type:'Text',
-  }
+}
+export const answerAnalysis = {
+  inlineMarkup: [
+    {pid: "9d23bcc3-1bee-0be8-2385-eee26aab8a3d", type: "Bold", index: 28, length: 8},
+    {pid: "cccd3564-5c1b-1318-47dd-0d8a304ebbad", type: "Bold", index: 47, length: 8},
+    {pid: "d2e49260-9d9b-fabb-5796-b3c120972c32", type: "Bold", index: 32, length: 8},
+    {pid: "f7b0c64d-c4a2-69e8-61a7-7c7b005fe90e", type: "Bold", index: 31, length: 8},
+    {pid: "212dda87-9f3f-2829-78d8-396bdc8a79bf", type: "Bold", index: 27, length: 8},
+    {pid: "a7cb7de1-ca85-71e8-7469-ff9c7b73ed22", type: "Bold", index: 45, length: 8},
+    {pid: "fe83cc21-aae9-741d-9dea-03d974a70eed", type: "Bold", index: 30, length: 8},
+    {pid: "6a4283ae-8cb1-2769-3c9c-f20b5984c62f", type: "Bold", index: 27, length: 8},
+    {pid: "e356f2c3-6c36-0b9b-e86e-849e0a8d667e", type: "Bold", index: 35, length: 8},
+    {pid: "9a032159-a866-33fe-6728-7a856e7847eb", type: "Bold", index: 29, length: 8},
+  ],
+  paragraphs: [
+    {id: "9d23bcc3-1bee-0be8-2385-eee26aab8a3d", text: "Question 31答案：central定位原文：scripts:It's the type…ource。对于结构的把握来自于阅读时候对结构把握的能力，所以快速阅读是听力中抓住句子结构的基础。", type: "Text"},
+    {id: "cccd3564-5c1b-1318-47dd-0d8a304ebbad", text: "Question 32答案：conversation/conversations定位原文：scr…要注意formal meetings or written memos是被否定的信息，不要被迷惑。", type: "Text"},
+    {id: "d2e49260-9d9b-fabb-5796-b3c120972c32", text: "Question 33答案：effectively定位原文：scripts:But on th…tively...题干中的否定出现了，而且act也原词重现，答案就是后边的effectively。", type: "Text"},
+    {id: "f7b0c64d-c4a2-69e8-61a7-7c7b005fe90e", text: "Question 34答案：risk/risks定位原文：scripts:And the ki…afraid of “不怕”=原文中的happy to take “喜欢”，答案是risk（s）。", type: "Text"},
+    {id: "212dda87-9f3f-2829-78d8-396bdc8a79bf", text: "Question 35答案：levels定位原文：scripts:The next type …案只能写一个单词。还要注意原文中的them指的是前面提到的companies，这是代词还原的问题。", type: "Text"},
+    {id: "a7cb7de1-ca85-71e8-7469-ff9c7b73ed22", text: "Question 36答案：description/descriptions定位原文：scrip… so on.相对来说，本题的定位比较简单，因为题干中所有的信息在原文中都直接出现，没有任何变化。", type: "Text"},
+    {id: "fe83cc21-aae9-741d-9dea-03d974a70eed", text: "Question 37答案：technical定位原文：scripts:In other wo…的问题，就是对expertise这个单词的理解，它的意思是“专门的知识或技能”= ability。", type: "Text"},
+    {id: "6a4283ae-8cb1-2769-3c9c-f20b5984c62f", text: "Question 38答案：change定位原文：scripts:On the other h…se the need for change, and even slower to react.", type: "Text"},
+    {id: "e356f2c3-6c36-0b9b-e86e-849e0a8d667e", text: "Question 39答案：responsibility定位原文：scripts:What k…ticularly want to have responsibility, 因此本题的难度不大。", type: "Text"},
+    {id: "9a032159-a866-33fe-6728-7a856e7847eb", text: "Question 40答案：flexible定位原文：scripts:Now one of t…lture is that it’s flexible。flexible就是本题的答案，难度不大。", type: "Text"},
+  ]
+}

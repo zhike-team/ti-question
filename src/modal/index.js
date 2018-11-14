@@ -4,6 +4,8 @@ import uuid from 'uuid';
 import { View, Image } from '@zhike/ti-ui';
 import ModalAlert from './alert';
 import ModalCorrect from './correct';
+import ModalPreview from './preview';
+import ModalAnalysis from './analysis';
 import styles from './styles';
 
 export default class Modal extends Component {
@@ -23,8 +25,8 @@ export default class Modal extends Component {
         instance: modalInstance[type],
         props: Object.assign({}, { modalId: id }, props),
       }),
-      onShow,
-      onHide,
+      onShow: onShow ? onShow : null,
+      onHide: onHide ? onHide : null,
     });
 
     if (!props.isReport) {
@@ -45,6 +47,8 @@ export default class Modal extends Component {
       modalInstance: {
         ModalAlert,
         ModalCorrect,
+        ModalPreview,
+        ModalAnalysis,
       },
       onShow: null,
       onHide: null,
@@ -52,7 +56,7 @@ export default class Modal extends Component {
   }
 
   hide(id) {
-    const { modals } = this.state;
+    const { modals, onHide } = this.state;
     const modal = find(modals, item => item.id === id);
     const newModals = filter(modals, item => item.id !== id);
 

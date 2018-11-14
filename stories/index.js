@@ -3,7 +3,9 @@ import { storiesOf } from '@storybook/react';
 import { Button, View } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { Article, Audio, Modal, Block } from '../src';
-import { material, material1, material2, material3, tableBlank, material5, material6, material7, question1, p } from './article_data';
+import { material, material1, material2, material3, tableBlank,
+  material5, material6, material7, question1, p, answerAnalysis } from './article_data';
+import { onShow, onHide } from './utils';
 import RecorderDemo from './demo/recorder';
 import AudioPlayerDemo from './demo/audio_player';
 import styles from './styles';
@@ -295,12 +297,20 @@ storiesOf('Modal', module)
           width: 700,
           version: '1.0.0', // 请从common/config引用version字段
           source: 'ti-base', // 纠错来源
-          getUploadSignature: ()=> {},
-          postCorrection: ()=> {}
-        })}
+          getUploadSignature: () => {alert('上传纠错 postCorrection');},
+          postCorrection: () => {alert('上传纠错 postCorrection');},
+          step: {
+            id: 1,
+            practice: {id: 1001614, name: "测试 富文本渲染" },
+            question: {id: 1006476, name: "测试 富文本渲染 Q1"},
+          },
+          isReport: false,
+          }, onShow, onHide)
+        }
       />
       <Modal
         ref={modal => { Modal.instance = modal; }}
+        isReport={false}
       />
     </React.Fragment>
   ))
@@ -319,7 +329,7 @@ storiesOf('Modal', module)
             class: 'alertTip',
           }],
           width: 400,
-          isReport: true,
+          isReport: false,
           component: (
             <View className={styles.modalAlertText}>
               <View className={styles.alertText}>
@@ -337,6 +347,30 @@ storiesOf('Modal', module)
           ),
         })}
       />
-      <Modal ref={modal => { Modal.instance = modal; }}  />
+      <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
+    </React.Fragment>
+  ))
+  .add('type ModalPreview', () => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="图片预览"
+        onClick={() => Modal.show('ModalPreview', {
+          src:'http://img.zcool.cn/community/01d55b569c43fa6ac725af2356a161.jpg@1280w_1l_2o_100sh.jpg'
+        })}
+      />
+      <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
+    </React.Fragment>
+  ))
+  .add('type ModalAnalysis', () => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="答案解析"
+        onClick={() => Modal.show('ModalAnalysis', {
+          answerAnalysis,
+        })}
+      />
+      <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
     </React.Fragment>
   ));
