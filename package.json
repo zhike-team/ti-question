@@ -1,13 +1,13 @@
 {
   "name": "@zhike/ti-component",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "description": "common components for Zhike-tiku",
   "main": "index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "babel src --out-dir lib",
     "storybook": "start-storybook -p 3002 -c stories"
   },
   "peerDependencies": {
@@ -30,6 +30,7 @@
     "@zhike/ti-ui": "^1.0.2",
     "aphrodite": "^1.2.5",
     "axios": "^0.16.2",
+    "babel-cli": "^6.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "8.2.3",
     "babel-loader": "^7.1.2",

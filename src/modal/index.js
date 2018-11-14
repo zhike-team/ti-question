@@ -87,7 +87,7 @@ export default class Modal extends Component {
                   !modal.props.isUnhide &&
                   <Image
                     className={styles.close}
-                    src={require('./assets/close.png')}
+                    src={require('../assets/close.png')}
                     onClick={() => this.hide(modal.id)}
                   />
                 }

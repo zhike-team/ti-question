@@ -6,7 +6,7 @@ import { get, sortBy, capitalize, find } from 'lodash';
 import Audio from '../audio';
 import { firstUpperCase } from './utils';
 import styles from './styles';
-import imgArrow from './assets/arrow.png';
+import imgArrow from '../assets/arrow.png';
 
 export default class Block extends Component {
   // 参数

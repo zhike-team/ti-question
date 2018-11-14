@@ -190,7 +190,7 @@ export default class ModalCorrect extends Component {
           <View className={styles.modalAlert}>
             <Image
               className={styles.modalAlertImage}
-              src={require('./assets/ok.png')}
+              src={require('../../assets/ok.png')}
             />
             <View className={styles.modalAlertText}>
               你的反馈我们会认真查看并完善，感谢你对智课一如既往的支持呦~
@@ -257,7 +257,7 @@ export default class ModalCorrect extends Component {
         <View className={styles.section}>
           <Image
             className={styles.sectionTitleType}
-            src={require('./assets/title_type.png')}
+            src={require('../../assets/title_type.png')}
           />
           <View className={styles.choices}>
             {allChoices.map(choice => (
@@ -281,7 +281,7 @@ export default class ModalCorrect extends Component {
         <View className={styles.section}>
           <Image
             className={styles.sectionTitleDetail}
-            src={require('./assets/title_detail.png')}
+            src={require('../../assets/title_detail.png')}
           />
 
           <Textarea
@@ -303,7 +303,7 @@ export default class ModalCorrect extends Component {
 
                   <Image
                     className={styles.imageRemove}
-                    src={require('./assets/remove.png')}
+                    src={require('../../assets/remove.png')}
                     onClick={() => this.removeFile(index)}
                   />
                 </View>
@@ -318,7 +318,7 @@ export default class ModalCorrect extends Component {
               >
                 <Image
                   className={styles.imageUploadPlus}
-                  src={require('./assets/plus.png')}
+                  src={require('../../assets/plus.png')}
                 />
               </View>
             }

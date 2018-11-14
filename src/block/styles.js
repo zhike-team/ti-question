@@ -1,7 +1,7 @@
 import { StyleSheet } from 'aphrodite';
-import imgArrow from './assets/arrow.png';
-import imgBlock from './assets/block.png';
-import imgHeadset from './assets/headset.png';
+import imgArrow from '../assets/arrow.png';
+import imgBlock from '../assets/block.png';
+import imgHeadset from '../assets/headset.png';
 
 export default StyleSheet.create({
 

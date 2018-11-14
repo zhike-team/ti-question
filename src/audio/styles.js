@@ -86,16 +86,16 @@ export default StyleSheet.create({
   },
 
   play: {
-    backgroundImage: `url(${require('./assets/play.png')})`,
+    backgroundImage: `url(${require('../assets/play.png')})`,
     ':hover': {
-      backgroundImage: `url(${require('./assets/play-hover.png')})`,
+      backgroundImage: `url(${require('../assets/play-hover.png')})`,
     },
   },
 
   pause: {
-    backgroundImage: `url(${require('./assets/pause.png')})`,
+    backgroundImage: `url(${require('../assets/pause.png')})`,
     ':hover': {
-      backgroundImage: `url(${require('./assets/pause-hover.png')})`,
+      backgroundImage: `url(${require('../assets/pause-hover.png')})`,
     },
   },
 

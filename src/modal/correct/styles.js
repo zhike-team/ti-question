@@ -37,19 +37,19 @@ export default StyleSheet.create({
 
   choiceBox: {
     paddingLeft: 16,
-    backgroundImage: `url(${require('./assets/checkbox.png')})`,
+    backgroundImage: `url(${require('../../assets/checkbox.png')})`,
     backgroundSize: 16,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left top 4px',
     ':hover': {
-      backgroundImage: `url(${require('./assets/checkbox-hover.png')})`,
+      backgroundImage: `url(${require('../../assets/checkbox-hover.png')})`,
     },
   },
 
   choiceBoxChecked: {
-    backgroundImage: `url(${require('./assets/checkbox-checked.png')})`,
+    backgroundImage: `url(${require('../../assets/checkbox-checked.png')})`,
     ':hover': {
-      backgroundImage: `url(${require('./assets/checkbox-checked.png')})`,
+      backgroundImage: `url(${require('../../assets/checkbox-checked.png')})`,
     },
   },
 

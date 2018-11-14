@@ -80,7 +80,8 @@ npm publish
 {
   version: '1.0.0', // 请从common/config引用version字段
   source: 'ti-base', // ti-base/ti-toefl/...
-}
+  getUploadSignature,
+  postCorrection,
 ```
 * 新增加的`onShow/onHide`是为了降低耦合度，在抽离的组件中减少不合理的引用
 * `onShow`(可选)，在`isReport`为`false`的时候执行，一般情况下，传入以下方法：
