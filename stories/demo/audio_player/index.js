@@ -119,7 +119,6 @@ export default class AudioPlayerDemo extends Component {
   render() {
     const search = global.location.search; // eslint-disable-line
     const { volume, isShowVolume, isPlaying, available } = this.state;
-    console.log('this.volumeProcessBar:', this.volumeProcessBar);
     return (
       <View className={styles.container}>
         <View className={styles.content}>

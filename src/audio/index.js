@@ -38,12 +38,14 @@ export default class Audio extends Component {
   static defaultProps = {
     progressWidth: 338,
     showPlayer: true,
+    cdnUrl: 'https://hq-static.smartstudy.com',
   };
 
   static propTypes = {
     src: PropTypes.string.isRequired,
     progressWidth: PropTypes.number,
     showPlayer: PropTypes.bool,
+    cdnUrl: PropTypes.string,
   };
 
   // 构造函数

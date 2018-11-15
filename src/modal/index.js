@@ -81,17 +81,28 @@ export default class Modal extends Component {
               className={styles.front}
               style={modal.props.width ? { width: modal.props.width } : {}}
             >
-              <View className={styles.header}>
-                <View className={styles.title}>{modal.props.title}</View>
-                {
-                  !modal.props.isUnhide &&
+              {
+                // hideHeader 这个参数在预览图片时传入，隐藏标题
+                modal.props.hideHeader
+                ?
                   <Image
-                    className={styles.close}
+                    className={styles.imageClose}
                     src={require('../assets/close.png')}
                     onClick={() => this.hide(modal.id)}
                   />
-                }
-              </View>
+                :
+                  <View className={styles.header}>
+                    <View className={styles.title}>{modal.props.title}</View>
+                    {
+                      !modal.props.isUnhide &&
+                      <Image
+                        className={styles.close}
+                        src={require('../assets/close.png')}
+                        onClick={() => this.hide(modal.id)}
+                      />
+                    }
+                  </View>
+              }
               <modal.instance {...modal.props} />
             </View>
             <View

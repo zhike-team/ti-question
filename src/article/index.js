@@ -69,7 +69,8 @@ export default class Article extends Component {
 
   render() {
     const { material, question, isTextOnly, handleAnswer,
-      answer, isReport, progressWidth, externalInitAnswer, qNum, materialIds, answerRsult, isIelts,
+      answer, isReport, progressWidth, externalInitAnswer, qNum, materialIds,
+      answerRsult, isIelts, paragraphClassName,
     } = this.props;
     const article = normalizeArticle(
       material,
@@ -123,6 +124,7 @@ export default class Article extends Component {
                 materialIds={materialIds}
                 answerRsult={answerRsult}
                 isIelts={isIelts}
+                paragraphClassName={paragraphClassName}
               />
             );
           })

@@ -49,4 +49,13 @@ export default StyleSheet.create({
     height: 13,
     cursor: 'pointer',
   },
+  imageClose: {
+    position: 'absolute',
+    cursor: 'pointer',
+    right: -20,
+    top: 0,
+    width: 12,
+    height: 13,
+    filter: 'invert(100%)',
+  },
 });

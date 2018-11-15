@@ -55,4 +55,10 @@ export default StyleSheet.create({
   paragraphClass: {
     lineHeight: '48px',
   },
+  paragraph1: {
+    width: '300px',
+  },
+  paragraph2: {
+    width: '500px',
+  },
 });

@@ -14,21 +14,20 @@ export default StyleSheet.create({
 
   paragraph: {
     position: 'relative',
-    marginTop: 20,
-    ':first-child': {
-      marginTop: 0,
-    },
+    margin: 0,
   },
 
   block: {
+    margin: 0,
     marginTop: 20,
-    ':first-child': {
-      marginTop: 0,
-    },
     wordBreak: 'break-word',
     wordWrap: 'break-word',
     fontSize: 16,
     lineHeight: '24px',
+  },
+
+  block1: {
+    margin: 0,
   },
 
   blockIndent: {

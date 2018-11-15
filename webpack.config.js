@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: 'index.js'
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -25,7 +25,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
         }],
-      }
+      },
     ],
   },
   plugins: [

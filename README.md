@@ -200,6 +200,7 @@ npm publish
 | paragraphMarkup | 左对齐 | Align | left |
 | paragraphMarkup | 右对齐 | Align | right |
 | paragraphMarkup | 居中 | Align | center |
+| paragraphMarkup | 缩进 | Indent |  |
 | paragraphMarkup | 添加图片 | Image | right |
 | paragraphMarkup | 添加音频 | Audio | center |
 

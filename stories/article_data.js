@@ -59,7 +59,7 @@ export const question1 = {
     }
   }],
 };
-// 段落样式：左对齐， 右对齐， 居中， 添加图片， 添加音频
+
 export const material1 = {
   paragraphs: [
     {
@@ -94,14 +94,14 @@ export const material1 = {
     },
   ]
 };
-// 行内样式：高亮，加粗, 斜体，下划线
+// 行内样式：缩进，高亮，加粗, 斜体，下划线
 export const material2 = {
   paragraphs: [
     { id: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", text: "这里是段落高亮的效果；", type: "Text"},
     { id: "0aff2e35-521c-f648-9d3d-9216229edc64", text: "测试添加下划线的效果；", type: "Text"},
     { id: "97d9f76d-1452-d155-ee4d-e6778cfd631c", text: "这里是加粗的效果；", type: "Text"},
     { id: "9142359c-c0f3-852d-3c84-30292f077222", text: "这里是斜体的效果；", type: "Text"},
-    { id: "29eb41f9-e2ba-470d-98d7-50e2b82a96fe", text: "", type: "Text"},
+    { id: "b3c65374-8851-9e2d-e913-316cca9a174d", text: "文字缩进", type: "Text" },
   ],
   inlineMarkup: [
     { pid: "5c2ad04f-3733-f400-5bdf-c99a6aa5447b", type: "Highlight", index: 5, length: 2},
@@ -321,6 +321,90 @@ export const material7 = {
     {pid: "ff2cb808-ed26-4acc-251f-58a75573d103", type: "InsertLine", index: 5, value: "large", length: 1}
   ]
 };
+
+// 段落样式：缩进
+export const material8 = {
+  paragraphs: [
+    {id: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", text: "但就是有这样一类人，让人怀疑他是如何顺利通过招聘的。他不仅在团队合作时挑最容易的部分，还把最容易的部分也搞砸了，你不得不帮他一起收拾烂摊子加班到凌晨。", type: "Text"},
+    {id: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", text: "一个高速运转的团队，其中的每个员工必定担当得起自己负责的工作。职场的分工协作就是为了把每个人的优势发挥到最大化。", type: "Text"},
+    {id: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", text: "所以，如果在工作中，有人的完成度永远到不了100%，那么他就会成为团队的短板，完成度不到100%的这一部分，也许会让整个项目都归零。", type: "Text"},
+    {id: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", text: "才不配位，必着羞辱。专业能力是让人待在这个岗位上的基础能力，其他的能力是加分项或者区别项。", type: "Text"},
+    
+  ],
+  paragraphMarkup: [
+    {pid: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", type: "Indent", value: ""},
+    {pid: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", type: "Indent", value: ""},
+    {pid: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", type: "Indent", value: ""},
+    {pid: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", type: "Indent", value: ""}
+  ]
+};
+// 段落样式：左对齐
+export const material9 = {
+  paragraphs: [
+    {id: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", text: "但就是有这样一类人，让人怀疑他是如何顺利通过招聘的。他不仅在团队合作时挑最容易的部分，还把最容易的部分也搞砸了，你不得不帮他一起收拾烂摊子加班到凌晨。", type: "Text"},
+    {id: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", text: "一个高速运转的团队，其中的每个员工必定担当得起自己负责的工作。职场的分工协作就是为了把每个人的优势发挥到最大化。", type: "Text"},
+    {id: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", text: "所以，如果在工作中，有人的完成度永远到不了100%，那么他就会成为团队的短板，完成度不到100%的这一部分，也许会让整个项目都归零。", type: "Text"},
+    {id: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", text: "才不配位，必着羞辱。专业能力是让人待在这个岗位上的基础能力，其他的能力是加分项或者区别项。", type: "Text"},
+    
+  ],
+  paragraphMarkup: [
+    {pid: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", type: "Align", value: "left"},
+    {pid: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", type: "Align", value: "left"},
+    {pid: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", type: "Align", value: "left"},
+    {pid: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", type: "Align", value: "left"}
+  ]
+};
+// 右对齐
+export const material10 = {
+  paragraphs: [
+    {id: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", text: "但就是有这样一类人，让人怀疑他是如何顺利通过招聘的。他不仅在团队合作时挑最容易的部分，还把最容易的部分也搞砸了，你不得不帮他一起收拾烂摊子加班到凌晨。", type: "Text"},
+    {id: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", text: "一个高速运转的团队，其中的每个员工必定担当得起自己负责的工作。职场的分工协作就是为了把每个人的优势发挥到最大化。", type: "Text"},
+    {id: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", text: "所以，如果在工作中，有人的完成度永远到不了100%，那么他就会成为团队的短板，完成度不到100%的这一部分，也许会让整个项目都归零。", type: "Text"},
+    {id: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", text: "才不配位，必着羞辱。专业能力是让人待在这个岗位上的基础能力，其他的能力是加分项或者区别项。", type: "Text"},
+    
+  ],
+  paragraphMarkup: [
+    {pid: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", type: "Align", value: "right"},
+    {pid: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", type: "Align", value: "right"},
+    {pid: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", type: "Align", value: "right"},
+    {pid: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", type: "Align", value: "right"}
+  ]
+};
+// 居中
+export const material11 = {
+  paragraphs: [
+    {id: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", text: "但就是有这样一类人，让人怀疑他是如何顺利通过招聘的。他不仅在团队合作时挑最容易的部分，还把最容易的部分也搞砸了，你不得不帮他一起收拾烂摊子加班到凌晨。", type: "Text"},
+    {id: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", text: "一个高速运转的团队，其中的每个员工必定担当得起自己负责的工作。职场的分工协作就是为了把每个人的优势发挥到最大化。", type: "Text"},
+    {id: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", text: "所以，如果在工作中，有人的完成度永远到不了100%，那么他就会成为团队的短板，完成度不到100%的这一部分，也许会让整个项目都归零。", type: "Text"},
+    {id: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", text: "才不配位，必着羞辱。专业能力是让人待在这个岗位上的基础能力，其他的能力是加分项或者区别项。", type: "Text"},
+  ],
+  paragraphMarkup: [
+    {pid: "c54afb25-89b8-fac1-5ed5-7ced3f8e383d", type: "Align", value: "center"},
+    {pid: "4b94cadd-5b69-af4c-b42b-8db6ac1b0037", type: "Align", value: "center"},
+    {pid: "c4a4cd18-7431-55b6-e5c4-72c83b0fb17c", type: "Align", value: "center"},
+    {pid: "4143c171-2dfa-14cc-9e62-47bf41a31e9f", type: "Align", value: "center"}
+  ]
+};
+// 添加图片
+export const material12 = {
+  paragraphs: [
+    {id: "f8b0f1cf-7607-a664-c579-c1b26675ed4b", text: "添加图片："},
+    {id: "ac2775f8-c854-f118-ba26-5dab68675fe4", text: "", type: "Text"}
+  ],
+  paragraphMarkup: [
+    {pid: "f8b0f1cf-7607-a664-c579-c1b26675ed4b", type: "Image", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262300581cnKUY6.png"}
+  ]
+};
+// 添加音频
+export const material13 = {
+  paragraphs: [
+    {id: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", text: "添加音频：", type: "Text"},
+    {id: "d9763fd9-0760-11ab-2e1f-a4ad3ee1d376", text: ""},
+  ],
+  paragraphMarkup: [
+    {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
+  ]
+};
 export const question = {
     materials: [{
       reference: {
@@ -383,6 +467,48 @@ export const p = {
     markups: [],
     text:'The creation of life requires a set of chemical elements for making the components of cells.  Life on Earth uses about 25 of the 92 naturally occurring chemical elements, although just 4 of these elements—oxygen, carbon, hydrogen, and nitrogen—make up about 96 percent of the mass of living organisms.  Thus, a first requirement for life might be the presence of most or all of the elements used by life.',
     type:'Text',
+}
+export const p1 = {
+  anchor: false,
+  id:'c7763867-d463-86d9-b766-52de45544b81',
+  inlineMarkups: [
+    {pid: "c7763867-d463-86d9-b766-52de45544b81", type: "InsertLine", index: 25, value: "small", length: 1},
+    {pid: "c7763867-d463-86d9-b766-52de45544b81", type: "InsertLine", index: 79, value: "small", length: 1}
+  ],
+  paragraphMarkup: [
+  ],
+  markups: [],
+  text:'Soda was obtained largely of certain Mediterranean…tation of inland vegetation of inland vegetation.',
+  type:'Text',
+}
+export const p2 = {
+  anchor: false,
+  id:'efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c',
+  paragraphMarkup: [
+    {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
+  ],
+  inlineMarkups: [
+  ],
+  markups: [
+    {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
+  ],
+  text:'添加音频：',
+  type:'Text',
+}
+export const p3 = {
+  anchor: true,
+  id:'a3486f83-c30a-952f-8af9-fece61bee766',
+  inlineMarkups: [
+    {
+      index: 72,
+      length: 10,
+      pid:'a3486f83-c30a-952f-8af9-fece61bee766',
+      type:'Highlight',
+    },
+  ],
+  markups: [],
+  text:'The creation of life requires a set of chemical elements for making the components of cells.  Life on Earth uses about 25 of the 92 naturally occurring chemical elements, although just 4 of these elements—oxygen, carbon, hydrogen, and nitrogen—make up about 96 percent of the mass of living organisms.  Thus, a first requirement for life might be the presence of most or all of the elements used by life.',
+  type:'Text',
 }
 export const answerAnalysis = {
   inlineMarkup: [

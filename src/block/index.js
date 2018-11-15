@@ -263,7 +263,6 @@ export default class Block extends Component {
     // 行内样式中如果插入空格，回车的处理情况
     const regex = /^(\s)*$/g;
     if (regex.test(p.text)) {
-      // return <div className={css([styles.block])}>{p.text}</div>;
       return false;
     }
     return <p className={css(styles.block)}>{p.text}</p>;
@@ -297,10 +296,9 @@ export default class Block extends Component {
   // 渲染
   render() {
     const { p, paragraphClassName, isPositionTip } = this.props;
-
     const props = {
       className: css([
-        styles.block,
+        styles.block1,
         ...p.markups.map(markup => {
           if (markup.type === 'Align') {
             return styles[`block${markup.type}${capitalize(markup.value)}`];
@@ -317,7 +315,7 @@ export default class Block extends Component {
     }
     return (
       <View className={[styles.paragraph, paragraphClassName]}>
-        <p {...props}>
+        <p tag="div" {...props}>
           {
             find(p.markups, markup => markup.type === 'Arrow') &&
             <span className={css(styles.blockArrowBlank)} />
