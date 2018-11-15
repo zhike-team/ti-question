@@ -19,7 +19,7 @@ export default StyleSheet.create({
 
   block: {
     margin: 0,
-    marginTop: 20,
+    marginBottom: 20,
     wordBreak: 'break-word',
     wordWrap: 'break-word',
     fontSize: 16,

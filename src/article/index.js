@@ -116,7 +116,7 @@ export default class Article extends Component {
                 {...props}
                 handleAnswer={handleAnswer}
                 progressWidth={progressWidth}
-                answer={Array.isArray(answer) ? answer : isReport ? get(question, 'materials.0.answer') : answer}
+                answer={isReport ? get(question, 'materials.0.answer') : answer}
                 isReport={isReport}
                 initAnswer={externalInitAnswer === -1 ? (initAnswer - count) :
                   (externalInitAnswer + initAnswer - count)}

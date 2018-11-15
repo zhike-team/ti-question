@@ -89,7 +89,7 @@ export default class Block extends Component {
         });
 
       let start = 0;
-
+      let cntAnswer = initAnswer;
       while (inlineMarkups.length) {
         const markup = inlineMarkups.shift();
         // 提取当前标记前的文字
@@ -105,11 +105,12 @@ export default class Block extends Component {
         // 判断标记是否为插入标记
         if (markup.type === 'Insert') {
           const onClick = markup => {
+            console.log('markup:', markup);
             if (isReport) {
               return;
             }
             if (hasAction) {
-              handleAnswer([markup.answer]);
+              handleAnswer([markup.answerIndex]);
             }
           };
 
@@ -125,7 +126,7 @@ export default class Block extends Component {
           }
 
           /* eslint-disable */
-          if (get(answer, '0') === insertLineIndex) {
+          if (get(answer, '0') === cntAnswer) {
             spans.push(<span key={`${start}-head`}>&nbsp;</span>);
             spans.push(
               <span
@@ -158,6 +159,7 @@ export default class Block extends Component {
               </span>,
             );
           }
+          cntAnswer += 1;
         } else if (markup.type === 'InsertLine') {
           let defaultAnswer = '';
           if (answer && !isReport) {
@@ -296,43 +298,35 @@ export default class Block extends Component {
   // 渲染
   render() {
     const { p, paragraphClassName, isPositionTip } = this.props;
-    const props = {
-      className: css([
-        styles.block1,
-        ...p.markups.map(markup => {
-          if (markup.type === 'Align') {
-            return styles[`block${markup.type}${capitalize(markup.value)}`];
-          }
-          return styles[`block${markup.type}`];
-        }),
-      ]),
-    };
 
-    if (p.anchor) {
-      props.ref = node => {
-        this.anchor = node;
-      };
-    }
     return (
-      <View className={[styles.paragraph, paragraphClassName]}>
-        <p tag="div" {...props}>
-          {
-            find(p.markups, markup => markup.type === 'Arrow') &&
-            <span className={css(styles.blockArrowBlank)} />
-          }
+      <View
+        className={[styles.paragraph, paragraphClassName,
+          ...p.markups.map(markup => {
+            if (markup.type === 'Align') {
+              return styles[`block${markup.type}${capitalize(markup.value)}`];
+            }
+            return styles[`block${markup.type}`];
+          }),
+        ]}
+        ref={node => { if (p.anchor) this.anchor = node; }}
+      >
+        {
+          find(p.markups, markup => markup.type === 'Arrow') &&
+          <span className={css(styles.blockArrowBlank)} />
+        }
 
-          {this.renderInline()}
+        {this.renderInline()}
 
-          { p.markups && p.markups.length > 0 &&
-            this.renderOrigin()
-          }
+        { p.markups && p.markups.length > 0 &&
+          this.renderOrigin()
+        }
 
-          {
-            isPositionTip &&
-            !!this.renderInline() &&
-            <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
-          }
-        </p>
+        {
+          isPositionTip &&
+          !!this.renderInline() &&
+          <img src={imgArrow} alt="arrow" className={css(styles.arrow)} />
+        }
       </View>
     );
   }
