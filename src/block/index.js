@@ -262,10 +262,10 @@ export default class Block extends Component {
       return <p className={css(styles.block)}>{spans} </p>;
     }
     // 行内样式中如果插入空格，回车的处理情况
-    const regex = /^(\s)*$/g;
-    if (regex.test(p.text)) {
-      return false;
-    }
+    // const regex = /^(\s)*$/g;
+    // if (regex.test(p.text)) {
+    //   return false;
+    // }
     return <p className={css(styles.block)}>{p.text}</p>;
   }
 

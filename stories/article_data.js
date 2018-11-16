@@ -400,9 +400,12 @@ export const material13 = {
   paragraphs: [
     {id: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", text: "添加音频：", type: "Text"},
     {id: "d9763fd9-0760-11ab-2e1f-a4ad3ee1d376", text: ""},
+    {id: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb11", text: "添加音频：", type: "Text"},
+    {id: "d9763fd9-0760-11ab-2e1f-a4ad3ee1d371", text: ""},
   ],
   paragraphMarkup: [
     {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
+    {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb11", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
   ]
 };
 // 插入题演示

@@ -465,6 +465,23 @@ storiesOf('Modal', module)
       <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
     </React.Fragment>
   ))
+  .add('type ModalUserGrade', () => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="答案解析"
+        onClick={() => Modal.show('ModalUserGrade', {
+          background: {},
+          onClickNext: ()=> { console.log('提交答案～～')},
+          params: {},
+          setUserInfo: ['post', 'https://tiku.smartstudy.tech/users/user/profile'],
+          loginUrl: 'https://www.dev.smartstudy.com/signin?no_meiqia=1&smartRedirect=',
+        })}
+      />
+      <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
+    </React.Fragment>
+  ))
+
   .add('type onShow', () => (
     <React.Fragment>
       <Button

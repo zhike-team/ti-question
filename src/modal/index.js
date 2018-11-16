@@ -6,6 +6,7 @@ import ModalAlert from './alert';
 import ModalCorrect from './correct';
 import ModalPreview from './preview';
 import ModalAnalysis from './analysis';
+import ModalUserGrade from './user_grade';
 import styles from './styles';
 
 export default class Modal extends Component {
@@ -49,6 +50,7 @@ export default class Modal extends Component {
         ModalCorrect,
         ModalPreview,
         ModalAnalysis,
+        ModalUserGrade,
       },
       onShow: null,
       onHide: null,
