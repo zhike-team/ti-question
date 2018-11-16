@@ -435,7 +435,7 @@ storiesOf('Modal', module)
               <View className={styles.alertText}>4.可提前准备好耳机和纸笔。</View>
             </View>
           ),
-        })}
+        }, onShow, onHide)}
       />
       <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
     </React.Fragment>

@@ -12,7 +12,7 @@ export default class AudioPlayer extends Component {
     this.unload();
 
     // 多个音频存放在数组中  播放完每条音频，更新数组
-    const audioArr = options.src;
+    const audioArr = Array.isArray(options.src) ? options.src : [options.src];
     // 调用循环播放音频的函数
     this.playAudios(audioArr, options);
   }
