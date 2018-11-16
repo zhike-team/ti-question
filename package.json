@@ -1,6 +1,6 @@
 {
   "name": "@zhike/ti-component",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "common components for Zhike-tiku",
   "main": "index.js",
   "files": [
@@ -17,10 +17,10 @@
     "aphrodite": ">=1.0.0",
     "axios": ">=0.1.0",
     "lodash": ">=4.0.0",
-    "form-data": ">=2.0.0"
+    "form-data": ">=2.0.0",
+    "history": ">=4.7.2"
   },
   "dependencies": {
-    "history": "^4.7.2",
     "howler": "^2.0.8",
     "lodash": "^4.17.10",
     "recordrtc": "^5.4.5",
