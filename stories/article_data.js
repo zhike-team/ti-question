@@ -405,6 +405,84 @@ export const material13 = {
     {pid: "efd0a4d8-c42a-d00a-5bfc-c0bdf19ebb1c", type: "Audio", value: "", uploadPath: "http://hq-static.smartstudy.com/atheneBackend/1542262252465zKY05O.mp3"},
   ]
 };
+// 插入题演示
+export const material14 = {
+  paragraphs: [
+    {id: "a3486f83-c30a-952f-8af9-fece61bee766", text: "The creation of life requires a set of chemical elements for making the components of cells.  Life on Earth uses about 25 of the 92 naturally occurring chemical elements, although just 4 of these elements—oxygen, carbon, hydrogen, and nitrogen—make up about 96 percent of the mass of living organisms.  Thus, a first requirement for life might be the presence of most or all of the elements used by life.", type: "Text"},
+    {id: "f81ea55d-8f05-90e0-0a13-72a7f0643640", text: "Interestingly, this requirement can probably be me…and helium, they are found just about everywhere.", type: "Text"},
+    {id: "865499f1-3ea2-b982-7863-f4477ad5cabf", text: "Heavy elements are continually being manufactured …hroughout our solar system, galaxy, and universe.", type: "Text"},
+    {id: "a3283c8e-b52b-df99-99e2-92566b043ded", text: "Note that this argument does not change, even if w…lanet, moon, asteroid, and comet in the universe.", type: "Text"},
+    {id: "7a7f413c-085d-a997-ab95-9d24f8b45ab1", text: "A somewhat stricter requirement is the presence of…lecules to nearly all worlds in our solar system.", type: "Text"},
+    {id: "9d1deedb-4747-8941-1ea3-260f17ce7ccf", text: "Studies of meteorites and comets suggest that orga…face or subsurface liquid medium, such as water.↵", type: "Text"}
+  ]
+}
+export const question2 = {
+  audition: null,
+  conciseId: null,
+  createdAt: "2018-10-26T07:50:14.000Z",
+  difficulty: null,
+  examId: 1,
+  exampleNum: 0,
+  extra: null,
+  id: 1006360,
+  materials: [
+    {
+      // analysis: {paragraphs: Array(1)},
+      answer: [0],
+      // audio: null,
+      // audioReference: null,
+      // choices: null,
+      // direction: null,
+      // examples: null,
+      // id: 25712,
+      // image: null,
+      insertSentence: {paragraphs: [
+        { id: "0e011d6d-92ba-ffba-3000-e76e7e53b447", text: "To answer the question “Could life exist on other …rst look at the necessary preconditions for life.", type: "Text"}
+      ]},
+      // labels: null,
+      // origin: null,
+      // positionTip: null,
+      // qNum: null,
+      // questionId: 1006360,
+      // rank: 1,
+      // score: null,
+      // subStem: null,
+      // videoTimeRangeId: null,
+      reference: {
+        paragraphs: [
+          {id: "a3486f83-c30a-952f-8af9-fece61bee766", text: "The creation of life requires a set of chemical elements for making the components of cells.  Life on Earth uses about 25 of the 92 naturally occurring chemical elements, although just 4 of these elements—oxygen, carbon, hydrogen, and nitrogen—make up about 96 percent of the mass of living organisms.  Thus, a first requirement for life might be the presence of most or all of the elements used by life.", type: "Text"},
+          {id: "f81ea55d-8f05-90e0-0a13-72a7f0643640", text: "Interestingly, this requirement can probably be me…and helium, they are found just about everywhere.", type: "Text"},
+          {id: "865499f1-3ea2-b982-7863-f4477ad5cabf", text: "Heavy elements are continually being manufactured …hroughout our solar system, galaxy, and universe.", type: "Text"},
+          {id: "a3283c8e-b52b-df99-99e2-92566b043ded", text: "Note that this argument does not change, even if w…lanet, moon, asteroid, and comet in the universe.", type: "Text"},
+          {id: "7a7f413c-085d-a997-ab95-9d24f8b45ab1", text: "A somewhat stricter requirement is the presence of…lecules to nearly all worlds in our solar system.", type: "Text"},
+          {id: "9d1deedb-4747-8941-1ea3-260f17ce7ccf", text: "Studies of meteorites and comets suggest that orga…face or subsurface liquid medium, such as water.↵", type: "Text"}
+        ],
+        inlineMarkup: [
+          {pid: "a3486f83-c30a-952f-8af9-fece61bee766", type: "Insert", index: 0, value: "left", length: 1},
+          {pid: "a3486f83-c30a-952f-8af9-fece61bee766", type: "Insert", index: 93, value: "left", length: 1},
+          {pid: "a3486f83-c30a-952f-8af9-fece61bee766", type: "Insert", index: 302, value: "left", length: 1},
+          {pid: "a3486f83-c30a-952f-8af9-fece61bee766", type: "Insert", index: 404, value: "left", length: 1}
+        ], articleMarkup:{
+        anchorPid: "a3486f83-c30a-952f-8af9-fece61bee766",
+        headPid: "a3486f83-c30a-952f-8af9-fece61bee766",
+        tailPid: "a3486f83-c30a-952f-8af9-fece61bee766",
+      }},
+    }
+
+  ],
+  name: "TPO54 阅读 Passage3 Q12",
+  practiceId: 1001500,
+  practiceTypeId: null,
+  questionTagId: 89,
+  rank: 12,
+  status: "Visible",
+  stem: null,
+  subjectId: 1,
+  textbookId: 1,
+  type: "Insert",
+  updatedAt: "2018-10-26T07:50:14.000Z",
+  videoTimeRangeId: null,
+}
 export const question = {
     materials: [{
       reference: {

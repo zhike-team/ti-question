@@ -48,6 +48,7 @@ export default StyleSheet.create({
       backgroundSize: '14px 14px',
       backgroundPosition: 'left top 5px',
     },
+    textIndent: '2em',
   },
 
   blockArrowBlank: {

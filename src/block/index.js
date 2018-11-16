@@ -105,7 +105,6 @@ export default class Block extends Component {
         // 判断标记是否为插入标记
         if (markup.type === 'Insert') {
           const onClick = markup => {
-            console.log('markup:', markup);
             if (isReport) {
               return;
             }
@@ -298,7 +297,6 @@ export default class Block extends Component {
   // 渲染
   render() {
     const { p, paragraphClassName, isPositionTip } = this.props;
-
     return (
       <View
         className={[styles.paragraph, paragraphClassName,
@@ -309,11 +307,13 @@ export default class Block extends Component {
             return styles[`block${markup.type}`];
           }),
         ]}
-        ref={node => { if (p.anchor) this.anchor = node; }}
       >
         {
           find(p.markups, markup => markup.type === 'Arrow') &&
-          <span className={css(styles.blockArrowBlank)} />
+          <span
+            className={css(styles.blockArrowBlank)}
+            ref={node => { if (p.anchor) this.anchor = node; }}
+          />
         }
 
         {this.renderInline()}

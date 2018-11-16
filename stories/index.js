@@ -5,8 +5,8 @@ import { css } from 'aphrodite';
 import { Article, Audio, Modal, Block } from '../src';
 import { material1, material2, material3, tableBlank,
   material5, material6, material7, material8, material9,
-  material10, material11, material12, material13,
-  question1, p, p1, p2, answerAnalysis } from './article_data';
+  material10, material11, material12, material13, material14,
+  question1, question2, p, p1, p2, answerAnalysis } from './article_data';
 import { onShow, onHide } from './utils';
 import RecorderDemo from './demo/recorder';
 import AudioPlayerDemo from './demo/audio_player';
@@ -58,7 +58,27 @@ storiesOf('Article', module)
       富文本 行内样式（三）
       <br />
       <br />
-      <Article material={material6}></Article>
+      <Article
+        material={material6}
+        handleAnswer={e => { console.log('插入题 答案保存～', e)}}
+        answer={['answer1']}
+      ></Article>
+      </div>
+    </React.Fragment>
+  ))
+  .add('插入题 报告页演示', () => (
+    <React.Fragment>
+      <div style={styles.container}>
+      富文本 行内样式（三）
+      <br />
+      <br />
+      <Article
+        material={material14}
+        question={question2}
+        handleAnswer={e => { console.log('插入题 答案保存～', e)}}
+        // answer={[1]}
+        isReport={true}
+      ></Article>
       </div>
     </React.Fragment>
   ))
