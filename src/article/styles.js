@@ -10,6 +10,5 @@ export default StyleSheet.create({
     ':first-child': {
       marginTop: 0,
     },
-    marginBottom: -20,
   },
 });

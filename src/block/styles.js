@@ -26,10 +26,6 @@ export default StyleSheet.create({
     lineHeight: '24px',
   },
 
-  block1: {
-    margin: 0,
-  },
-
   blockIndent: {
     textIndent: '2em',
   },
