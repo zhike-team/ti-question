@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { get, sortBy, capitalize, find } from 'lodash';
@@ -50,9 +51,8 @@ export default class Block extends Component {
 
   // 加载
   componentDidMount() {
-    const id = get(this.props, 'p.id');
-    const anchorElement = global.document.getElementById(id);
-    if (anchorElement) {
+    if (this.anchor) {
+      const anchorElement = ReactDOM.findDOMNode(this.anchor); // eslint-disable-line
       setTimeout(() => {
         anchorElement.scrollIntoView({
           block: 'start',
@@ -65,9 +65,8 @@ export default class Block extends Component {
   // 更新
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      const id = get(prevProps, 'p.id');
-      const anchorElement = global.document.getElementById(id);
-      if (anchorElement) {
+      if (this.anchor) {
+        const anchorElement = ReactDOM.findDOMNode(this.anchor); // eslint-disable-line
         setTimeout(() => {
           anchorElement.scrollIntoView({
             block: 'start',
@@ -303,7 +302,9 @@ export default class Block extends Component {
     const { p, paragraphClassName, isPositionTip } = this.props;
     const props = {};
     if (p.anchor) {
-      props.id = p.id;
+      props.ref = node => {
+        this.anchor = node;
+      };
     }
     return (
       <View

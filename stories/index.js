@@ -76,7 +76,6 @@ storiesOf('Article', module)
         material={material14}
         question={question2}
         handleAnswer={e => { console.log('插入题 答案保存～', e)}}
-        // answer={[1]}
         isReport={true}
       ></Article>
       </div>
