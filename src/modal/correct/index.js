@@ -14,12 +14,13 @@ export default class ModalCorrect extends Component {
     getUploadSignature: PropTypes.func.isRequired,
     postCorrection: PropTypes.func.isRequired,
     step: PropTypes.object.isRequired,
-    isReport: PropTypes.bool.isRequired,
+    isReport: PropTypes.bool,
     option: PropTypes.object,
   };
 
   static defaultProps = {
     option: {},
+    isReport: false,
   }
 
   constructor(props) {
