@@ -50,9 +50,11 @@ export default class Block extends Component {
 
   // 加载
   componentDidMount() {
-    if (this.anchor) {
+    const id = get(this.props, 'p.id');
+    const anchorElement = global.document.getElementById(id);
+    if (anchorElement) {
       setTimeout(() => {
-        this.anchor.scrollIntoView({
+        anchorElement.scrollIntoView({
           block: 'start',
           behavior: 'smooth',
         });
@@ -62,10 +64,12 @@ export default class Block extends Component {
 
   // 更新
   componentDidUpdate(prevProps) {
-    if (JSON.stringify(this.props.location) === '{}' && this.props.location.pathname !== prevProps.location.pathname) {
-      if (this.anchor) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      const id = get(prevProps, 'p.id');
+      const anchorElement = global.document.getElementById(id);
+      if (anchorElement) {
         setTimeout(() => {
-          this.anchor.scrollIntoView({
+          anchorElement.scrollIntoView({
             block: 'start',
             behavior: 'smooth',
           });
@@ -297,6 +301,10 @@ export default class Block extends Component {
   // 渲染
   render() {
     const { p, paragraphClassName, isPositionTip } = this.props;
+    const props = {};
+    if (p.anchor) {
+      props.id = p.id;
+    }
     return (
       <View
         className={[styles.paragraph, paragraphClassName,
@@ -307,12 +315,12 @@ export default class Block extends Component {
             return styles[`block${markup.type}`];
           }),
         ]}
+        {...props}
       >
         {
           find(p.markups, markup => markup.type === 'Arrow') &&
           <span
             className={css(styles.blockArrowBlank)}
-            ref={node => { if (p.anchor) this.anchor = node; }}
           />
         }
 

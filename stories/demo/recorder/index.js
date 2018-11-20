@@ -174,7 +174,6 @@ export default class RecorderDemo extends Component {
             data: this.formData,
             timeout: 30000,
           });
-          console.log('audioData:', audioData);
 
           audio = { src: audioData.data.data.transcodeUrl, duration: data.duration };
         }
