@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { get, isEmpty } from 'lodash';
 import { normalizeArticle } from './utils';
 import Block from '../block';
 import styles from './styles';
 
 // TODO: 数据预处理在哪里做
-export default class Article extends Component {
+class Article extends Component {
   static defaultProps = {
     isTextOnly: false,
     handleAnswer: () => {},
-    location: {},
     question: {},
     answer: '',
     isReport: false,
@@ -31,7 +31,7 @@ export default class Article extends Component {
     question: PropTypes.object,
     isTextOnly: PropTypes.bool,
     handleAnswer: PropTypes.func,
-    location: PropTypes.object,
+    location: PropTypes.object.isRequired,
     answer: PropTypes.any,
     isReport: PropTypes.bool,
     progressWidth: PropTypes.number,
@@ -133,4 +133,6 @@ export default class Article extends Component {
     );
   }
 }
+
+export default withRouter(Article);
 

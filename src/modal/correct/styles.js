@@ -12,13 +12,13 @@ export default StyleSheet.create({
   },
 
   sectionTitleType: {
-    width: 130,
-    height: 38,
+    width: 116,
+    height: 28,
   },
 
   sectionTitleDetail: {
-    width: 121,
-    height: 37,
+    width: 110,
+    height: 28,
   },
 
   choices: {
@@ -27,12 +27,30 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
   },
 
-  choice: {
+  choice1: {
     flexDirection: 'row',
     marginTop: 8,
     width: '25%',
     alignItems: 'center',
     cursor: 'pointer',
+  },
+  choice2: {
+    flexDirection: 'row',
+    marginTop: 8,
+    width: '186px',
+    cursor: 'pointer',
+    ':nth-child(1)': {
+      marginRight: '-15px',
+    },
+    ':nth-child(4)': {
+      marginRight: '-15px',
+    },
+    ':nth-child(2)': {
+      marginRight: '30px',
+    },
+    ':nth-child(5)': {
+      marginRight: '30px',
+    },
   },
 
   choiceBox: {

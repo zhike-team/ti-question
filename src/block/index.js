@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { get, sortBy, capitalize, find } from 'lodash';
@@ -9,11 +10,10 @@ import { firstUpperCase } from './utils';
 import styles from './styles';
 import imgArrow from '../assets/arrow.png';
 
-export default class Block extends Component {
+class Block extends Component {
   // 参数
   static defaultProps = {
     initAnswer: 0,
-    location: {},
     insertSentence: '',
     hasAction: true,
     handleAnswer: () => {},
@@ -31,7 +31,7 @@ export default class Block extends Component {
   };
   static propTypes = {
     p: PropTypes.object.isRequired,
-    location: PropTypes.object,
+    location: PropTypes.object.isRequired,
     initAnswer: PropTypes.number,
     progressWidth: PropTypes.number,
     handleAnswer: PropTypes.func,
@@ -341,3 +341,4 @@ export default class Block extends Component {
   }
 }
 
+export default withRouter(Block);

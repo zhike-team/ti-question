@@ -402,6 +402,34 @@ storiesOf('Modal', module)
         isReport={false}
       />
     </React.Fragment>
+  )) 
+  .add('type ModalCorrect isFollowUpOrListen', () => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="我要纠错"
+        onClick={() => Modal.show('ModalCorrect', {
+          title: '我要纠错',
+          width: 700,
+          version: '1.0.0', // 请从common/config引用version字段
+          source: 'ti-base', // 纠错来源
+          isFollowUpOrListen: true, // 纠错类型 是通用的还是跟读与精听专用的～
+          getUploadSignature: () => {alert('上传纠错 postCorrection');},
+          postCorrection: () => {alert('上传纠错 postCorrection');},
+          step: {
+            id: 1,
+            practice: {id: 1001614, name: "测试 富文本渲染" },
+            question: {id: 1006476, name: "测试 富文本渲染 Q1"},
+          },
+          isReport: false,
+          })
+        }
+      />
+      <Modal
+        ref={modal => { Modal.instance = modal; }}
+        isReport={false}
+      />
+    </React.Fragment>
   ))
   .add('type ModalAlert', () => (
     <React.Fragment>

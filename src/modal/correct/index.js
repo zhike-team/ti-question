@@ -16,11 +16,13 @@ export default class ModalCorrect extends Component {
     step: PropTypes.object.isRequired,
     isReport: PropTypes.bool,
     option: PropTypes.object,
+    isFollowUpOrListen: PropTypes.bool,
   };
 
   static defaultProps = {
     option: {},
     isReport: false,
+    isFollowUpOrListen: false,
   }
 
   constructor(props) {
@@ -205,53 +207,77 @@ export default class ModalCorrect extends Component {
 
   // 渲染
   render() {
+    const { isFollowUpOrListen } = this.props;
     const { choices, detail, submitting, filesUrl } = this.state;
-    const allChoices = [
-      {
-        type: 'ReadingOriginal',
-        text: '听力原文有误',
-      },
+    let allChoices;
+    if (!isFollowUpOrListen) {
+      allChoices = [
+        {
+          type: 'ReadingOriginal',
+          text: '听力原文有误',
+        },
+        {
+          type: 'Stem',
+          text: '题干有误',
+        },
+        {
+          type: 'Choices',
+          text: '选项有误',
+        },
+        {
+          type: 'Answer',
+          text: '答案有误',
+        },
+        {
+          type: 'Analysis',
+          text: '文字解析有误',
+        },
+        {
+          type: 'ListeningOriginal',
+          text: '听力音频有误',
+        },
+        {
+          type: 'ReadingTranslation',
+          text: '阅读译文有误',
+        },
+        {
+          type: 'PageStyle',
+          text: '页面显示有误',
+        },
+        {
+          type: 'Other',
+          text: '其它',
+        },
+      ];
+    } else {
+      allChoices = [
+        {
+          type: 'AudioScript',
+          text: '听力原文错误',
+        },
+        {
+          type: 'ChineseTranslation',
+          text: '中文翻译错误',
+        },
+        {
+          type: 'TimeCodeRagged',
+          text: '音频和听力原文时间未对齐',
+        },
+        {
+          type: 'ListeningOriginalNoise',
+          text: '听力音频有杂音',
+        },
+        {
+          type: 'AudioNonfluency',
+          text: '单句精听换句时音频卡顿',
+        },
+        {
+          type: 'Other',
+          text: '其它',
+        },
+      ];
+    }
 
-      {
-        type: 'Stem',
-        text: '题干有误',
-      },
-
-      {
-        type: 'Choices',
-        text: '选项有误',
-      },
-
-      {
-        type: 'Answer',
-        text: '答案有误',
-      },
-
-      {
-        type: 'Analysis',
-        text: '文字解析有误',
-      },
-
-      {
-        type: 'ListeningOriginal',
-        text: '听力音频有误',
-      },
-
-      {
-        type: 'ReadingTranslation',
-        text: '阅读译文有误',
-      },
-
-      {
-        type: 'PageStyle',
-        text: '页面显示有误',
-      },
-
-      {
-        type: 'Other',
-        text: '其它',
-      },
-    ];
 
     return (
       <View className={styles.container}>
@@ -265,7 +291,7 @@ export default class ModalCorrect extends Component {
               <View
                 key={choice.type}
                 className={[
-                  styles.choice,
+                  isFollowUpOrListen === true ? styles.choice2 : styles.choice1,
                   styles.choiceBox,
                   choices.indexOf(choice.type) !== -1
                     ? styles.choiceBoxChecked
