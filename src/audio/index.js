@@ -57,6 +57,9 @@ export default class Audio extends Component {
       currtime: '00:00',
       progress: 0,
       isload: true,
+      isFirst: true, // 测评音频只能播放一次
+      isTest: global.location.pathname.match(/\/([^\/]*)\//) && // eslint-disable-line
+      global.location.pathname.match(/\/([^\/]*)\//)[1] === 'test', // eslint-disable-line
     };
     this.audio = null;
     this.isTry = 0;
@@ -193,6 +196,7 @@ export default class Audio extends Component {
       playing: false,
       progress: 0,
       currtime: '00:00',
+      isFirst: false,
     });
   }
 
@@ -230,28 +234,36 @@ export default class Audio extends Component {
   }
 
   render() {
-    const { playing, progress, duration, currtime, isload } = this.state;
+    const { playing, progress, duration, currtime, isload, isFirst, isTest } = this.state;
     const { progressWidth, showPlayer } = this.props;
     if (!showPlayer) return false;
     const playClass = [styles.default];
     playing ? playClass.push(styles.pause) : playClass.push(styles.play);
     const blueWidth = progressWidth * progress / 100;
-
+    // 是否限制音频播放
+    const closeAudio = isFirst === false && isTest;
     return (
       <View className={styles.container}>
         <View className={styles.audioBox}>
-          <View className={playClass} onClick={this.handleClickPlay} />
+          <View
+            className={playClass}
+            onClick={() => { if (!closeAudio) { this.handleClickPlay(); } }}
+            style={{ opacity: `${closeAudio ? '0.5' : '1'}` }}
+          />
           <View>{currtime}</View>
           <View className={styles.progressBox} style={{ width: `${progressWidth}px` }}>
-            <View className={styles.progress} onClick={this.handleClickProgress}>
+            <View
+              className={styles.progress}
+              onClick={e => { if (!closeAudio) { this.handleClickProgress(e); } }}
+            >
               <View className={styles.blueProgress} style={{ width: `${blueWidth}px` }} />
             </View>
             <View
               className={styles.dot}
               style={{ left: `${blueWidth - 6}px` }}
-              onTouchStart={this.onTouchStart}
-              onTouchMove={this.onTouchMove}
-              onTouchEnd={this.onTouchEnd}
+              onTouchStart={() => { if (!closeAudio) { this.onTouchStart(); } }}
+              onTouchMove={() => { if (!closeAudio) { this.onTouchMove(); } }}
+              onTouchEnd={() => { if (!closeAudio) { this.onTouchEnd(); } }}
             />
           </View>
           <View>{this.timeFormat(parseInt(duration, 10))}</View>
