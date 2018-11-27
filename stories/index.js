@@ -2,7 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button, View } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
-import { Article, Audio, Modal, Block } from '../src';
+import { Audio, Modal } from '../src';
+import Article from '../show/article';
+import Block from '../show/block';
 import { material1, material2, material3, tableBlank,
   material5, material6, material7, material8, material9,
   material10, material11, material12, material13, material14,
