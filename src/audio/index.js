@@ -38,7 +38,7 @@ export default class Audio extends Component {
   static defaultProps = {
     progressWidth: 338,
     showPlayer: true,
-    cdnUrl: 'https://hq-static.smartstudy.com',
+    cdnUrl: 'https://media8.smartstudy.com', // 默认是线上路径，需要外部传入
   };
 
   static propTypes = {
