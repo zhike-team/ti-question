@@ -374,6 +374,10 @@ storiesOf('Recorder', module)
   .add('内置了init, start, pause, resume, stop, destroy的API', () => (
     <React.Fragment>
       <RecorderDemo></RecorderDemo>
+      <Modal
+        ref={modal => { Modal.instance = modal; }}
+        isReport={false}
+      />
     </React.Fragment>
   ));
 

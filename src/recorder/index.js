@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { RecordRTCPromisesHandler } from 'recordrtc';
-import { View } from '@zhike/ti-ui';
+import { View, Image } from '@zhike/ti-ui';
+import { css } from 'aphrodite';
 import Modal from '../modal';
+import styles from './styles';
 
 // 录音
 export default class Recorder extends Component {
@@ -24,7 +26,6 @@ export default class Recorder extends Component {
   static start({ mode, skip, callback = () => {} }) {
     this.init();
     this.destroy();
-
     if (!navigator.getUserMedia) { // eslint-disable-line
       return this.onError({ mode, skip });
     }
@@ -40,7 +41,7 @@ export default class Recorder extends Component {
       () => this.onError({ mode, skip }),
     );
   }
-  
+
   // 暂停录音
   static pause() {
     try {
@@ -100,9 +101,12 @@ export default class Recorder extends Component {
       buttons,
       width: 400,
       component: (
-        <View style={{ aligenItems: 'center' }}>
-          1.请检查浏览器是否允许使用麦克风权限；<br />
-          2.请在修改该权限后刷新页面。
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Image src={require('../assets/fail.png')} style={{ width: '80px', margin: '20px 0 30px' }} />
+          <span className={css(styles.text)}>
+            1.请检查浏览器是否允许使用麦克风权限；<br />
+            2.请在修改该权新页面。
+          </span>
         </View>
       ),
     }, onShow, onHide);
