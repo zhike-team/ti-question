@@ -38,4 +38,4 @@ env:
    #- GH_REF: github.com/yimogit/metools.git 
 
 after_success:
-- npm run storybook -- --ci --host-token-env-variable=GITHUB_TOKEN
+- npm run deploy-storybook -- --ci --host-token-env-variable=GITHUB_TOKEN
