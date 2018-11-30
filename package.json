@@ -9,6 +9,7 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "deploy-storybook": "storybook-to-ghpages",
+    "build-storybook": "build-storybook -c stories",
     "storybook": "start-storybook -p 3002 -c stories"
   },
   "peerDependencies": {
