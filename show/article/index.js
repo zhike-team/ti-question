@@ -27,21 +27,37 @@ export default class Article extends Component {
   };
 
   static propTypes = {
+    /**  富文本材料 */
     material: PropTypes.object.isRequired,
-    question: PropTypes.object,
-    isTextOnly: PropTypes.bool,
-    handleAnswer: PropTypes.func,
+    /**  包含有关当前 URL 的信息的对象 */
     location: PropTypes.object.isRequired,
+    /**  托福题库中用于获取题目答案及 material中的富文本样式 */
+    question: PropTypes.object,
+    /**  是否只读 用于填空题及拖拽题的渲染 */
+    isTextOnly: PropTypes.bool,
+    /**  用户作答之后的回调函数 */
+    handleAnswer: PropTypes.func,
+    /**  用于报告页的答案显示 */
     answer: PropTypes.any,
+    /**  */
     isReport: PropTypes.bool,
+    /**  音频播放器的宽度 */
     progressWidth: PropTypes.number,
+    /**  需要显示的子题题号*/
     qNum: PropTypes.array,
+    /**  外部累计InsertBlank数量*/
     externalInitAnswer: PropTypes.number,
+    /**  处理子题选中*/
     handleQuestionSelect: PropTypes.func,
+    /**  雅思填空题 && 拖拽题  用来定位*/
     materialIds: PropTypes.array,
+    /**  答案集合*/
     answerRsult: PropTypes.array,
+    /**  显示定位 ➡️ 标志*/
     isPositionTip: PropTypes.bool,
+    /**  外部传进来的段落样式*/
     paragraphClassName: PropTypes.object,
+    /**  是否是雅思题库*/
     isIelts: PropTypes.bool,
   };
 

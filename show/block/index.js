@@ -29,22 +29,38 @@ export default class Block extends Component {
     isIelts: false,
   };
   static propTypes = {
+    /**  block组件处理的段落  */
     p: PropTypes.object.isRequired,
+    /**  包含有关当前 URL 的信息的对象 */
     location: PropTypes.object.isRequired,
     initAnswer: PropTypes.number,
+    /**  音频播放器的宽度 */
     progressWidth: PropTypes.number,
+    /**  用户作答之后的回调函数 */
     handleAnswer: PropTypes.func,
+    /**  托福插入题 插入的句子 */
     insertSentence: PropTypes.string,
+    /**  是否有段落定位 */
     hasAction: PropTypes.bool,
+    /**  用于报告页的答案显示 */
     answer: PropTypes.any,
+    /**  需要显示的子题题号 */
     qNum: PropTypes.array,
+    /**  外部累计InsertBlank数量 */
     externalInitAnswer: PropTypes.number,
+    /**  处理子题选中 */
     handleQuestionSelect: PropTypes.func,
+    /**  答案集合 */
     answerRsult: PropTypes.array,
+    /**  雅思填空题 && 拖拽题  用来定位 */
     materialIds: PropTypes.array,
+    /**  是否是报告页 */
     isReport: PropTypes.bool,
+    /**  显示定位 ➡️ 标志 */
     isPositionTip: PropTypes.bool,
+    /**  外部传进来的段落样式 */
     paragraphClassName: PropTypes.object,
+    /**  是否是雅思题库 */
     isIelts: PropTypes.bool,
   };
 
@@ -126,7 +142,7 @@ export default class Block extends Component {
             );
           }
 
-          /* eslint-disable */
+          /* eslint-disable  */
           if (get(answer, '0') === cntAnswer) {
             spans.push(<span key={`${start}-head`}>&nbsp;</span>);
             spans.push(
@@ -148,7 +164,7 @@ export default class Block extends Component {
               />,
             );
           }
-          /* eslint-enable */
+          /* eslint-enable  */
 
           if (markup.value === 'left') {
             spans.push(

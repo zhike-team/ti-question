@@ -42,9 +42,13 @@ export default class Audio extends Component {
   };
 
   static propTypes = {
+    /**  音频地址 */
     src: PropTypes.string.isRequired,
+    /** 播放器宽度 */
     progressWidth: PropTypes.number,
+    /** 是否显示播放器 */
     showPlayer: PropTypes.bool,
+    /** cdnUrl 线上与dev 有差别 */
     cdnUrl: PropTypes.string,
   };
 
