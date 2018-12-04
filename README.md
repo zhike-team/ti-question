@@ -2,7 +2,7 @@
 题库的通用组件，提取为依赖库并统一发布在npm
 
 ## demo
-### 点击这里直接查看文档
+### 点击下面 直接查看文档
 [组件文档](https://zhike-team.github.io/ti-component/) https://zhike-team.github.io/ti-component/
 
 ```bash

@@ -79,7 +79,7 @@ const CenterDecorator = (storyFn) => (
   )))
   .add('插入题 报告页演示', 
   withInfo(`
-    插入题 报告页演示，使用组件方法如下：
+  插入题 报告页演示，使用组件方法如下：
   ~~~js
     <Article
       material={material14}
@@ -105,7 +105,7 @@ const CenterDecorator = (storyFn) => (
   )))
   .add('插入短横线， 插入中横线， 插入长横线', 
   withInfo(`
-  插入短横线， 插入中横线， 插入长横线的功能，使用组件方法如下：
+    插入短横线， 插入中横线， 插入长横线的功能，使用组件方法如下：
     ~~~js
       <Article material={material7}></Article>
     ~~~
@@ -134,7 +134,7 @@ const CenterDecorator = (storyFn) => (
   )))
   .add('右对齐', 
   withInfo(`
-    右对齐，使用组件方法如下：
+  右对齐，使用组件方法如下：
   ~~~js
     <Article material={material10}></Article>
   ~~~
@@ -148,7 +148,7 @@ const CenterDecorator = (storyFn) => (
   )))
   .add('居中', 
   withInfo(`
-    居中，使用组件方法如下：
+  居中，使用组件方法如下：
   ~~~js
     <Article material={material11}></Article>
   ~~~
@@ -162,7 +162,7 @@ const CenterDecorator = (storyFn) => (
   )))
   .add('缩进', 
   withInfo(`
-    缩进，使用组件方法如下：
+  缩进，使用组件方法如下：
   ~~~js
     <Article material={material8}></Article>
   ~~~
