@@ -210,6 +210,7 @@ storiesOf('Audio', module)
         <Audio
           src={'/atheneBackend/1539170674668uukska.mp3'}
           cdnUrl={'https://media8.smartstudy.com/'}
+          text={{paragraphs: []}}
           materialType="exampleOriginal"
         ></Audio>
     </div>

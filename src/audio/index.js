@@ -397,6 +397,7 @@ export default class Audio extends Component {
   handleShow = () => {
     const { materialType, text } = this.state;
     if (materialType === 'listenTranslation' && (!Array.isArray(text) || !text[0].translation)) return false;
+    if (materialType === 'exampleOriginal' && (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))) return false;
     this.setState({
       show: !this.state.show,
     });
@@ -423,14 +424,20 @@ export default class Audio extends Component {
               <View
               className={[styles.showArrow,
                 show && styles.arrowRotate,
-                !text && styles.arrowGray,
+                (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))
+                && styles.arrowGray,
               ]}
                 onClick={this.handleShow}
               />
             }
             {
               materialType === 'exampleOriginal' &&
-              <View className={[styles.showText, !text && styles.textGray]} onClick={this.handleShow}>
+              <View
+                className={[styles.showText,
+                  (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))
+                  && styles.textGray]}
+                onClick={this.handleShow}
+              >
                 {show ? '收起原文' : '显示原文'}
               </View>
             }
