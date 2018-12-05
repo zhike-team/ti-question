@@ -261,7 +261,7 @@ export default class Audio extends Component {
     const element = ReactDOM.findDOMNode(this.container); // eslint-disable-line
     if (element && element.offsetWidth) {
       const width = this.props.materialType ?
-        element.offsetWidth - 260 : element.offsetWidth - 172;
+        element.offsetWidth - 260 : element.offsetWidth - 162;
       this.setState({
         width,
       });
@@ -393,6 +393,7 @@ export default class Audio extends Component {
   handleShow = () => {
     const { materialType, text } = this.state;
     if (materialType === 'listenTranslation' && (!Array.isArray(text) || !text[0].translation)) return false;
+    if (materialType === 'exampleOriginal' && !text) return false;
     this.setState({
       show: !this.state.show,
     });
@@ -417,10 +418,10 @@ export default class Audio extends Component {
             {
               materialType === 'exampleOriginal' &&
               <View
-              className={[styles.showArrow,
-                show && styles.arrowRotate,
-                !text && styles.arrowGray,
-              ]}
+                className={[styles.showArrow,
+                  show && styles.arrowRotate,
+                  !text && styles.arrowGray,
+                ]}
                 onClick={this.handleShow}
               />
             }

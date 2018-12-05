@@ -24,7 +24,6 @@ class Block extends Component {
     materialIds: [], // 雅思填空题 && 拖拽题  用来定位
     answerRsult: [], // 答案集合
     isReport: false,
-    progressWidth: undefined,
     isPositionTip: false,
     paragraphClassName: undefined,
     isIelts: false,
@@ -33,7 +32,6 @@ class Block extends Component {
     p: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     initAnswer: PropTypes.number,
-    progressWidth: PropTypes.number,
     handleAnswer: PropTypes.func,
     insertSentence: PropTypes.string,
     hasAction: PropTypes.bool,
@@ -274,14 +272,14 @@ class Block extends Component {
 
   // 处理段落样式（图片Image && 音频 Audio）
   renderOrigin = () => {
-    const { p, progressWidth } = this.props;
+    const { p } = this.props;
     if (Array.isArray(p.markups) && p.markups.length) {
       return p.markups.map((item, index) => {
         const type = firstUpperCase(item.type);
         if (type === 'Audio') {
           return (
             <div key={index} className={css(styles.block)}>
-              <Audio src={item.uploadPath} progressWidth={progressWidth} />
+              <Audio src={item.uploadPath} />
             </div>
           );
         } else if (type === 'Image') {
