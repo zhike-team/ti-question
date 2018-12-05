@@ -27,13 +27,13 @@ storiesOf('Audio', module)
         ></Audio>
     </div>
   )))
-	.add('showPlayer',
+	.add('src 错误的情况',
 	withInfo(`
-  音频播放组件 可以选择隐藏或者显示播放器 使用组件方法如下：
+  音频播放组件 如果音频错误，则在一直加载。使用组件方法如下：
   ~~~js
     <div>
       <Audio
-        src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}
+        src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3.mp3'}
         showPlayer={false}
       ></Audio>
     </div>
@@ -42,7 +42,7 @@ storiesOf('Audio', module)
 	(() => (
       <div style={{ width: '500px', height: '100px'}} >
         <Audio
-          src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3X.mp3'}
+          src={'https://media8.smartstudy.com//atheneBackend/1539519944613QFkn3.mp3'}
         ></Audio>
       </div>
   )))

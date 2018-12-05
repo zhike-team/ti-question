@@ -259,13 +259,16 @@ export default class Audio extends Component {
     if (!this.props.showPlayer) return false;
     // 根据audio 的父元素的宽度 设置进度条的宽度；
     const element = ReactDOM.findDOMNode(this.container); // eslint-disable-line
-    if (element && element.offsetWidth) {
-      const width = this.props.materialType ?
-        element.offsetWidth - 260 : element.offsetWidth - 162;
-      this.setState({
-        width,
-      });
-    }
+    setTimeout(() => {
+      if (element.parentElement && element.parentElement.offsetWidth) {
+        console.log('parentElement.width:', element.parentElement.offsetWidth);
+        const width = this.props.materialType ?
+          element.offsetWidth - 260 : element.offsetWidth - 162;
+        this.setState({
+          width,
+        });
+      }
+    }, 100);
   }
   // 处理text
   handleText = text => {
