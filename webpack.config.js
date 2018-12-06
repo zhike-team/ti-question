@@ -12,13 +12,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: [
-          path.join(__dirname, 'src'),
-        ],
+        include: path.join(__dirname, 'src'),
         use: ['babel-loader'],
       }, {
         test: /\.js$/,
-        include: path.join(__dirname, '../src'),
+        include: path.join(__dirname, 'src'),
         use: ['eslint-loader'],
       }, {
         test: /\.(png|jpg|gif|ttf)$/,

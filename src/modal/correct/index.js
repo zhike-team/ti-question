@@ -94,8 +94,8 @@ export default class ModalCorrect extends Component {
         let targetHeight = originHeight;
 
         // 图片尺寸超过限制时等比缩放，横竖都要限制，考虑到细长的图片
-        if(originWidth > maxWidth || originHeight > maxHeight) {
-          if(originWidth / originHeight > maxWidth / maxHeight) {
+        if (originWidth > maxWidth || originHeight > maxHeight) {
+          if (originWidth / originHeight > maxWidth / maxHeight) {
             targetWidth = maxWidth;
             targetHeight = Math.round(maxWidth * (originHeight / originWidth));
           } else {
@@ -123,7 +123,7 @@ export default class ModalCorrect extends Component {
       }));
 
       this.fileInput.value = '';
-    }
+    };
   }
 
   // 删除文件
