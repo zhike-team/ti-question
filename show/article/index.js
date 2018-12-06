@@ -15,7 +15,6 @@ export default class Article extends Component {
     question: {},
     answer: '',
     isReport: false,
-    progressWidth: undefined,
     qNum: ['10'], // 雅思填空题 && 拖拽题  用来显示题号
     externalInitAnswer: -1, // 外部累计InsertBlank数量
     handleQuestionSelect: () => {}, // 处理答案选中
@@ -24,13 +23,14 @@ export default class Article extends Component {
     isPositionTip: false,
     paragraphClassName: undefined,
     isIelts: false,
+    location: undefined,
   };
 
   static propTypes = {
     /**  富文本材料 */
     material: PropTypes.object.isRequired,
     /**  包含有关当前 URL 的信息的对象 */
-    location: PropTypes.object.isRequired,
+    location: PropTypes.object,
     /**  托福题库中用于获取题目答案及 material中的富文本样式 */
     question: PropTypes.object,
     /**  是否只读 用于填空题及拖拽题的渲染 */
@@ -39,25 +39,23 @@ export default class Article extends Component {
     handleAnswer: PropTypes.func,
     /**  用于报告页的答案显示 */
     answer: PropTypes.any,
-    /**  */
+    /**  是否是报告页 */
     isReport: PropTypes.bool,
-    /**  音频播放器的宽度 */
-    progressWidth: PropTypes.number,
-    /**  需要显示的子题题号*/
+    /**  需要显示的子题题号 */
     qNum: PropTypes.array,
-    /**  外部累计InsertBlank数量*/
+    /**  外部累计InsertBlank数量 */
     externalInitAnswer: PropTypes.number,
-    /**  处理子题选中*/
+    /**  处理子题选中 */
     handleQuestionSelect: PropTypes.func,
-    /**  雅思填空题 && 拖拽题  用来定位*/
+    /**  雅思填空题 && 拖拽题  用来定位 */
     materialIds: PropTypes.array,
-    /**  答案集合*/
+    /**  答案集合 */
     answerRsult: PropTypes.array,
-    /**  显示定位 ➡️ 标志*/
+    /**  显示定位 ➡️ 标志 */
     isPositionTip: PropTypes.bool,
-    /**  外部传进来的段落样式*/
+    /**  外部传进来的段落样式 */
     paragraphClassName: PropTypes.object,
-    /**  是否是雅思题库*/
+    /**  是否是雅思题库 */
     isIelts: PropTypes.bool,
   };
 
@@ -85,7 +83,7 @@ export default class Article extends Component {
 
   render() {
     const { material, question, isTextOnly, handleAnswer,
-      answer, isReport, progressWidth, externalInitAnswer, qNum, materialIds,
+      answer, isReport, externalInitAnswer, qNum, materialIds,
       answerRsult, isIelts, paragraphClassName,
     } = this.props;
     const article = normalizeArticle(
@@ -131,7 +129,6 @@ export default class Article extends Component {
                 p={p}
                 {...props}
                 handleAnswer={handleAnswer}
-                progressWidth={progressWidth}
                 answer={isReport ? get(question, 'materials.0.answer') : answer}
                 isReport={isReport}
                 initAnswer={externalInitAnswer === -1 ? (initAnswer - count) :

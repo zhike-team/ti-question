@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { get, sortBy, capitalize, find } from 'lodash';
-import Audio from '../../src/audio';
+import Audio from '../audio';
 import { firstUpperCase } from './utils';
 import styles from './styles';
 import imgArrow from '../assets/arrow.png';
@@ -23,19 +23,18 @@ export default class Block extends Component {
     materialIds: [], // 雅思填空题 && 拖拽题  用来定位
     answerRsult: [], // 答案集合
     isReport: false,
-    progressWidth: undefined,
     isPositionTip: false,
     paragraphClassName: undefined,
     isIelts: false,
+    location: undefined,
   };
   static propTypes = {
     /**  block组件处理的段落  */
     p: PropTypes.object.isRequired,
     /**  包含有关当前 URL 的信息的对象 */
-    location: PropTypes.object.isRequired,
+    location: PropTypes.object,
+    /**  初始答案 */
     initAnswer: PropTypes.number,
-    /**  音频播放器的宽度 */
-    progressWidth: PropTypes.number,
     /**  用户作答之后的回调函数 */
     handleAnswer: PropTypes.func,
     /**  托福插入题 插入的句子 */
@@ -79,7 +78,7 @@ export default class Block extends Component {
 
   // 更新
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    if (this.props.location && this.props.location.pathname !== prevProps.location.pathname) {
       if (this.anchor) {
         const anchorElement = ReactDOM.findDOMNode(this.anchor); // eslint-disable-line
         setTimeout(() => {
@@ -289,14 +288,14 @@ export default class Block extends Component {
 
   // 处理段落样式（图片Image && 音频 Audio）
   renderOrigin = () => {
-    const { p, progressWidth } = this.props;
+    const { p } = this.props;
     if (Array.isArray(p.markups) && p.markups.length) {
       return p.markups.map((item, index) => {
         const type = firstUpperCase(item.type);
         if (type === 'Audio') {
           return (
             <div key={index} className={css(styles.block)}>
-              <Audio src={item.uploadPath} progressWidth={progressWidth} />
+              <Audio src={item.uploadPath} />
             </div>
           );
         } else if (type === 'Image') {

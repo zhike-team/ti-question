@@ -202,7 +202,6 @@ const CenterDecorator = (storyFn) => (
   ~~~js
     <Article
       material={material13}
-      progressWidth={338}
       paragraphClassName={styles.paragraph2}
     >
     </Article>
@@ -214,7 +213,6 @@ const CenterDecorator = (storyFn) => (
       <br />      
       <Article
         material={material13}
-        progressWidth={338}
         paragraphClassName={styles.paragraph2}
       ></Article>
       </div>

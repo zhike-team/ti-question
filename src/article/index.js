@@ -15,7 +15,6 @@ class Article extends Component {
     question: {},
     answer: '',
     isReport: false,
-    progressWidth: undefined,
     qNum: ['10'], // 雅思填空题 && 拖拽题  用来显示题号
     externalInitAnswer: -1, // 外部累计InsertBlank数量
     handleQuestionSelect: () => {}, // 处理答案选中
@@ -34,7 +33,6 @@ class Article extends Component {
     location: PropTypes.object.isRequired,
     answer: PropTypes.any,
     isReport: PropTypes.bool,
-    progressWidth: PropTypes.number,
     qNum: PropTypes.array,
     externalInitAnswer: PropTypes.number,
     handleQuestionSelect: PropTypes.func,
@@ -69,7 +67,7 @@ class Article extends Component {
 
   render() {
     const { material, question, isTextOnly, handleAnswer,
-      answer, isReport, progressWidth, externalInitAnswer, qNum, materialIds,
+      answer, isReport, externalInitAnswer, qNum, materialIds,
       answerRsult, isIelts, paragraphClassName,
     } = this.props;
     const article = normalizeArticle(
@@ -115,7 +113,6 @@ class Article extends Component {
                 p={p}
                 {...props}
                 handleAnswer={handleAnswer}
-                progressWidth={progressWidth}
                 answer={isReport ? get(question, 'materials.0.answer') : answer}
                 isReport={isReport}
                 initAnswer={externalInitAnswer === -1 ? (initAnswer - count) :

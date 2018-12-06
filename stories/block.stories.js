@@ -65,26 +65,6 @@ storiesOf('Block', module)
         <Block p={p1} handleAnswer={()=> { alert('～～处理用户作答的回调函数～～');}}></Block>
       </div>
   )))
-  .add('progressWidth',
-  withInfo(`
-  段落解析组件 可以设置音频播放器的宽度 使用组件方法如下：
-  ~~~js
-    <Block
-        p={p2}
-        progressWidth={338}
-        paragraphClassName={styles.paragraph2}
-    ></Block>
-  ~~~
-`)
-  (() => (
-      <div style={styles.container}>
-        <Block
-          p={p2}
-          progressWidth={338}
-          paragraphClassName={styles.paragraph2}
-        ></Block>
-      </div>
-  )))
   .add('isReport',
   withInfo(`
   段落解析组件 是否为报告页 isReport 使用组件方法如下：

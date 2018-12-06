@@ -55,9 +55,8 @@ export default class Audio extends Component {
     cdnUrl: PropTypes.string,
     /** 支持传入材料原文 和音频译文  支持时间码和富文本结构 */
     text: PropTypes.any,
-    /** 传入的材料类型 目前支持听力原文和范例音（材料音频）
+    /** 传入的材料类型 目前支持 听力原文和范例音频 'listenTranslation', 'exampleOriginal'
      想要支持查看音频对应的原文或者译文， 必须要传 materialType 字段
-     'listenTranslation', 'exampleOriginal'
      */
     materialType: PropTypes.string,
   };
@@ -66,7 +65,7 @@ export default class Audio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: (props.text || props.materialType) ? 250 : 338,
+      width: (props.text || props.materialType) ? 250 : 100,
       text: '',
       materialType: props.materialType,
       playing: false,
@@ -422,11 +421,11 @@ export default class Audio extends Component {
             {
               materialType === 'exampleOriginal' &&
               <View
-              className={[styles.showArrow,
-                show && styles.arrowRotate,
-                (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))
-                && styles.arrowGray,
-              ]}
+                className={[styles.showArrow,
+                  show && styles.arrowRotate,
+                  (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))
+                  && styles.arrowGray,
+                ]}
                 onClick={this.handleShow}
               />
             }
@@ -435,7 +434,8 @@ export default class Audio extends Component {
               <View
                 className={[styles.showText,
                   (!text || (Array.isArray(text.paragraphs) && text.paragraphs.length === 0))
-                  && styles.textGray]}
+                   && styles.textGray]
+                }
                 onClick={this.handleShow}
               >
                 {show ? '收起原文' : '显示原文'}

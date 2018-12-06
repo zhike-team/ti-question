@@ -1,6 +1,6 @@
 {
   "name": "@zhike/ti-component",
-  "version": "1.0.0",
+  "version": "0.2.8",
   "description": "common components for Zhike-tiku",
   "main": "index.js",
   "files": [
@@ -15,7 +15,7 @@
   "peerDependencies": {
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0",
-    "@zhike/ti-ui": ">=1.0.0",
+    "@zhike/ti-ui": ">=1.2.7",
     "aphrodite": ">=1.0.0",
     "axios": ">=0.1.0",
     "lodash": ">=4.0.0",
