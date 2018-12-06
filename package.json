@@ -1,6 +1,6 @@
 {
   "name": "@zhike/ti-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "common components for Zhike-tiku",
   "main": "index.js",
   "files": [
@@ -23,7 +23,7 @@
     "history": ">=4.7.2"
   },
   "dependencies": {
-    "@zhike/ti-ui": "^1.0.2",
+    "@zhike/ti-ui": "^1.2.7",
     "aphrodite": "^1.2.5",
     "axios": "^0.16.2",
     "cookie": "^0.3.1",
