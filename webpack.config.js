@@ -9,7 +9,6 @@ module.exports = {
     filename: 'index.js',
     library: "tiComponent",
     libraryTarget: 'umd',
-    libraryExport: 'default',
   },
   module: {
     rules: [
@@ -43,10 +42,10 @@ module.exports = {
       amd: "react-dom",
     },
     "@zhike/ti-ui": {
-      root: 'ti-ui',
-      commonjs: 'ti-ui',
-      commonjs2: 'ti-ui',
-      amd: 'ti-ui',
+      root: '@zhike/ti-ui',
+      commonjs: '@zhike/ti-ui',
+      commonjs2: '@zhike/ti-ui',
+      amd: '@zhike/ti-ui',
     },
     "aphrodite": {
       root: 'aphrodite',
@@ -73,10 +72,10 @@ module.exports = {
       amd: 'lodash',
     },
     "form-data": {
-      root: 'formData',
-      commonjs: 'formData',
-      commonjs2: 'formData',
-      amd: 'formData',
+      root: 'form-data',
+      commonjs: 'form-data',
+      commonjs2: 'form-data',
+      amd: 'form-data',
     },
     "history": {
       root: 'history',

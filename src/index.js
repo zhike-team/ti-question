@@ -12,11 +12,3 @@ export const Recorder = RecorderComponent;
 export const Article = ArticleComponent;
 export const Block = BlockComponent;
 
-export default {
-  Audio,
-  AudioPlayer,
-  Modal,
-  Recorder,
-  Article,
-  Block,
-};
