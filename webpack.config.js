@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
+    library: "tiComponent",
     libraryTarget: 'umd',
   },
   module: {
