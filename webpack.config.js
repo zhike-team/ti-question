@@ -9,7 +9,6 @@ module.exports = {
     filename: 'index.js',
     library: "tiComponent",
     libraryTarget: 'umd',
-    globalObject: 'this',
   },
   module: {
     rules: [
