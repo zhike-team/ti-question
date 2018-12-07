@@ -5,20 +5,21 @@ module.exports = {
   entry: './index.js',
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, 'lib'),
+    path: path.resolve(__dirname, './lib'),
     filename: 'index.js',
     library: "tiComponent",
     libraryTarget: 'umd',
+    libraryExport: 'default',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, './src'),
         use: ['babel-loader'],
       }, {
         test: /\.js$/,
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, './src'),
         use: ['eslint-loader'],
       }, {
         test: /\.(png|jpg|gif|ttf)$/,
@@ -58,6 +59,12 @@ module.exports = {
       commonjs: 'axios',
       commonjs2: 'axios',
       amd: 'axios',
+    },
+    "cookie": {
+      root: 'cookie',
+      commonjs: 'cookie',
+      commonjs2: 'cookie',
+      amd: 'cookie',
     },
     "lodash": {
       root: 'lodash',

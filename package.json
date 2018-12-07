@@ -1,8 +1,8 @@
 {
   "name": "@zhike/ti-component",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "common components for Zhike-tiku",
-  "main": "lib/index.js",
+  "main": "./lib",
   "files": [
     "lib"
   ],
@@ -18,27 +18,28 @@
     "@zhike/ti-ui": ">=1.2.7",
     "aphrodite": ">=1.0.0",
     "axios": ">=0.1.0",
+    "cookie": ">=0.3.1",
     "lodash": ">=4.0.0",
     "form-data": ">=2.0.0",
     "history": ">=4.7.2"
   },
   "dependencies": {
+    "react-router": "^4.3.1",
+    "react-custom-scrollbars": "^4.2.1",
+    "recordrtc": "^5.4.5",
+    "howler": "^2.0.8",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
     "@zhike/ti-ui": "^1.2.7",
     "aphrodite": "^1.2.5",
     "axios": "^0.16.2",
     "cookie": "^0.3.1",
     "form-data": "^2.3.1",
     "history": "^4.7.2",
-    "howler": "^2.0.8",
     "lodash": "^4.17.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router": "^4.3.1",
-    "react-custom-scrollbars": "^4.2.1",
-    "recordrtc": "^5.4.5",
-    "uuid": "^3.2.1"
-  },
-  "devDependencies": {
     "@storybook/addon-info": "^4.0.11",
     "@storybook/react": "^3.4.10",
     "@storybook/storybook-deployer": "^2.3.0",
