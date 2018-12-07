@@ -9,6 +9,7 @@ module.exports = {
     filename: 'index.js',
     library: "tiComponent",
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   module: {
     rules: [
@@ -27,6 +28,56 @@ module.exports = {
         }],
       },
     ],
+  },
+  externals: {
+    react: {
+      root: "React",
+      commonjs2: "react",
+      commonjs: "react",
+      amd: "react",
+    },
+    "react-dom": {
+      root: "ReactDOM",
+      commonjs2: "react-dom",
+      commonjs: "react-dom",
+      amd: "react-dom",
+    },
+    "@zhike/ti-ui": {
+      root: 'ti-ui',
+      commonjs: 'ti-ui',
+      commonjs2: 'ti-ui',
+      amd: 'ti-ui',
+    },
+    "aphrodite": {
+      root: 'aphrodite',
+      commonjs: 'aphrodite',
+      commonjs2: 'aphrodite',
+      amd: 'aphrodite',
+    },
+    "axios": {
+      root: 'axios',
+      commonjs: 'axios',
+      commonjs2: 'axios',
+      amd: 'axios',
+    },
+    "lodash": {
+      root: 'lodash',
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+    },
+    "form-data": {
+      root: 'formData',
+      commonjs: 'formData',
+      commonjs2: 'formData',
+      amd: 'formData',
+    },
+    "history": {
+      root: 'history',
+      commonjs: 'history',
+      commonjs2: 'history',
+      amd: 'history',
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
