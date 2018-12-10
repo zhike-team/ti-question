@@ -26,8 +26,7 @@ export default class Modal extends Component {
         instance: modalInstance[type],
         props: Object.assign({}, { modalId: id }, props),
       }),
-      onShow: onShow ? onShow : null,
-      onHide: onHide ? onHide : null,
+      onHide: onHide || null,
     });
 
     if (!props.isReport) {
@@ -52,7 +51,6 @@ export default class Modal extends Component {
         ModalAnalysis,
         ModalUserGrade,
       },
-      onShow: null,
       onHide: null,
     };
   }

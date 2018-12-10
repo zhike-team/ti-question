@@ -52,7 +52,7 @@ export default class ModalCorrect extends Component {
   }
 
   // 文字修改
-  handleDetailChange(e) {
+  onDetailChange(e) {
     this.setState({
       detail: e.target.value.substr(0, 300),
     });
@@ -64,29 +64,74 @@ export default class ModalCorrect extends Component {
   }
 
   // 文件变化
-  fileChange(event) {
+  onFileChange(event) {
+    const reader = new global.FileReader(); // eslint-disable-line
+    const image = new global.Image(); // eslint-disable-line
     const file = event.target.files[0];
-    this.setState({
-      files: this.state.files.concat([file]),
-    });
+    const overSized = file.size > 1024 * 1024; // 判断是否大于1M
 
-    const reader = new FileReader(); // eslint-disable-line
     reader.readAsDataURL(file);
     reader.onload = e => {
-      this.setState({
-        filesUrl: this.state.filesUrl.concat([e.target.result]),
-      });
+      image.src = e.target.result;
     };
+    image.onload = () => {
+      // 缩放图片需要的canvas（也可以在DOM中直接定义canvas标签，这样就能把压缩完的图片不转base64也能直接显示出来）
+      const canvas = document.createElement('canvas'); // eslint-disable-line
+      const context = canvas.getContext('2d');
+      let compressedUrl = image.src;
 
-    this.fileInput.value = '';
+      if (overSized) {
+        // 图片原始尺寸
+        const originWidth = image.width;
+        const originHeight = image.height;
+
+        // 最大尺寸限制，这个尺寸下的canvas生成的图片大约是1M
+        const maxWidth = 1024 * 3;
+        const maxHeight = 1024 * 3;
+
+        // 目标尺寸
+        let targetWidth = originWidth;
+        let targetHeight = originHeight;
+
+        // 图片尺寸超过限制时等比缩放，横竖都要限制，考虑到细长的图片
+        if (originWidth > maxWidth || originHeight > maxHeight) {
+          if (originWidth / originHeight > maxWidth / maxHeight) {
+            targetWidth = maxWidth;
+            targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+          } else {
+            targetHeight = maxHeight;
+            targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+          }
+        }
+
+        // canvas对图片进行缩放
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        context.clearRect(0, 0, targetWidth, targetHeight);
+        context.drawImage(image, 0, 0, targetWidth, targetHeight);
+
+        // 压缩后的图片转base64
+        // canvas.toDataURL(mimeType, qualityArgument),mimeType 默认值是'image/png'
+        // qualityArgument表示导出的图片质量，只有导出为jpeg和webp格式的时候此参数才有效，默认值是0.92
+        compressedUrl = canvas.toDataURL('image/jpeg', 0.92);
+      }
+      // console.log(file.size, image.src.length, compressedUrl.length)
+
+      this.setState(prev => ({
+        files: prev.files.concat([file]),
+        filesUrl: prev.filesUrl.concat([compressedUrl]),
+      }));
+
+      this.fileInput.value = '';
+    };
   }
 
   // 删除文件
   removeFile(index) {
-    this.setState({
-      files: filter(this.state.files, (f, i) => i !== index),
-      filesUrl: filter(this.state.filesUrl, (f, i) => i !== index),
-    });
+    this.setState(prev => ({
+      files: filter(prev.files, (f, i) => i !== index),
+      filesUrl: filter(prev.filesUrl, (f, i) => i !== index),
+    }));
   }
 
   // 提交表单
@@ -177,7 +222,7 @@ export default class ModalCorrect extends Component {
       ...option,
     };
 
-    postCorrection(form);
+    await postCorrection(form);
     Modal.hide(modalId);
 
     // 弹出成功提示
@@ -278,7 +323,6 @@ export default class ModalCorrect extends Component {
       ];
     }
 
-
     return (
       <View className={styles.container}>
         <View className={styles.section}>
@@ -315,7 +359,7 @@ export default class ModalCorrect extends Component {
             className={styles.detail}
             placeholder="将问题描述清楚，处理更及时哦~"
             value={detail}
-            onChange={e => this.handleDetailChange(e)}
+            onChange={e => this.onDetailChange(e)}
           />
           <View className={styles.detailTip}>{detail.length}/300</View>
 
@@ -362,8 +406,9 @@ export default class ModalCorrect extends Component {
         <input
           ref={fileInput => { this.fileInput = fileInput; }}
           type="file"
+          accept="image/*"
           style={{ display: 'none' }}
-          onChange={event => this.fileChange(event)}
+          onChange={e => this.onFileChange(e)}
         />
       </View>
     );

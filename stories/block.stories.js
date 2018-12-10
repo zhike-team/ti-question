@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import Block from '../show/block';
-import { p, p1, p2 } from './article_data';
+import { p, p1 } from './article_data';
 import styles from './styles';
 
 /* eslint-disable */

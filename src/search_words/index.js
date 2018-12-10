@@ -3,14 +3,15 @@ import { css } from 'aphrodite';
 import { View } from '@zhike/ti-ui';
 import { get } from 'lodash';
 import axios from 'axios';
-import { AudioPlayer } from '../audio_player';
+import AudioPlayer from '../audio_player';
 import { getBodyWidth, getBodyHeight } from './utils';
 import styles from './styles';
 
 // 录音
-export default class SearchWord extends Component {
+export default class SearchWords extends Component {
   /**  SearchWord 在页面中搜索英文单词
     为用户返回中文翻译的功能组件 */
+
   // 构造函数
   constructor(props) {
     super(props);
@@ -152,7 +153,7 @@ export default class SearchWord extends Component {
     let isFrameUp = false;
     const triangleLeft = left + width / 2 - 8;
     if ((left + right) / 2 < 140) {
-      positionLeft = 2;
+      positionLeft = 1;
     } else if ((left + right) / 2 > (getBodyWidth() - 140)) {
       positionLeft = getBodyWidth() - 280;
     } else {
@@ -218,6 +219,7 @@ export default class SearchWord extends Component {
     } else if (isShow) {
       tipStyles = { top: `${positionTop}px`, left: `${positionLeft}px` };
     }
+    console.log('this.state', this.state);
     return (
       <View>
         <span

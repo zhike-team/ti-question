@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { css } from 'aphrodite';
 import Article from '../show/article';
-import SearchWord from '../src/search_word';
 import { material1, material2, material3, tableBlank,
   material5, material6, material7, material8, material9,
   material10, material11, material12, material13, material14,
@@ -31,7 +30,6 @@ const CenterDecorator = (storyFn) => (
       富文本 文章样式：
         <br />
         <Article material={material1} question={question1}></Article>
-        <SearchWord />
       </div>
   )
   )

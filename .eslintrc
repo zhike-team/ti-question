@@ -22,6 +22,7 @@
     "react/no-did-update-set-state": "off",
     "react/no-did-mount-set-state": "off",
     "react/no-unused-prop-types": "off",
+    "react/no-unused-state": "off",
     "react/no-array-index-key": "off",
     "react/forbid-prop-types": "off",
     "react/no-string-refs": "off",
