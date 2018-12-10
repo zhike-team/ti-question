@@ -1,5 +1,11 @@
 import { StyleSheet } from 'aphrodite';
 
+const dot = {
+  '66%': { transform: 'translateX(-3px)' },
+  '33%': { transform: 'translateX(-6px)' },
+  '0%': { transform: 'translateX(-10px)' },
+};
+
 export default StyleSheet.create({
 
   content: {
@@ -7,8 +13,7 @@ export default StyleSheet.create({
     position: 'absolute',
     zIndex: 101,
     width: '280px',
-    paddingTop: '20px',
-    paddingBottom: '20px',
+    padding: '20px',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -62,6 +67,18 @@ export default StyleSheet.create({
       backgroundSize: '16px 12px ',
     },
   },
+  unAvalible: {
+    width: 16,
+    height: 12,
+    backgroundImage: `url(${require('../assets/sound.png')})`,
+    backgroundSize: '16px 12px',
+  },
+  isPlaying: {
+    width: 16,
+    height: 12,
+    backgroundImage: `url(${require('../assets/sound_play.gif')})`,
+    backgroundSize: '16px 12px',
+  },
   translate: {
     marginTop: '20px',
     fontSize: '12px',
@@ -83,5 +100,37 @@ export default StyleSheet.create({
     color: 'rgba(50,54,58,1)',
     lineHeight: '24px',
   },
-
+  dot: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textIndent: 0,
+  },
+  dotMask: {
+    display: 'inline-block',
+    width: '10px',
+    height: '24px',
+    backgroundColor: 'white',
+    animationName: [dot],
+    animationDuration: '1.5s',
+    animationTimingFunction: 'cubic-bezier(0.2, 0.68, 0.18, 1.08)',
+    animationDelay: '-0.24s',
+    animationIterationCount: 'infinite',
+  },
+  result: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  searching: {
+    marginTop: '20px',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textIndent: '20px',
+    fontSize: '12px',
+    fontFamily: 'PingFang-SC-Medium',
+    fontWeight: 500,
+    color: 'rgba(135,143,152,1)',
+    lineHeight: '24px',
+  },
 });
