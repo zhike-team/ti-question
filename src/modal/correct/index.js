@@ -406,7 +406,7 @@ export default class ModalCorrect extends Component {
         <input
           ref={fileInput => { this.fileInput = fileInput; }}
           type="file"
-          accept="image/*"
+          accept="image/png,image/jpeg,image/jpg"
           style={{ display: 'none' }}
           onChange={e => this.onFileChange(e)}
         />
