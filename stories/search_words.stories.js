@@ -5,7 +5,6 @@ import SearchWords from '../src/search_words';
 import Article from '../show/article';
 import { material1, question1 } from './article_data';
 
-console.log('SearchWords:', SearchWords);
 /* eslint-disable */
 storiesOf('SearchWords', module)
   .add('SearchWords ',
@@ -14,7 +13,9 @@ storiesOf('SearchWords', module)
   ~~~js
     <div>
       <Article material={material1} question={question1}></Article>
-      <SearchWords />
+      <SearchWords
+        getSearchWord="https://tiku.smartstudy.tech/word/brief"
+      ></SearchWords>
     </div>
   ~~~
 `)
@@ -23,6 +24,8 @@ storiesOf('SearchWords', module)
       the New York Times 纽约时报 
       Cycling Through the Air 空中飞车 
       <Article material={material1} question={question1}></Article>
-      <SearchWords />
+      <SearchWords
+        getSearchWord="https://tiku.smartstudy.tech/word/brief"
+      ></SearchWords>
     </div>
   )))

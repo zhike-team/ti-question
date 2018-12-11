@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
+import PropTypes from 'prop-types';
 import { View } from '@zhike/ti-ui';
 import { get } from 'lodash';
 import axios from 'axios';
@@ -11,7 +12,15 @@ import styles from './styles';
 export default class SearchWords extends Component {
   /**  SearchWord 在页面中搜索英文单词
     为用户返回中文翻译的功能组件 */
+  // 参数
+  static defaultProps = {
+    getSearchWord: 'https://api.smartstudy.com/tiku/word/brief',
+  };
 
+  static propTypes = {
+    /**  音频地址 */
+    getSearchWord: PropTypes.string,
+  };
   // 构造函数
   constructor(props) {
     super(props);
@@ -86,6 +95,7 @@ export default class SearchWords extends Component {
   // 判断是否执行查询功能
   judgeSearch = () => {
     const { text, range } = this.getTextMessage();
+    if (!text) return false;
     const selectWord = text.trim();
     if (!range.collapsed
       && /^\w+$/.test(selectWord)
@@ -124,20 +134,22 @@ export default class SearchWords extends Component {
   }
   // 单词查询
   searchWord = async selectWord => {
+    const { getSearchWord } = this.props;
     //  查单词的接口
     const { data } = await axios({
-      url: `https://api.smartstudy.com/word/brief/${selectWord}`,
+      url: `${getSearchWord}/${selectWord}`,
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
       },
       timeout: 20000,
     });
-    const { brief } = data.data;
+    const { brief, spell } = data.data;
     const sound = get(data, 'data.phonogram.us');
     this.setState({
       brief,
       sound,
+      word: spell,
       isSucceed: true,
     });
   }
@@ -153,7 +165,7 @@ export default class SearchWords extends Component {
     let isFrameUp = false;
     const triangleLeft = left + width / 2 - 8;
     if ((left + right) / 2 < 140) {
-      positionLeft = 1;
+      positionLeft = 0;
     } else if ((left + right) / 2 > (getBodyWidth() - 140)) {
       positionLeft = getBodyWidth() - 280;
     } else {
@@ -179,12 +191,18 @@ export default class SearchWords extends Component {
   getTextMessage = () => {
     if (global.document.selection) {
       // 兼容ie
+      if (global.window.selection.type === 'None') {
+        return false;
+      }
       return {
         text: global.document.selection.createRange().text.toLowerCase(),
         range: global.document.selection.getRangeAt(0),
       };
     } else if (global.window.getSelection()) {
       // Firefox、Safari、Chrome、Opera
+      if (global.window.getSelection().type === 'None') {
+        return false;
+      }
       return {
         text: global.window.getSelection().toString().toLowerCase(),
         range: global.window.getSelection().getRangeAt(0),
@@ -219,25 +237,25 @@ export default class SearchWords extends Component {
     } else if (isShow) {
       tipStyles = { top: `${positionTop}px`, left: `${positionLeft}px` };
     }
-    console.log('this.state', this.state);
     return (
       <View>
         <span
-          className={css([styles.triangle, isShow && styles.show])}
+          className={css([styles.triangle, isShow && styles.showContent])}
           style={isShow ? { top: `${isFrameUp ? positionTop + 10 : positionTop - 10}px`, left: `${triangleLeft}px` } : {}}
         />
         <span
-          className={css([styles.triangle, styles.triangleMask, isShow && styles.show])}
+          className={css([styles.triangle, styles.triangleMask, isShow && styles.showContent])}
           style={isShow ? { top: `${isFrameUp ? positionTop + 10 : positionTop - 10}px`, left: `${triangleLeft}px` } : {}}
         />
         <View
-          className={[styles.content, isShow && styles.show]}
+          className={[styles.content, isShow && styles.showContent]}
           style={isShow ? tipStyles : {}}
           id="searchContainer"
         >
           <View className={styles.word}>{word}</View>
           {
-            isSucceed &&
+            isSucceed && JSON.stringify(sound) !== '{}' &&
+            !(brief.length === 1 && brief[0].class === '翻译') &&
             <View className={styles.result}>
               {
                 sound && JSON.stringify(sound) !== '{}' &&
@@ -268,13 +286,14 @@ export default class SearchWords extends Component {
                   暂无释义
                 </View>
               }
-              {
-                JSON.stringify(sound) === '{}' && brief.length >= 1 &&
-                <span className={css(styles.noContent)}>
-                  未查询到任何结果
-                </span>
-              }
             </View>
+          }
+          {
+            isSucceed && !sound &&
+            (brief.length === 1 && brief[0].class === '翻译') &&
+            <span className={css(styles.noContent)}>
+              未查询到任何结果
+            </span>
           }
           {
             !isSucceed &&

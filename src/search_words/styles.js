@@ -6,6 +6,10 @@ const dot = {
   '0%': { transform: 'translateX(-10px)' },
 };
 
+const show = {
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 },
+};
 export default StyleSheet.create({
 
   content: {
@@ -90,15 +94,20 @@ export default StyleSheet.create({
   translateList: {
     flexDirection: 'row',
   },
-  show: {
+  showContent: {
     display: 'flex',
+    animationName: [show],
+    animationDuration: '0.8s',
+    animationTimingFunction: 'cubic-bezier(0.2, 0.68, 0.18, 1.08)',
+    animationIterationCount: '1',
   },
   noContent: {
     fontSize: '12px',
     fontFamily: 'PingFang-SC-Medium',
     fontWeight: 500,
-    color: 'rgba(50,54,58,1)',
-    lineHeight: '24px',
+    marginTop: '20px',
+    color: 'rgba(135,143,152,1)',
+    lineHeight: '17px',
   },
   dot: {
     flexDirection: 'row',

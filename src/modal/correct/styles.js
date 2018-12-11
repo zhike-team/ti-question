@@ -31,6 +31,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
     width: '25%',
+    height: '22px',
     alignItems: 'center',
     cursor: 'pointer',
   },
@@ -38,6 +39,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
     width: '186px',
+    height: '22px',
     cursor: 'pointer',
     ':nth-child(1)': {
       marginRight: '-15px',
@@ -143,7 +145,9 @@ export default StyleSheet.create({
     height: 40,
     marginTop: 20,
   },
-
+  button: {
+    fontSize: '14px',
+  },
   modalAlert: {
     alignItems: 'center',
   },

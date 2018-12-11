@@ -398,6 +398,7 @@ export default class ModalCorrect extends Component {
 
         <Button
           className={styles.btn}
+          textClassName={styles.button}
           text="提交"
           onClick={() => this.submit()}
           isAvailable={!submitting && choices.length > 0}
@@ -406,7 +407,7 @@ export default class ModalCorrect extends Component {
         <input
           ref={fileInput => { this.fileInput = fileInput; }}
           type="file"
-          accept="image/*"
+          accept="image/png,image/jpeg,image/jpg"
           style={{ display: 'none' }}
           onChange={e => this.onFileChange(e)}
         />
