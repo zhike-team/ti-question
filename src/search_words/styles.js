@@ -97,7 +97,7 @@ export default StyleSheet.create({
   showContent: {
     display: 'flex',
     animationName: [show],
-    animationDuration: '0.8s',
+    animationDuration: '0.5s',
     animationTimingFunction: 'cubic-bezier(0.2, 0.68, 0.18, 1.08)',
     animationIterationCount: '1',
   },
