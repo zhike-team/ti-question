@@ -398,6 +398,7 @@ export default class ModalCorrect extends Component {
 
         <Button
           className={styles.btn}
+          textClassName={styles.button}
           text="提交"
           onClick={() => this.submit()}
           isAvailable={!submitting && choices.length > 0}

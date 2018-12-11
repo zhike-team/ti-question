@@ -146,7 +146,9 @@ export default StyleSheet.create({
     marginTop: 20,
     fontSize: 14,
   },
-
+  button: {
+    fontSize: '14px',
+  },
   modalAlert: {
     alignItems: 'center',
   },
