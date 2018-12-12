@@ -2,8 +2,8 @@
 题库的通用组件，提取为依赖库并统一发布在npm
 
 ## demo
-### 点击下面 直接查看文档
-[组件文档](https://zhike-team.github.io/ti-component/) https://zhike-team.github.io/ti-component/
+
+[点击查看在线demo](https://zhike-team.github.io/ti-component/)或按照以下方法在本地运行demo
 
 ```bash
 npm install
@@ -84,6 +84,7 @@ npm publish
   source: 'ti-base', // ti-base/ti-toefl/...
   getUploadSignature,
   postCorrection,
+}
 ```
 * 新增加的`onShow/onHide`是为了降低耦合度，在抽离的组件中减少不合理的引用
 * `onShow`(可选)，在`isReport`为`false`的时候执行，一般情况下，传入以下方法：
