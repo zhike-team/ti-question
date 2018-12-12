@@ -223,7 +223,7 @@ export default class SearchWords extends Component {
     this.setState({
       isPlay: true,
     });
-    this.audioPlayer = new Audio();
+    this.audioPlayer = new Audio(); // eslint-disable-line
     this.audioPlayer.src = mp3;
     this.audioPlayer.play();
     this.audioPlayer.addEventListener('ended', () => {
