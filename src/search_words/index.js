@@ -101,7 +101,7 @@ export default class SearchWords extends Component {
     if (!text) return false;
     const selectWord = text.trim();
     if (!range.collapsed
-      && /^\w+$/.test(selectWord)
+      && /^[a-zA-Z].*[a-zA-Z]$|[a-zA-Z]/.test(selectWord)
       && selectWord.indexOf(' ') === -1) {
       this.setState({
         word: selectWord,
