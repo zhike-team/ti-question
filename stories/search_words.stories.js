@@ -14,7 +14,7 @@ storiesOf('SearchWords', module)
     <div>
       <Article material={material1} question={question1}></Article>
       <SearchWords
-        getSearchWord="https://tiku.smartstudy.tech/word/brief"
+        getSearchWord="https://api.smartstudy.com/word/brief"
       ></SearchWords>
     </div>
   ~~~
@@ -25,7 +25,7 @@ storiesOf('SearchWords', module)
       Cycling Through the Air 空中飞车 
       <Article material={material1} question={question1}></Article>
       <SearchWords
-        getSearchWord="https://tiku.smartstudy.tech/word/brief"
+        getSearchWord="https://api.smartstudy.com/word/brief"
       ></SearchWords>
     </div>
   )))

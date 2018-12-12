@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { View } from '@zhike/ti-ui';
 import { get } from 'lodash';
 import axios from 'axios';
-import AudioPlayer from '../audio_player';
 import { getBodyWidth, getBodyHeight } from './utils';
 import styles from './styles';
 
@@ -49,6 +48,7 @@ export default class SearchWords extends Component {
       isSucceed: false,
     };
     this.clickFlag = null;
+    this.audioPlayer = null;
   }
 
   async componentDidMount() {
@@ -63,7 +63,10 @@ export default class SearchWords extends Component {
     const body = global.document.getElementsByTagName('body')[0];
     body.removeEventListener('click', this.singleClick, false);
     body.removeEventListener('dblclick', this.doubleClick, false);
-    AudioPlayer.unload();
+    if (this.audioPlayer) {
+      this.audioPlayer.pause();
+      this.audioPlayer = null;
+    }
   }
 
   // 单击处理的事件
@@ -174,9 +177,9 @@ export default class SearchWords extends Component {
     if (getBodyHeight() - bottom < 140) {
       isFrameUp = true;
       positionBottom = getBodyHeight() - bottom + height / 2 + 18;
-      positionTop = top - height / 2 - 18;
+      positionTop = top - height / 2 - 30;
     } else {
-      positionTop = top + height / 2 + 18;
+      positionTop = top + height / 2 + 30;
     }
     this.setState({
       isShow: true,
@@ -212,18 +215,22 @@ export default class SearchWords extends Component {
 
   // 音标发音
   playSound = () => {
+    if (this.audioPlayer) {
+      this.audioPlayer.pause();
+      this.audioPlayer = null;
+    }
     const { mp3 } = this.state.sound;
     this.setState({
       isPlay: true,
     });
-    AudioPlayer.play({
-      src: mp3,
-      onEnd: () => {
-        this.setState({
-          isPlay: false,
-        });
-      },
-    });
+    this.audioPlayer = new Audio();
+    this.audioPlayer.src = mp3;
+    this.audioPlayer.play();
+    this.audioPlayer.addEventListener('ended', () => {
+      this.setState({
+        isPlay: false,
+      });
+    }, false);
   }
 
   // 渲染
@@ -305,7 +312,6 @@ export default class SearchWords extends Component {
               </View>
             </View>
           }
-          <AudioPlayer ref={audioPlayer => { AudioPlayer.instance = audioPlayer; }} />
         </View>
       </View>
     );
