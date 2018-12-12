@@ -9,8 +9,15 @@ import styles from './styles';
 
 // 录音
 export default class SearchWords extends Component {
+  static instance;
   /**  SearchWord 在页面中搜索英文单词
     为用户返回中文翻译的功能组件 */
+  // 隐藏窗口的方法
+  static hide() {
+    this.instance.setState({
+      isShow: false,
+    });
+  }
   // 参数
   static defaultProps = {
     getSearchWord: 'https://api.smartstudy.com/tiku/word/brief',
@@ -56,7 +63,6 @@ export default class SearchWords extends Component {
     const body = global.document.getElementsByTagName('body')[0];
     body.addEventListener('click', this.singleClick, false);
     body.addEventListener('dblclick', this.doubleClick, false);
-    // 阻止合成事件冒泡
   }
 
   componentWillUnmount() {
@@ -101,7 +107,7 @@ export default class SearchWords extends Component {
     if (!text) return false;
     const selectWord = text.trim();
     if (!range.collapsed
-      && /^[a-zA-Z].*[a-zA-Z]$|[a-zA-Z]/.test(selectWord)
+      && /(^[a-zA-Z].*[a-zA-Z]$)|^[a-zA-Z]$/.test(selectWord)
       && selectWord.indexOf(' ') === -1) {
       this.setState({
         word: selectWord,
@@ -176,7 +182,7 @@ export default class SearchWords extends Component {
     }
     if (getBodyHeight() - bottom < 140) {
       isFrameUp = true;
-      positionBottom = getBodyHeight() - bottom + height / 2 + 18;
+      positionBottom = getBodyHeight() - bottom + height / 2 + 30;
       positionTop = top - height / 2 - 30;
     } else {
       positionTop = top + height / 2 + 30;
