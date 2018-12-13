@@ -12,11 +12,16 @@ storiesOf('SearchWords', module)
   withInfo(`
   音频播放组件 可以传入需要播放的音频路径 使用组件方法如下：
   ~~~js
-    <div>
-      <Article material={material1} question={question1}></Article>
-      <SearchWords
-        getSearchWord="https://api.smartstudy.com/word/brief"
-      ></SearchWords>
+    <div style={{width: '500px', height: '500px'}}>
+      <Scrollbar
+        onScrollStart={() => {SearchWords.hide()}}
+      >
+        <Article material={material1} question={question1}></Article>
+        <SearchWords
+          ref={searchWords => { SearchWords.instance = searchWords; }}
+          getSearchWord="https://api.smartstudy.com/word/brief"
+        ></SearchWords>
+      </Scrollbar>
     </div>
   ~~~
 `)

@@ -65,7 +65,7 @@ export default class Audio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: (props.text || props.materialType) ? 250 : 100,
+      width: (props.text || props.materialType) ? 250 : 338,
       text: '',
       materialType: props.materialType,
       playing: false,
@@ -156,7 +156,7 @@ export default class Audio extends Component {
             onTouchEnd={() => { if (!closeAudio) { this.onTouchEnd(); } }}
           />
         </View>
-        <View>{this.timeFormat(parseInt(duration, 10))}</View>
+        <View>{this.timeFormat(duration.toFixed(0))}</View>
         {
           isload &&
             <View className={styles.mask}>
@@ -261,7 +261,6 @@ export default class Audio extends Component {
     const element = ReactDOM.findDOMNode(this.container); // eslint-disable-line
     setTimeout(() => {
       if (element.parentElement && element.parentElement.offsetWidth) {
-        console.log('parentElement.width:', element.parentElement.offsetWidth);
         const width = this.props.materialType ?
           element.offsetWidth - 260 : element.offsetWidth - 162;
         this.setState({
@@ -301,16 +300,15 @@ export default class Audio extends Component {
   handleLoadedmetadata = () => {
     this.setState({
       isload: false,
-      duration: this.audio ? parseInt(this.audio.duration, 10) : 45,
+      duration: this.audio ? this.audio.duration : 45,
     });
   }
 
   // 进度条
   handleTimeupdate = () => {
     const { duration } = this.state;
-
     if (this.audio && this.audio.currentTime) {
-      const currentTime = this.timeFormat(parseInt(this.audio.currentTime, 10));
+      const currentTime = this.timeFormat(this.audio.currentTime.toFixed(0));
 
       this.setState({
         currtime: currentTime,
