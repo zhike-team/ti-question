@@ -22,7 +22,7 @@ storiesOf('Audio', module)
  (() => (
     <div style={{ width: '500px', height: '100px'}} >
         <Audio
-        src={'https://media8.smartstudy.com/atheneBackend/1544499022495BjSHqG.mp3'}
+        src={'http://media8.smartstudy.com/atheneBackend/1544499183839yRX4EW.mp3'}
         cdnUrl={'https://media8.smartstudy.com/'}
         ></Audio>
     </div>

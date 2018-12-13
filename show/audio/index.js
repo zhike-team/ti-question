@@ -156,7 +156,7 @@ export default class Audio extends Component {
             onTouchEnd={() => { if (!closeAudio) { this.onTouchEnd(); } }}
           />
         </View>
-        <View>{this.timeFormat(duration.toFixed(0))}</View>
+        <View>{duration.toFixed(0) > 0 ? this.timeFormat(duration.toFixed(0)) : this.timeFormat(1)}</View>
         {
           isload &&
             <View className={styles.mask}>
