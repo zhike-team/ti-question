@@ -2,8 +2,8 @@
 题库的通用组件，提取为依赖库并统一发布在npm
 
 ## demo
-### 点击下面 直接查看文档
-[组件文档](https://zhike-team.github.io/ti-component/) https://zhike-team.github.io/ti-component/
+
+[点击查看在线demo](https://zhike-team.github.io/ti-component/)或按照以下方法在本地运行demo
 
 ```bash
 npm install
@@ -77,13 +77,14 @@ npm publish
 ### `Modal`组件改造：
 * `type, option, onShow, onHide`
 * `type`为字符串，可选值`'ModalAlert'`或`'ModalCorrect'`。根据传入的字符串匹配`Modal`内的实例对象，以后不需要在组件中引入实例
-* 若`type`为`Correct`， 则`props`需要再传入一个`option`对象，用于上传纠错信息时添加自定义属性。必传值：
+* 若`type`为`ModalCorrect`， 则`props`需要再传入一个`option`对象，用于上传纠错信息时添加自定义属性。必传值：
 ```javascript
 {
   version: '1.0.0', // 请从common/config引用version字段
   source: 'ti-base', // ti-base/ti-toefl/...
   getUploadSignature,
   postCorrection,
+}
 ```
 * 新增加的`onShow/onHide`是为了降低耦合度，在抽离的组件中减少不合理的引用
 * `onShow`(可选)，在`isReport`为`false`的时候执行，一般情况下，传入以下方法：
