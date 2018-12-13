@@ -15,6 +15,8 @@ export default class SearchWords extends Component {
   // 隐藏窗口的方法
   static hide() {
     if (this.instance) {
+      global.window.getSelection ?
+        global.window.getSelection().removeAllRanges() : global.document.selection.empty();
       this.instance.setState({
         isShow: false,
       });
@@ -95,13 +97,15 @@ export default class SearchWords extends Component {
       isFrameUp: false,
       triangleLeft: 0,
       isPlay: false,
+      isSucceed: false,
+    }, () => {
+      if (this.clickFlag) { // 取消上次延时未执行的方法
+        clearTimeout(this.clickFlag);
+      }
+      this.clickFlag = setTimeout(() => {
+        this.judgeSearch();
+      }, 300);
     });
-    if (this.clickFlag) { // 取消上次延时未执行的方法
-      clearTimeout(this.clickFlag);
-    }
-    this.clickFlag = setTimeout(() => {
-      this.judgeSearch();
-    }, 300);
   }
   // 判断是否执行查询功能
   judgeSearch = () => {

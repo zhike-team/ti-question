@@ -29,9 +29,7 @@ export default class Modal extends Component {
       onHide: onHide || null,
     });
 
-    if (!props.isReport) {
-      onShow && onShow();
-    }
+    onShow && onShow();
 
     return id;
   }
