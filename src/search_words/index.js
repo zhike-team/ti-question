@@ -14,9 +14,11 @@ export default class SearchWords extends Component {
     为用户返回中文翻译的功能组件 */
   // 隐藏窗口的方法
   static hide() {
-    this.instance.setState({
-      isShow: false,
-    });
+    if (this.instance) {
+      this.instance.setState({
+        isShow: false,
+      });
+    }
   }
   // 参数
   static defaultProps = {
