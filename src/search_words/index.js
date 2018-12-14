@@ -274,7 +274,9 @@ export default class SearchWords extends Component {
           <View className={styles.word}>{word}</View>
           {
             isSucceed && JSON.stringify(sound) !== '{}' &&
-            !(brief.length === 1 && brief[0].class === '翻译') &&
+            !(brief.length === 0 ||
+              (brief.length === 1 && brief[0].definition === word)
+            ) &&
             <View className={styles.result}>
               {
                 sound && JSON.stringify(sound) !== '{}' &&
@@ -295,7 +297,14 @@ export default class SearchWords extends Component {
                 <View className={styles.translate}>
                   {
                     brief.map((item, index) =>
-                    (<View key={index} className={styles.translateList}><span>{item.class}</span><span>{item.definition}</span></View>))
+                    (
+                      <View key={index} className={styles.translateList}>
+                        {
+                          item.class !== '翻译' &&
+                            <span>{item.class}</span>
+                        }
+                        <span>{item.definition}</span>
+                      </View>))
                   }
                 </View>
               }
@@ -309,7 +318,9 @@ export default class SearchWords extends Component {
           }
           {
             isSucceed && !sound &&
-            (brief.length === 1 && brief[0].class === '翻译') &&
+            (brief.length === 0 ||
+              (brief.length === 1 && brief[0].definition === word)
+            ) &&
             <span className={css(styles.noContent)}>
               未查询到任何结果
             </span>

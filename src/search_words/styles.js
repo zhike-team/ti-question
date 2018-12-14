@@ -21,7 +21,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.14)',
+    boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.24)',
   },
   triangle: {
     zIndex: 100,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     borderColor: '#fff #fff transparent transparent ',
     position: 'absolute',
     backgroundColor: 'transparent',
-    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.14)',
+    boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.24)',
     transform: 'rotate(-45deg)',
   },
   triangleMask: {
