@@ -83,29 +83,16 @@ export default class SearchWords extends Component {
   singleClick = e => {
     const parentNode = global.document.getElementById('searchContainer');
     // 对于弹框以及弹框上的元素做处理
-    if (this.searchParents(e.target, parentNode)) {
+    if (this.searchParents(e.target, parentNode) || this.clearSelect()) {
       return;
     }
-    // 每次点击页面 状态清空
-    this.setState({
-      word: '',
-      isShow: false,
-      brief: [],
-      sound: {},
-      positionTop: 0,
-      positionLeft: 0,
-      isFrameUp: false,
-      triangleLeft: 0,
-      isPlay: false,
-      isSucceed: false,
-    }, () => {
-      if (this.clickFlag) { // 取消上次延时未执行的方法
-        clearTimeout(this.clickFlag);
-      }
-      this.clickFlag = setTimeout(() => {
-        this.judgeSearch();
-      }, 300);
-    });
+
+    if (this.clickFlag) { // 取消上次延时未执行的方法
+      clearTimeout(this.clickFlag);
+    }
+    this.clickFlag = setTimeout(() => {
+      this.judgeSearch();
+    }, 300);
   }
   // 判断是否执行查询功能
   judgeSearch = () => {
@@ -115,11 +102,19 @@ export default class SearchWords extends Component {
     if (!range.collapsed
       && /(^[a-zA-Z].*[a-zA-Z]$)|^[a-zA-Z]$/.test(selectWord)
       && selectWord.indexOf(' ') === -1) {
+      const { positionTop, positionLeft, isFrameUp,
+        triangleLeft, positionBottom } = this.getPosition(range);
       this.setState({
         word: selectWord,
+        isShow: true,
+        positionTop,
+        positionLeft,
+        isFrameUp,
+        triangleLeft,
+        positionBottom,
+      }, () => {
+        this.searchWord(selectWord);
       });
-      this.setPosition(range);
-      this.searchWord(selectWord);
     }
   }
   // 查询祖先元素中是否有 特定元素
@@ -139,7 +134,7 @@ export default class SearchWords extends Component {
   doubleClick = e => {
     const parentNode = global.document.getElementById('searchContainer');
     // 对于弹框以及弹框上的元素做处理
-    if (this.searchParents(e.target, parentNode)) {
+    if (this.searchParents(e.target, parentNode) || this.clearSelect(false)) {
       return;
     }
     if (this.clickFlag) { // 取消上次延时未执行的方法
@@ -168,8 +163,8 @@ export default class SearchWords extends Component {
       isSucceed: true,
     });
   }
-  // 弹框定位
-  setPosition = range => {
+  // 获取弹框定位
+  getPosition = range => {
     // 弹框定位
     const rangeDist = range.getBoundingClientRect();
     const { top, bottom, left, width, height, right } = rangeDist;
@@ -193,14 +188,13 @@ export default class SearchWords extends Component {
     } else {
       positionTop = top + height / 2 + 30;
     }
-    this.setState({
-      isShow: true,
+    return {
       positionTop,
       positionLeft,
       isFrameUp,
       triangleLeft,
       positionBottom,
-    });
+    };
   }
   // 获取选中区域信息
   getTextMessage = () => {
@@ -223,6 +217,40 @@ export default class SearchWords extends Component {
         range: global.window.getSelection().getRangeAt(0),
       };
     }
+  }
+  /*  如果没有selection对象 清空状态；如果选中元素与之前一样，清除选中；
+  （对于一些 添加了 userselect: 'none' 样式的元素，浏览器不能自动清除选中） */
+  // 清除选中
+  clearSelect = (isSingle = true) => {
+    const { word, isShow, positionTop, positionLeft } = this.state;
+    const { text, range } = this.getTextMessage();
+    let doubleClear = false;
+    if (!isSingle && range && !text && !range.collapsed) {
+      const { positionTop: newTop, positionLeft: newLeft } = this.getPosition(range);
+      // 双击 需要清空的情况
+      const isSame = positionTop === newTop && newLeft === positionLeft && word === text.trim();
+      doubleClear = !isSingle && (text === '' || isSame);
+    }
+    if (isShow && (isSingle || doubleClear)) {
+      global.window.getSelection ?
+        global.window.getSelection().removeAllRanges() : global.document.selection.empty();
+      this.setState({
+        word: '',
+        isShow: false,
+        brief: [],
+        sound: {},
+        positionTop: 0,
+        positionLeft: 0,
+        isFrameUp: false,
+        triangleLeft: 0,
+        isPlay: false,
+        isSucceed: false,
+      });
+      return true;
+    } else {
+      return false;
+    }
+    // 每次点击页面 状态清空
   }
 
   // 音标发音

@@ -96,7 +96,7 @@ storiesOf('SearchWords', module)
               </View>
             ),
           }, ()=> {
-            SearchWords.hide();
+            // SearchWords.hide();
           } )}
         />
         <Article material={material1} question={question1}></Article>
