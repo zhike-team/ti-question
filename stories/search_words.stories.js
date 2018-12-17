@@ -4,9 +4,9 @@ import { withInfo } from '@storybook/addon-info';
 import { css } from 'aphrodite';
 import { Scrollbar, Button, View } from '@zhike/ti-ui';
 import SearchWords from '../src/search_words';
-import { Modal } from '../src';
+import Modal from '../show/modal';
 import Article from '../show/article';
-import { material1, question1 } from './article_data';
+import { material1, question1, answerAnalysis } from './article_data';
 import styles from './styles';
 
 /* eslint-disable */
@@ -100,6 +100,39 @@ storiesOf('SearchWords', module)
           } )}
         />
         <Article material={material1} question={question1}></Article>
+        <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
+      </Scrollbar>
+    </div>
+  )))
+  .add('弹窗 答案解析 隐藏效果',
+  withInfo(`
+  音频播放组件 可以传入需要播放的音频路径 使用组件方法如下：
+  ~~~js
+    <div style={{width: '500px', height: '500px'}}>
+        <Article material={material1} question={question1}></Article>
+        <SearchWords
+          ref={searchWords => { SearchWords.instance = searchWords; }}
+          getSearchWord="https://api.smartstudy.com/word/brief"
+        ></SearchWords>
+    </div>
+  ~~~
+`)
+ (() => (
+    <div style={{width: '500px', height: '500px'}}>
+      <Scrollbar
+        onScrollStart={() => {SearchWords.hide()}}
+      >
+        <SearchWords
+          ref={searchWords => { SearchWords.instance = searchWords; }}
+          getSearchWord="https://api.smartstudy.com/word/brief"
+        ></SearchWords>
+        <Button
+            className={styles.button}
+            text="答案解析"
+            onClick={() => Modal.show('ModalAnalysis', {
+              answerAnalysis,
+            })}
+        />
         <Modal ref={modal => { Modal.instance = modal; }} isReport={false} />
       </Scrollbar>
     </div>

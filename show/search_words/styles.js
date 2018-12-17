@@ -15,7 +15,7 @@ export default StyleSheet.create({
   content: {
     display: 'none',
     position: 'absolute',
-    zIndex: 10001,
+    zIndex: 101,
     width: '280px',
     padding: '20px',
     justifyContent: 'center',
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.24)',
   },
   triangle: {
-    zIndex: 10000,
+    zIndex: 100,
     display: 'none',
     width: 0,
     height: 0,
@@ -37,7 +37,7 @@ export default StyleSheet.create({
     transform: 'rotate(-45deg)',
   },
   triangleMask: {
-    zIndex: 10002,
+    zIndex: 102,
     backgroundColor: 'white',
     boxShadow: '0px',
   },
