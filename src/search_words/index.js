@@ -67,18 +67,20 @@ export default class SearchWords extends Component {
     const body = global.document.getElementsByTagName('body')[0];
     body.addEventListener('click', this.singleClick, false);
     body.addEventListener('dblclick', this.doubleClick, false);
+    // 页面滚动时，清空选中状态
+    global.document.addEventListener('scroll', this.clearSelect, false);
   }
 
   componentWillUnmount() {
     const body = global.document.getElementsByTagName('body')[0];
     body.removeEventListener('click', this.singleClick, false);
     body.removeEventListener('dblclick', this.doubleClick, false);
+    global.document.removeEventListener('scroll', this.clearSelect, false);
     if (this.audioPlayer) {
       this.audioPlayer.pause();
       this.audioPlayer = null;
     }
   }
-
   // 单击处理的事件
   singleClick = e => {
     const parentNode = global.document.getElementById('searchContainer');

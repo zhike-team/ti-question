@@ -30,15 +30,15 @@ storiesOf('SearchWords', module)
 `)
  (() => (
     <div style={{width: '500px', height: '500px'}}>
-      <Scrollbar
+      {/* <Scrollbar
         onScrollStart={() => {SearchWords.hide()}}
-      >
+      > */}
         <Article material={material1} question={question1}></Article>
         <SearchWords
           ref={searchWords => { SearchWords.instance = searchWords; }}
           getSearchWord="https://api.smartstudy.com/word/brief"
         ></SearchWords>
-      </Scrollbar>
+      {/* </Scrollbar> */}
     </div>
   )))
   .add('弹窗 隐藏效果',
