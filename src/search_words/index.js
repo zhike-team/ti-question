@@ -222,7 +222,7 @@ export default class SearchWords extends Component {
   }
   /*  如果没有selection对象 清空状态；如果选中元素与之前一样，清除选中；
   （对于一些 添加了 userselect: 'none' 样式的元素，浏览器不能自动清除选中） */
-  // 清除选中
+  // 清除浏览器默认选中样式 和清空状态
   clearSelect = (isSingle = true) => {
     const { word, isShow, positionTop, positionLeft } = this.state;
     const { text, range } = this.getTextMessage();
@@ -233,9 +233,8 @@ export default class SearchWords extends Component {
       const isSame = positionTop === newTop && newLeft === positionLeft && word === text.trim();
       doubleClear = !isSingle && (text === '' || isSame);
     }
-    if (isShow && (isSingle || doubleClear)) {
-      global.window.getSelection ?
-        global.window.getSelection().removeAllRanges() : global.document.selection.empty();
+    // 状态清空
+    if (isShow) {
       this.setState({
         word: '',
         isShow: false,
@@ -248,6 +247,10 @@ export default class SearchWords extends Component {
         isPlay: false,
         isSucceed: false,
       });
+    }
+    if (isShow && (isSingle || doubleClear)) {
+      global.window.getSelection ?
+        global.window.getSelection().removeAllRanges() : global.document.selection.empty();
       return true;
     } else {
       return false;
