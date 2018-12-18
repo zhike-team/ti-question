@@ -303,6 +303,8 @@ export default class SearchWords extends Component {
           className={[styles.content, isShow && styles.showContent]}
           style={isShow ? tipStyles : {}}
           id="searchContainer"
+          onselectstart="return false;"
+          unselectable="on"
         >
           <View className={styles.word}>{word}</View>
           {

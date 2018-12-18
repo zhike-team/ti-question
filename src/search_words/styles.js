@@ -22,6 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.24)',
+    userSelect: 'none',
   },
   triangle: {
     zIndex: 10000,
@@ -35,6 +36,7 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.24)',
     transform: 'rotate(-45deg)',
+    userSelect: 'none',
   },
   triangleMask: {
     zIndex: 10002,
@@ -62,6 +64,7 @@ export default StyleSheet.create({
     lineHeight: '17px',
   },
   soundButton: {
+    cursor: 'pointer',
     width: 16,
     height: 12,
     backgroundImage: `url(${require('../assets/sound.png')})`,
@@ -78,6 +81,7 @@ export default StyleSheet.create({
     backgroundSize: '16px 12px',
   },
   isPlaying: {
+    cursor: 'pointer',
     width: 16,
     height: 12,
     backgroundImage: `url(${require('../assets/sound_play.gif')})`,
