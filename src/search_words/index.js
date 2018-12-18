@@ -88,7 +88,6 @@ export default class SearchWords extends Component {
     if (this.searchParents(e.target, parentNode) || this.clearSelect()) {
       return;
     }
-
     if (this.clickFlag) { // 取消上次延时未执行的方法
       clearTimeout(this.clickFlag);
     }
@@ -158,12 +157,15 @@ export default class SearchWords extends Component {
     });
     const { brief, spell } = data.data;
     const sound = get(data, 'data.phonogram.us');
-    this.setState({
-      brief,
-      sound,
-      word: spell,
-      isSucceed: true,
-    });
+    const { text } = this.getTextMessage();
+    if (text && text.trim() === selectWord) {
+      this.setState({
+        brief,
+        sound,
+        word: spell,
+        isSucceed: true,
+      });
+    }
   }
   // 获取弹框定位
   getPosition = range => {
