@@ -147,22 +147,29 @@ export default class SearchWords extends Component {
   searchWord = async selectWord => {
     const { getSearchWord } = this.props;
     //  查单词的接口
-    const { data } = await axios({
-      url: `${getSearchWord}/${selectWord}`,
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      timeout: 20000,
-    });
-    const { brief, spell } = data.data;
-    const sound = get(data, 'data.phonogram.us');
-    const { text } = this.getTextMessage();
-    if (text && text.trim() === selectWord) {
+    try {
+      const { data } = await axios({
+        url: `${getSearchWord}/${selectWord}`,
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 20000,
+      });
+      const { brief, spell } = data.data;
+      const sound = get(data, 'data.phonogram.us');
+      const { text } = this.getTextMessage();
+      if (text && text.trim() === selectWord) {
+        this.setState({
+          brief,
+          sound,
+          word: spell,
+          isSucceed: true,
+        });
+      }
+    } catch (error) {
+      console.log('捕获报错 error：', error);
       this.setState({
-        brief,
-        sound,
-        word: spell,
         isSucceed: true,
       });
     }
@@ -354,7 +361,7 @@ export default class SearchWords extends Component {
             </View>
           }
           {
-            isSucceed && !sound &&
+            isSucceed && JSON.stringify(sound) === '{}' &&
             (brief.length === 0 ||
               (brief.length === 1 && brief[0].definition === word)
             ) &&
