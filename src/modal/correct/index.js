@@ -13,16 +13,17 @@ export default class ModalCorrect extends Component {
     modalId: PropTypes.string.isRequired,
     getUploadSignature: PropTypes.func.isRequired,
     postCorrection: PropTypes.func.isRequired,
-    step: PropTypes.object.isRequired,
+    step: PropTypes.object,
     isReport: PropTypes.bool,
     option: PropTypes.object,
-    isFollowUpOrListen: PropTypes.bool,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
     option: {},
     isReport: false,
-    isFollowUpOrListen: false,
+    type: 'normal', // 我要纠错的配置项内容 默认是'normal' 'followUpOrListen' 'word'
+    step: {},
   }
 
   constructor(props) {
@@ -138,7 +139,7 @@ export default class ModalCorrect extends Component {
   async submit() {
     const {
       modalId, getUploadSignature, option,
-      postCorrection, step, isReport,
+      postCorrection, step, isReport, type,
     } = this.props;
     const { choices, detail, files } = this.state;
 
@@ -208,19 +209,32 @@ export default class ModalCorrect extends Component {
     }
 
     // 上传纠错信息
-    const form = {
-      type: choices,
-      referenceName: step.question ? step.question.name : step.practice.name,
-      referenceType: step.question ? 'Question' : 'Practice',
-      referenceId: step.question ? step.question.id : step.practice.id,
-      images,
-      detail,
-      status: 'Pending',
-      remark: '',
-      version: option.version ? option.version : '1.0.0',
-      source: option.source ? option.source : 'ti-base',
-      ...option,
-    };
+    let form;
+    if (type === 'followUpOrListen') {
+      form = {
+        type: choices,
+        questionType: option.questionType,
+        wordId: option.wordId,
+        wordName: option.wordName,
+        detail: option.detail,
+        images,
+        source: option.source,
+      };
+    } else {
+      form = {
+        type: choices,
+        referenceName: step.question ? step.question.name : step.practice.name,
+        referenceType: step.question ? 'Question' : 'Practice',
+        referenceId: step.question ? step.question.id : step.practice.id,
+        images,
+        detail,
+        status: 'Pending',
+        remark: '',
+        version: option.version ? option.version : '1.0.0',
+        source: option.source ? option.source : 'ti-base',
+        ...option,
+      };
+    }
 
     await postCorrection(form);
     Modal.hide(modalId);
@@ -252,10 +266,10 @@ export default class ModalCorrect extends Component {
 
   // 渲染
   render() {
-    const { isFollowUpOrListen } = this.props;
+    const { type } = this.props;
     const { choices, detail, submitting, filesUrl } = this.state;
     let allChoices;
-    if (!isFollowUpOrListen) {
+    if (type === 'normal') {
       allChoices = [
         {
           type: 'ReadingOriginal',
@@ -294,7 +308,7 @@ export default class ModalCorrect extends Component {
           text: '其它',
         },
       ];
-    } else {
+    } else if (type === 'followUpOrListen') {
       allChoices = [
         {
           type: 'AudioScript',
@@ -321,6 +335,29 @@ export default class ModalCorrect extends Component {
           text: '其它',
         },
       ];
+    } else {
+      allChoices = [
+        {
+          type: 'NoVocality',
+          text: '单词无声音',
+        },
+        {
+          type: 'WordPronounce',
+          text: '单词发音不清晰',
+        },
+        {
+          type: 'ChoiceTranslation',
+          text: '选项释义错误',
+        },
+        {
+          type: 'ChoiceReiteration',
+          text: '选项重复',
+        },
+        {
+          type: 'Other',
+          text: '其它',
+        },
+      ];
     }
 
     return (
@@ -335,7 +372,7 @@ export default class ModalCorrect extends Component {
               <View
                 key={choice.type}
                 className={[
-                  isFollowUpOrListen === true ? styles.choice2 : styles.choice1,
+                  type === 'followUpOrListen' ? styles.choice2 : styles.choice1,
                   styles.choiceBox,
                   choices.indexOf(choice.type) !== -1
                     ? styles.choiceBoxChecked

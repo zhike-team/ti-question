@@ -5,6 +5,7 @@ import RecorderComponent from './recorder';
 import ArticleComponent from './article';
 import BlockComponent from './block';
 import SearchWordsComponent from './search_words';
+import ErrorComponent from './error';
 
 export const Audio = AudioComponent;
 export const AudioPlayer = AudioPlayerComponent;
@@ -13,3 +14,4 @@ export const Recorder = RecorderComponent;
 export const Article = ArticleComponent;
 export const Block = BlockComponent;
 export const SearchWords = SearchWordsComponent;
+export const Error = ErrorComponent;
