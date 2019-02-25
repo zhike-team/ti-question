@@ -35,7 +35,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
-    flex: 1,
     marginTop: '20px',
   },
   project1: {

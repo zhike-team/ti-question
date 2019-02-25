@@ -11,7 +11,7 @@ export default class ModalCorrect extends Component {
   // 参数
   static propTypes = {
     modalId: PropTypes.string.isRequired,
-    getUploadSignature: PropTypes.func.isRequired,
+    getUploadSignature: PropTypes.any.isRequired,
     postCorrection: PropTypes.func.isRequired,
     step: PropTypes.object,
     isReport: PropTypes.bool,
@@ -154,17 +154,33 @@ export default class ModalCorrect extends Component {
         const file = files[i];
 
         try {
-          const createPromise = (action, payload) => (
-            new Promise((resolve, reject) => {
-              action({ payload, resolve, reject });
-            })
-          );
+          let signature;
+          if (type !== 'word') {
+            const createPromise = (action, payload) => (
+              new Promise((resolve, reject) => {
+                action({ payload, resolve, reject });
+              })
+            );
 
-          const signature = await createPromise(getUploadSignature, {
-            business: 'tiku/correction',
-            fileName: file.name,
-          });
-
+            signature = await createPromise(getUploadSignature, {
+              business: 'tiku/correction',
+              fileName: file.name,
+            });
+          } else {
+            signature = await axios({
+              url: getUploadSignature,
+              method: 'get',
+              headers: {
+                'Content-Type': 'application/json',
+                From: 1,
+              },
+              params: {
+                business: 'tiku/correction',
+                fileName: file.name,
+              },
+              timeout: 30000,
+            });
+          }
           const formData = new FormData();
           formData.append('key', signature.data.key);
           formData.append('policy', signature.data.policy);
@@ -187,6 +203,7 @@ export default class ModalCorrect extends Component {
             src: imgData.data.code === 0 ? imgData.data.data.url : `${signature.data.uploadAddress}/${signature.data.key}`,
           });
         } catch (e) {
+          console.log('error:', e);
           const { onShow, onHide } = Modal.instance.state;
           Modal.show('ModalAlert', {
             title: '错误',
@@ -210,7 +227,7 @@ export default class ModalCorrect extends Component {
 
     // 上传纠错信息
     let form;
-    if (type === 'followUpOrListen') {
+    if (type === 'word') { // 如果是单词检测的题目
       form = {
         type: choices,
         questionType: option.questionType,

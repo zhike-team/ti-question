@@ -118,7 +118,7 @@ export default class Error extends Component {
             </View>
             <View className={[styles.text, styles.project2]}>方案二：关闭此页面，尝试重新进入（已保存的答案不会丢失）</View>
           </div>
-          <View className={styles.text} style={{ paddingTop: '40px' }}>如果还有问题，请联系我们的客服人员</View>
+          <View className={styles.text} style={{ paddingTop: '80px' }}>如果还有问题，请联系我们的客服人员</View>
           <View className={styles.text}>电话：400-011-9191</View>
         </View>
       );

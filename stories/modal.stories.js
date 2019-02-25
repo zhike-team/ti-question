@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { Button, View } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
+import axios from 'axios';
 import { onShow, onHide } from './utils';
 import styles from './styles';
 import { Modal } from '../src';
@@ -120,6 +121,91 @@ storiesOf('Modal', module)
             question: {id: 1006476, name: "测试 富文本渲染 Q1"},
           },
           isReport: false,
+          })
+        }
+      />
+      <Modal
+        ref={modal => { Modal.instance = modal; }}
+        isReport={false}
+      />
+    </React.Fragment>
+  )))
+  .add('type ModalCorrect word',
+  withInfo(`
+  弹框组件 我要纠错类型 跟读与精听训练与一般练习不同 使用组件方法如下：
+  ~~~js
+    <React.Fragment>
+    <Button
+        className={styles.button}
+        text="我要纠错"
+        onClick={() => Modal.show('ModalCorrect', {
+        title: '我要纠错',
+        width: 700,
+        version: '1.0.0', // 请从common/config引用version字段
+        source: 'ti-base', // 纠错来源
+        type: 'word', // 单词检测纠错
+        getUploadSignature: () => {alert('上传纠错 postCorrection');},
+        postCorrection: () => {alert('上传纠错 postCorrection');},
+        step: {
+            id: 1,
+            practice: {id: 1001614, name: "测试 富文本渲染" },
+            question: {id: 1006476, name: "测试 富文本渲染 Q1"},
+        },
+        isReport: false,
+        })
+        }
+    />
+    <Modal
+        ref={modal => { Modal.instance = modal; }}
+        isReport={false}
+    />
+    </React.Fragment>
+  ~~~
+`)
+  (() => (
+    <React.Fragment>
+      <Button
+        className={styles.button}
+        text="我要纠错"
+        onClick={() => Modal.show('ModalCorrect', {
+          title: '我要纠错',
+          width: 700,
+          version: '1.0.0', // 请从common/config引用version字段
+          source: 'ti-base', // 纠错来源
+          type: 'word', // 单词检测纠错
+          getUploadSignature: async params => {
+            // await axios({
+            //   url: 'https://api.smartstudy.com/file/upload/signature',
+            //   method: 'get',
+            //   headers: {
+            //     'Content-Type': 'application/json',
+            //     From: 1,
+            //   },
+            //   params,
+            //   timeout: 30000,
+            // });
+          },
+          postCorrection: async form => {
+            await axios({
+              url: 'https://tiku.smartstudy.tech/correction/create',
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              data: form,
+            });
+          },
+          step: {
+            id: 1,
+            practice: {id: 1001614, name: "测试 富文本渲染" },
+            question: {id: 1006476, name: "测试 富文本渲染 Q1"},
+          },
+          option: {
+            questionType:  2,// 'BaseMean' // 'ListenMean' 'ListenSpell' 'Speak'
+            wordId: 12,
+            wordName: '测试小银来一波',
+            source: 'ti-word',
+          }
           })
         }
       />
