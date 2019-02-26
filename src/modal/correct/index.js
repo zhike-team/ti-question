@@ -167,19 +167,7 @@ export default class ModalCorrect extends Component {
               fileName: file.name,
             });
           } else {
-            signature = await axios({
-              url: getUploadSignature,
-              method: 'get',
-              headers: {
-                'Content-Type': 'application/json',
-                From: 1,
-              },
-              params: {
-                business: 'tiku/correction',
-                fileName: file.name,
-              },
-              timeout: 30000,
-            });
+            signature = await getUploadSignature(file.name);
           }
           const formData = new FormData();
           formData.append('key', signature.data.key);
@@ -233,7 +221,7 @@ export default class ModalCorrect extends Component {
         questionType: option.questionType,
         wordId: option.wordId,
         wordName: option.wordName,
-        detail: option.detail,
+        detail,
         images,
         source: option.source,
       };

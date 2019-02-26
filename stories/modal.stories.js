@@ -83,7 +83,7 @@ storiesOf('Modal', module)
         width: 700,
         version: '1.0.0', // 请从common/config引用version字段
         source: 'ti-base', // 纠错来源
-        isFollowUpOrListen: true, // 纠错类型 是通用的还是跟读与精听专用的～
+        type: 'followUpOrListen', // 纠错类型 是通用的还是跟读与精听专用的～
         getUploadSignature: () => {alert('上传纠错 postCorrection');},
         postCorrection: () => {alert('上传纠错 postCorrection');},
         step: {
@@ -112,7 +112,7 @@ storiesOf('Modal', module)
           width: 700,
           version: '1.0.0', // 请从common/config引用version字段
           source: 'ti-base', // 纠错来源
-          isFollowUpOrListen: true, // 纠错类型 是通用的还是跟读与精听专用的～
+          type: 'followUpOrListen', // 纠错类型 是通用的还是跟读与精听专用的～
           getUploadSignature: () => {alert('上传纠错 postCorrection');},
           postCorrection: () => {alert('上传纠错 postCorrection');},
           step: {
