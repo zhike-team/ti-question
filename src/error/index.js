@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'aphrodite';
 import { View, Image, Button } from '@zhike/ti-ui';
 import styles from './styles';
 
@@ -105,21 +104,11 @@ export default class Error extends Component {
             src={require('./assets/save.png')}
           />
           <View className={styles.text}>无法连接到网络，请尝试以下解决方案：</View>
-          <div className={css(styles.project)}>
-            <View className={styles.project1}>
-              <View className={styles.text}>方案一：请检查网络连接是否正常，正常后点击“重试”按钮；</View>
-              <Button
-                className={styles.button}
-                textClassName={styles.buttonText}
-                text="重试"
-                theme="hollow"
-                onClick={() => this.retry()}
-              />
-            </View>
-            <View className={[styles.text, styles.project2]}>方案二：关闭此页面，尝试重新进入（已保存的答案不会丢失）</View>
-          </div>
-          <View className={styles.text} style={{ paddingTop: '80px' }}>如果还有问题，请联系我们的客服人员</View>
-          <View className={styles.text}>电话：400-011-9191</View>
+          <View className={[styles.text, styles.project1]}>
+            方案一：请检查网络连接是否正常，正常后点击“
+            <View className={styles.retry} onClick={() => this.retry()}>重试</View>”按钮；
+          </View>
+          <View className={[styles.text, styles.project1]}>方案二：关闭此页面，尝试重新进入（已保存的答案不会丢失）</View>
         </View>
       );
     }

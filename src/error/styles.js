@@ -20,6 +20,10 @@ export default StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
   },
+  retry: {
+    display: 'inline-block',
+    color: '#3399FF',
+  },
 
   button: {
     marginTop: 20,
@@ -30,18 +34,11 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 14,
   },
-  project: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'center',
-    marginTop: '20px',
-  },
+
   project1: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: 'inline-block',
     alignItems: 'center',
-    margin: '0 40px 0 0',
+    margin: '40px 0 0',
   },
 
 });
