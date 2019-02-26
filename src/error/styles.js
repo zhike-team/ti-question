@@ -23,6 +23,9 @@ export default StyleSheet.create({
   retry: {
     display: 'inline-block',
     color: '#3399FF',
+    ':hover': {
+      cursor: 'pointer',
+    },
   },
 
   button: {
