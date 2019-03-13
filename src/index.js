@@ -1,17 +1,35 @@
-import AudioComponent from './audio';
-import AudioPlayerComponent from './audio_player';
-import ModalComponent from './modal';
-import RecorderComponent from './recorder';
-import ArticleComponent from './article';
-import BlockComponent from './block';
-import SearchWordsComponent from './search_words';
-import ErrorComponent from './error';
+import ChooseOneQuestion from './base/choose_one';
+import ChooseManyQuestion from './base/choose_many';
+import BlankQuestion from './base/blank';
+import SpeakingQuestion from './base/speaking';
+import WritingQuestion from './base/writing';
+import FollowUpQuestion from './base/follow_up';
 
-export const Audio = AudioComponent;
-export const AudioPlayer = AudioPlayerComponent;
-export const Modal = ModalComponent;
-export const Recorder = RecorderComponent;
-export const Article = ArticleComponent;
-export const Block = BlockComponent;
-export const SearchWords = SearchWordsComponent;
-export const Error = ErrorComponent;
+import ReadingComponent from './ielts/reading';
+import listeningComponent from './ielts/listening';
+
+import ReadingComponent1 from './toefl/reading';
+import listeningComponent1 from './toefl/listening/listening_question';
+import listeningPlayer from './toefl/listening/listening_player';
+
+// import { normalizeArticle } from './utils/article';
+import Utils from './utils';
+
+console.log('Utils:', Utils);
+
+// 基础题库题型页面
+export const ChooseOne = ChooseOneQuestion;
+export const ChooseMany = ChooseManyQuestion;
+export const Blank = BlankQuestion;
+export const Speaking = SpeakingQuestion;
+export const Writing = WritingQuestion;
+export const FollowUp = FollowUpQuestion;
+
+// 雅思题库题型页面
+export const IeltsReading = ReadingComponent;
+export const IeltsListening = listeningComponent;
+
+// 托福题库题型页面
+export const ToeflReading = ReadingComponent1;
+export const ToeflListening = listeningComponent1;
+export const ToeflListenPlayer = listeningPlayer;

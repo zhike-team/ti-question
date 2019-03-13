@@ -1,7 +1,7 @@
 {
-  "name": "@zhike/ti-component",
-  "version": "1.2.21",
-  "description": "common components for Zhike-tiku",
+  "name": "@zhike/ti-question",
+  "version": "1.2.22",
+  "description": "新题库 雅思，托福，基础题库题型组件抽取，目前支持在组卷系统中调用",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -24,25 +24,23 @@
     "history": ">=4.7.2"
   },
   "dependencies": {
-    "react-router": "^4.3.1",
-    "react-custom-scrollbars": "^4.2.1",
-    "recordrtc": "^5.4.5",
+    "@zhike/ti-component": "^1.2.22",
     "howler": "^2.0.8",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dnd": "^7.3.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "recordrtc": "^5.4.5",
+    "redux-saga": "^1.0.2",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@zhike/ti-ui": "^1.2.7",
-    "aphrodite": "^1.2.5",
-    "axios": "^0.16.2",
-    "cookie": "^0.3.1",
-    "form-data": "^2.3.1",
-    "history": "^4.7.2",
-    "lodash": "^4.17.10",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "@storybook/addon-info": "^4.0.11",
     "@storybook/react": "^3.4.10",
     "@storybook/storybook-deployer": "^2.3.0",
+    "@zhike/ti-ui": "^1.2.7",
+    "aphrodite": "^1.2.5",
+    "axios": "^0.16.2",
     "babel-cli": "^6.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "8.2.3",
@@ -56,6 +54,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "cookie": "^0.3.1",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
@@ -63,12 +62,19 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "7.8.2",
+    "form-data": "^2.3.1",
+    "history": "^4.7.2",
+    "lodash": "^4.17.10",
+    "react": "^16.0.0",
+    "react-dnd-html5-backend": "^7.2.0",
+    "react-dom": "^16.0.0",
+    "redux-actions": "^2.6.5",
     "url-loader": "^1.1.1",
     "webpack": "^3.8.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhike-team/ti-component.git"
+    "url": "git+https://github.com/zhike-team/ti-question.git"
   },
   "keywords": [
     "zhike"
@@ -76,7 +82,7 @@
   "author": "zhike",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhike-team/ti-component/issues"
+    "url": "https://github.com/zhike-team/ti-question/issues"
   },
-  "homepage": "https://github.com/zhike-team/ti-component#readme"
+  "homepage": "https://github.com/zhike-team/ti-question#readme"
 }
