@@ -25,7 +25,7 @@
     "history": ">=4.7.2"
   },
   "dependencies": {
-    "@zhike/ti-component": "^1.2.25",
+    "@zhike/ti-component": "^1.2.26",
     "@zhike/ti-ui": "^1.2.7",
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^7.3.1",
@@ -82,5 +82,8 @@
   "bugs": {
     "url": "https://github.com/zhike-team/ti-question/issues"
   },
-  "homepage": "https://github.com/zhike-team/ti-question#readme"
+  "homepage": "https://github.com/zhike-team/ti-question#readme",
+  "directories": {
+    "lib": "lib"
+  }
 }

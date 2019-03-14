@@ -90,7 +90,7 @@ export default class ReadingQuestion extends Component {
 
           return true;
         } : undefined,
-      }
+      };
     } else {
       config = {
         inherit: true,

@@ -5,6 +5,8 @@ import { View, Button, Textarea, Image } from '@zhike/ti-ui';
 import { Article, Modal, Header, Utils } from '@zhike/ti-component';
 import styles from './styles';
 
+console.log('Utils:', Utils);
+
 const { countWords, getCursorPosition } = Utils;
 // 阅读题目
 export default class WirtingQuestion extends Component {

@@ -47,6 +47,18 @@ module.exports = {
       commonjs2: '@zhike/ti-ui',
       amd: '@zhike/ti-ui',
     },
+    "@zhike/ti-component": {
+      root: '@zhike/ti-component',
+      commonjs: '@zhike/ti-component',
+      commonjs2: '@zhike/ti-component',
+      amd: '@zhike/ti-component',
+    },
+    "react-custom-scrollbars": {
+      root: 'react-custom-scrollbars',
+      commonjs: 'react-custom-scrollbars',
+      commonjs2: 'react-custom-scrollbars',
+      amd: 'react-custom-scrollbars',
+    },
     "aphrodite": {
       root: 'aphrodite',
       commonjs: 'aphrodite',

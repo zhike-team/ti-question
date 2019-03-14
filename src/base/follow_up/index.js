@@ -93,7 +93,7 @@ export default class FollowUp extends Component {
    */
   handleRecord = async ({ data, reTry, signature, formData }) => {
     try {
-      const unavailableButtons = this.findUnavailableButtons().concat(['back', 'next'])
+      const unavailableButtons = this.findUnavailableButtons().concat(['back', 'next']);
       Header.config({
         unavailableButtons: Array.from(new Set([...unavailableButtons])), // 去重
         inherit: true,
