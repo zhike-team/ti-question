@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { View, Button, Textarea, Image } from '@zhike/ti-ui';
-import { Article, Modal } from '@zhike/ti-component';
-import { countWords, getCursorPosition } from '../../utils';
-import Header from '../../header';
+import { Article, Modal, Header, Utils } from '@zhike/ti-component';
 import styles from './styles';
 
+const { countWords, getCursorPosition } = Utils;
 // 阅读题目
 export default class WirtingQuestion extends Component {
   // 参数

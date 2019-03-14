@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Scrollbar } from '@zhike/ti-ui';
-import Header from '../../header';
+import { Header } from '@zhike/ti-component';
 import Article from '../article';
 import Question from '../question';
 import styles from './styles';

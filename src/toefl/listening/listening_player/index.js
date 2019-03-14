@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Scrollbar } from '@zhike/ti-ui';
-import { AudioPlayer } from '@zhike/ti-component';
-import { formatDuration } from '../../../utils';
-import Header from '../../../header';
+import { AudioPlayer, Header, Utils } from '@zhike/ti-component';
 import styles from './styles';
 
+const { formatDuration } = Utils;
 // 听力播放
 export default class ListeningPlayer extends Component {
   // 参数

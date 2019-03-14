@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { css } from 'aphrodite/no-important';
 import { View, Image } from '@zhike/ti-ui';
-import { Article } from '@zhike/ti-component';
+import { Article, Header } from '@zhike/ti-component';
 import { includes, get } from 'lodash';
-import Header from '../../header';
 import styles from './styles';
 
 // 多项选择题

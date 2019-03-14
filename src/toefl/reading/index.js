@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { View, Image, Scrollbar } from '@zhike/ti-ui';
-import { Article, Modal } from '@zhike/ti-component';
-import Header from '../../header';
+import { Header, Article, Modal } from '@zhike/ti-component';
 import Question from '../question';
 import styles from './styles';
 

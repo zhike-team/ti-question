@@ -6,12 +6,11 @@ import { withRouter } from 'react-router';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { get, cloneDeep } from 'lodash';
 import { View } from '@zhike/ti-ui';
-import { Block } from '@zhike/ti-component';
-import { isUndefinedOrNull } from '../../../utils';
-import { normalizeArticle } from '../../../utils/article';
+import { Block, Utils } from '@zhike/ti-component';
 import Zone from './zone';
 import styles from './styles';
 
+const { normalizeArticle, isUndefinedOrNull } = Utils;
 // 拖拽题
 class Drag extends Component {
   // 参数

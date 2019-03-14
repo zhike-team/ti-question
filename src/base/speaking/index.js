@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { View, Image, Button } from '@zhike/ti-ui';
-import { Article, Recorder, Modal } from '@zhike/ti-component';
+import { Article, Recorder, Modal, Utils, Header } from '@zhike/ti-component';
 import { Player } from '../../audio';
-import { formatDuration } from '../../utils';
-import Header from '../../header';
 import styles from './styles';
 
+const { formatDuration } = Utils;
 // 口语题目
 export default class SpeakingQuestion extends Component {
   // 参数

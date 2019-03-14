@@ -3,10 +3,11 @@ import { css } from 'aphrodite';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { get, isEmpty } from 'lodash';
-import { normalizeArticle } from '../../utils/article';
+import { Utils } from '@zhike/ti-component';
 import Block from './block';
 import styles from './styles';
 
+const { normalizeArticle } = Utils;
 // TODO: 数据预处理在哪里做
 class Article extends Component {
   // 参数

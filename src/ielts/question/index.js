@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from '@zhike/ti-ui';
-import { handleIeltsAnswer } from '../../utils';
+import { Utils } from '@zhike/ti-component';
 import Article from '../article';
 import ChooseOne from './choose_one';
 import ChooseMany from './choose_many';
@@ -11,6 +11,7 @@ import Speaking from './speaking';
 import Drag from './drag';
 import styles from './styles';
 
+const { handleIeltsAnswer } = Utils;
 // 阅读题目
 export default class Question extends Component {
   // 参数

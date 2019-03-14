@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Scrollbar } from '@zhike/ti-ui';
-import { AudioPlayer } from '@zhike/ti-component';
+import { AudioPlayer, Header } from '@zhike/ti-component';
 // import { get } from 'lodash';
 // import { isUndefinedOrNull } from 'utils';
-import Header from '../../../header';
 import Question from '../../question';
 import styles from './styles';
 

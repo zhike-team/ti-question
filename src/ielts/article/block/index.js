@@ -4,10 +4,11 @@ import { withRouter } from 'react-router';
 import { View, Input, Image } from '@zhike/ti-ui';
 import { css } from 'aphrodite';
 import { sortBy, capitalize, get } from 'lodash';
-import { Audio } from '@zhike/ti-component';
+import { Audio, Utils } from '@zhike/ti-component';
 import Zone from '../../question/drag/zone';
-import { firstUpperCase, isUndefinedOrNull } from '../../../utils';
 import styles from './styles';
+
+const { firstUpperCase, isUndefinedOrNull } = Utils;
 
 class Block extends PureComponent {
   // 参数

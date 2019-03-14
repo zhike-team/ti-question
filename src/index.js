@@ -12,10 +12,6 @@ import ReadingComponent1 from './toefl/reading';
 import listeningComponent1 from './toefl/listening/listening_question';
 import listeningPlayer from './toefl/listening/listening_player';
 
-// import { normalizeArticle } from './utils/article';
-import Utils from './utils';
-
-console.log('Utils:', Utils);
 
 // 基础题库题型页面
 export const ChooseOne = ChooseOneQuestion;

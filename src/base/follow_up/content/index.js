@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image } from '@zhike/ti-ui';
-import { Modal, Recorder } from '@zhike/ti-component';
-import { smoothScroll } from '../../../utils/smoothScroll';
+import { Modal, Recorder, Utils } from '@zhike/ti-component';
 import { statusDict, canNot } from './status';
 import Pronounce from './pronounce';
 import RawAndFlag from './raw_and_flag';
 import styles from './styles';
 
+const { smoothScroll } = Utils;
 /**
  * 这个组件的状态管理非常繁杂，要特别小心
  */

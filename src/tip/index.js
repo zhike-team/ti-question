@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Button } from '@zhike/ti-ui';
+import { Header } from '@zhike/ti-component';
 import createHistory from 'history/createBrowserHistory';
-import Header from '../header';
 import styles from './styles';
 
 const history = createHistory();

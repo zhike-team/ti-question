@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View } from '@zhike/ti-ui';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Article } from '@zhike/ti-component';
-import Header from '../../header';
+import { Article, Header } from '@zhike/ti-component';
 import styles from './styles';
 
 export default class Blank extends Component {

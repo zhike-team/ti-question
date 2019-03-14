@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 import { css } from 'aphrodite';
-import { countAllWords } from '../../../utils';
+import { Utils } from '@zhike/ti-component';
 import TYPES from './types';
 
 import styles from './styles';
 
+const { countAllWords } = Utils;
 const choiceSource = {
   beginDrag() {
     return {};

@@ -1,9 +1,10 @@
 /**
  * 该文件的方法精听和跟读都会引用，修改需考虑到兼容性问题
  */
-
-import Parser from '../../util/parser';
 import { get, findIndex } from 'lodash';
+import { Utils } from '@zhike/ti-component';
+
+const Parser = Utils.listeningParser;
 
 const parser = new Parser();
 

@@ -1,6 +1,6 @@
 {
   "name": "@zhike/ti-question",
-  "version": "1.2.22",
+  "version": "0.0.1",
   "description": "新题库 雅思，托福，基础题库题型组件抽取，目前支持在组卷系统中调用",
   "main": "lib/index.js",
   "files": [
@@ -16,6 +16,7 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0",
     "@zhike/ti-ui": ">=1.2.7",
+    "@zhike/ti-component": ">=1.2.25",
     "aphrodite": ">=1.0.0",
     "axios": ">=0.1.0",
     "cookie": ">=0.3.1",
@@ -24,15 +25,12 @@
     "history": ">=4.7.2"
   },
   "dependencies": {
-    "@zhike/ti-component": "^1.2.22",
-    "howler": "^2.0.8",
+    "@zhike/ti-component": "^1.2.25",
+    "@zhike/ti-ui": "^1.2.7",
     "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^7.3.1",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "recordrtc": "^5.4.5",
-    "redux-saga": "^1.0.2",
-    "uuid": "^3.2.1"
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@storybook/addon-info": "^4.0.11",

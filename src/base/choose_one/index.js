@@ -4,8 +4,7 @@ import { withRouter } from 'react-router';
 import { css } from 'aphrodite/no-important';
 import { get } from 'lodash';
 import { View, Image } from '@zhike/ti-ui';
-import { Article } from '@zhike/ti-component';
-import Header from '../../header';
+import { Article, Header } from '@zhike/ti-component';
 import styles from './styles';
 
 // 单项选择题

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty, get } from 'lodash';
 import { View } from '@zhike/ti-ui';
-import { Block } from '@zhike/ti-component';
-import { normalizeArticle } from '../../utils/article';
+import { Block, Utils } from '@zhike/ti-component';
 import ChooseOne from './chooseOne';
 import ChooseMany from './chooseMany';
 import Drag from './drag';
 import Table from './table';
 import styles from './styles';
 
+const { normalizeArticle } = Utils;
 // 问题
 export default class Question extends Component {
   // 参数

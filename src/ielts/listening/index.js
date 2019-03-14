@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get, findIndex } from 'lodash';
 import { View, Scrollbar } from '@zhike/ti-ui';
-import { AudioPlayer } from '@zhike/ti-component';
-import Header from '../../header';
+import { AudioPlayer, Header } from '@zhike/ti-component';
 import Question from '../question';
 import Article from '../article';
 

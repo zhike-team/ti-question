@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import FormData from 'form-data';
 import { View } from '@zhike/ti-ui';
-import Header from '../../header';
+import { Header } from '@zhike/ti-component';
 import Content from './content';
-import { handlePractice } from '../../utils/handlePractice';
+import { handlePractice } from './utils';
 import styles from './styles';
+
 
 export default class FollowUp extends Component {
   // 参数
