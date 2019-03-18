@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Button } from '@zhike/ti-ui';
 import { Header } from '@zhike/ti-component';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
 import styles from './styles';
 
-const history = createHistory();
+// const history = createHistory();
 
 // 阅读题目
 export default class Tip extends Component {
@@ -41,7 +41,8 @@ export default class Tip extends Component {
           className={styles.button}
           text="知道了"
           onClick={() => {
-            history.push(`/${mode}/${practiceId}/${exerciseId}/${step.index + 1}${search}`);
+            global.window.location.href = `/${mode}/${practiceId}/${exerciseId}/${step.index + 1}${search}`;
+            // history.push(`/${mode}/${practiceId}/${exerciseId}/${step.index + 1}${search}`);
           }}
         />
       </View>

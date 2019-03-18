@@ -12,6 +12,7 @@ import ReadingComponent1 from './toefl/reading';
 import listeningComponent1 from './toefl/listening/listening_question';
 import listeningPlayer from './toefl/listening/listening_player';
 
+import TipComponent from './tip';
 
 // 基础题库题型页面
 export const ChooseOne = ChooseOneQuestion;
@@ -29,3 +30,6 @@ export const IeltsListening = listeningComponent;
 export const ToeflReading = ReadingComponent1;
 export const ToeflListening = listeningComponent1;
 export const ToeflListenPlayer = listeningPlayer;
+
+// 阶段测评提示页
+export const Tip = TipComponent;

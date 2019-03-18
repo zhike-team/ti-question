@@ -35,7 +35,6 @@ class ChooseOne extends Component {
 
   // 模块加载
   componentDidMount() {
-    console.log('ChooseOne:', this.props.stepRecord);
     this.initAnswer(this.props.step.index, this.props.stepRecord.answer || []);
   }
 

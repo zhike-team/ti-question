@@ -1,6 +1,6 @@
 {
   "name": "@zhike/ti-question",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "新题库 雅思，托福，基础题库题型组件抽取，目前支持在组卷系统中调用",
   "main": "lib/index.js",
   "files": [
