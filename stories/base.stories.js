@@ -9,6 +9,22 @@ export const history = createHistory();
 
 /* eslint-disable */
 storiesOf('基础题库 题型', module)
+  .addParameters({
+    info: {
+      // Make a default for all stories in this book,
+      styles: {
+        header: {
+          h1: {
+            color: '#62C9FF',
+          },
+          h2: {
+            color: '#32363A',
+          }
+        },
+      },
+      },
+    },
+  )
   .add('type ChooseOne',
   withInfo(`
     基础题库单选题，格式如下：

@@ -1,18 +1,18 @@
-import ChooseOneQuestion from './base/choose_one';
-import ChooseManyQuestion from './base/choose_many';
-import BlankQuestion from './base/blank';
-import SpeakingQuestion from './base/speaking';
-import WritingQuestion from './base/writing';
-import FollowUpQuestion from './base/follow_up';
+import ChooseOneQuestion from './components/base/choose_one';
+import ChooseManyQuestion from './components/base/choose_many';
+import BlankQuestion from './components/base/blank';
+import SpeakingQuestion from './components/base/speaking';
+import WritingQuestion from './components/base/writing';
+import FollowUpQuestion from './components/base/follow_up';
 
-import ReadingComponent from './ielts/reading';
-import listeningComponent from './ielts/listening';
+import ReadingComponent from './components/ielts/reading';
+import listeningComponent from './components/ielts/listening';
 
-import ReadingComponent1 from './toefl/reading';
-import listeningComponent1 from './toefl/listening/listening_question';
-import listeningPlayer from './toefl/listening/listening_player';
+import ReadingComponent1 from './components/toefl/reading';
+import listeningComponent1 from './components/toefl/listening/listening_question';
+import listeningPlayer from './components/toefl/listening/listening_player';
 
-import TipComponent from './tip';
+import TipComponent from './components/tip';
 
 // 基础题库题型页面
 export const ChooseOne = ChooseOneQuestion;
